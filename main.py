@@ -1,6 +1,8 @@
 from tkinter import *
 from tkinter import ttk, Tk, font, filedialog
 import tkinter
+from Analizador.gramatica import analizar_entrada
+from Analizador.Singleton.Singleton import *
 
 simbolos = []
 errores = []
@@ -154,6 +156,11 @@ def insertarDatos(tv, datos):
         tv.insert('', 'end', values=dato)
 
 if __name__ == '__main__':
+    entrada = """
+    let mut x = 2; 
+    let y : i64 = "hola";
+    """
+    analizar_entrada(entrada)
     #----------------------CREACION VENTANA----------------------
     ventana = Tk()
     ventana.title("DB-Rust")
