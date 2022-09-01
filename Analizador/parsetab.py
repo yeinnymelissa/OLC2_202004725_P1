@@ -6,9 +6,9 @@ _tabversion = '3.10'
 
 _lr_method = 'LALR'
 
-_lr_signature = 'Bool Booleano Char CharAux Comentario Entero F64 False Float I64 Id Let Mut String String1 String2 True diferenteQue dividido dobleIgual dosPuntos igual llaveA llaveC mas mayorQue menorQue menos parA parC por ptComaINSTRUCCIONES : INSTRUCCION INSTRUCCIONES\n                    | INSTRUCCIONINSTRUCCION : DECLARACIONDECLARACION : Let Id igual EXPRESION ptComaDECLARACION : Let Id dosPuntos I64 igual EXPRESION ptComaDECLARACION : Let Id dosPuntos F64 igual EXPRESION ptComaDECLARACION : Let Id dosPuntos String1 igual EXPRESION ptComa\n                    | Let Id dosPuntos String2 igual EXPRESION ptComaDECLARACION : Let Id dosPuntos Bool igual EXPRESION ptComaDECLARACION : Let Id dosPuntos CharAux igual EXPRESION ptComaDECLARACION : Let Mut Id igual EXPRESION ptComaDECLARACION : Let Mut Id dosPuntos I64 igual EXPRESION ptComaDECLARACION : Let Mut Id dosPuntos F64 igual EXPRESION ptComaDECLARACION : Let Mut Id dosPuntos String1 igual EXPRESION ptComa\n                    | Let Mut Id dosPuntos String2 igual EXPRESION ptComaDECLARACION : Let Mut Id dosPuntos Bool igual EXPRESION ptComaDECLARACION : Let Mut Id dosPuntos CharAux igual EXPRESION ptComaEXPRESION : FloatEXPRESION : EnteroEXPRESION : BooleanoEXPRESION : StringEXPRESION : Char'
+_lr_signature = 'Bool Booleano Char CharAux Comentario Entero F64 False Float I64 Id Let Mut Str StrA String True diferenteQue dividido dobleIgual dosPuntos igual llaveA llaveC mas mayorQue menorQue menos parA parC por ptComainit : INSTRUCCIONESINSTRUCCIONES : INSTRUCCIONES INSTRUCCIONINSTRUCCIONES : INSTRUCCIONINSTRUCCION : DECLARACIONDECLARACION : Let Id igual EXPRESION ptComaDECLARACION : Let Id dosPuntos I64 igual EXPRESION ptComaDECLARACION : Let Id dosPuntos F64 igual EXPRESION ptComaDECLARACION : Let Id dosPuntos Str igual EXPRESION ptComa\n                    | Let Id dosPuntos StrA igual EXPRESION ptComaDECLARACION : Let Id dosPuntos Bool igual EXPRESION ptComaDECLARACION : Let Id dosPuntos CharAux igual EXPRESION ptComaDECLARACION : Let Mut Id igual EXPRESION ptComaDECLARACION : Let Mut Id dosPuntos I64 igual EXPRESION ptComaDECLARACION : Let Mut Id dosPuntos F64 igual EXPRESION ptComaDECLARACION : Let Mut Id dosPuntos Str igual EXPRESION ptComa\n                    | Let Mut Id dosPuntos StrA igual EXPRESION ptComaDECLARACION : Let Mut Id dosPuntos Bool igual EXPRESION ptComaDECLARACION : Let Mut Id dosPuntos CharAux igual EXPRESION ptComaINSTRUCCION : ASIGNACIONASIGNACION : Id igual EXPRESION ptComaEXPRESION : FloatEXPRESION : EnteroEXPRESION : BooleanoEXPRESION : StringEXPRESION : Char'
     
-_lr_action_items = {'Let':([0,2,3,25,45,52,53,54,55,56,57,64,65,66,67,68,69,],[4,4,-3,-4,-11,-5,-6,-7,-8,-9,-10,-12,-13,-14,-15,-16,-17,]),'$end':([1,2,3,5,25,45,52,53,54,55,56,57,64,65,66,67,68,69,],[0,-2,-3,-1,-4,-11,-5,-6,-7,-8,-9,-10,-12,-13,-14,-15,-16,-17,]),'Id':([4,7,],[6,10,]),'Mut':([4,],[7,]),'igual':([6,10,17,18,19,20,21,22,33,34,35,36,37,38,],[8,23,26,27,28,29,30,31,46,47,48,49,50,51,]),'dosPuntos':([6,10,],[9,24,]),'Float':([8,23,26,27,28,29,30,31,46,47,48,49,50,51,],[12,12,12,12,12,12,12,12,12,12,12,12,12,12,]),'Entero':([8,23,26,27,28,29,30,31,46,47,48,49,50,51,],[13,13,13,13,13,13,13,13,13,13,13,13,13,13,]),'Booleano':([8,23,26,27,28,29,30,31,46,47,48,49,50,51,],[14,14,14,14,14,14,14,14,14,14,14,14,14,14,]),'String':([8,23,26,27,28,29,30,31,46,47,48,49,50,51,],[15,15,15,15,15,15,15,15,15,15,15,15,15,15,]),'Char':([8,23,26,27,28,29,30,31,46,47,48,49,50,51,],[16,16,16,16,16,16,16,16,16,16,16,16,16,16,]),'I64':([9,24,],[17,33,]),'F64':([9,24,],[18,34,]),'String1':([9,24,],[19,35,]),'String2':([9,24,],[20,36,]),'Bool':([9,24,],[21,37,]),'CharAux':([9,24,],[22,38,]),'ptComa':([11,12,13,14,15,16,32,39,40,41,42,43,44,58,59,60,61,62,63,],[25,-18,-19,-20,-21,-22,45,52,53,54,55,56,57,64,65,66,67,68,69,]),}
+_lr_action_items = {'Let':([0,2,3,4,5,8,30,31,51,58,59,60,61,62,63,70,71,72,73,74,75,],[6,6,-3,-4,-19,-2,-20,-5,-12,-6,-7,-8,-9,-10,-11,-13,-14,-15,-16,-17,-18,]),'Id':([0,2,3,4,5,6,8,10,30,31,51,58,59,60,61,62,63,70,71,72,73,74,75,],[7,7,-3,-4,-19,9,-2,14,-20,-5,-12,-6,-7,-8,-9,-10,-11,-13,-14,-15,-16,-17,-18,]),'$end':([1,2,3,4,5,8,30,31,51,58,59,60,61,62,63,70,71,72,73,74,75,],[0,-1,-3,-4,-19,-2,-20,-5,-12,-6,-7,-8,-9,-10,-11,-13,-14,-15,-16,-17,-18,]),'Mut':([6,],[10,]),'igual':([7,9,14,22,23,24,25,26,27,39,40,41,42,43,44,],[11,12,28,32,33,34,35,36,37,52,53,54,55,56,57,]),'dosPuntos':([9,14,],[13,29,]),'Float':([11,12,28,32,33,34,35,36,37,52,53,54,55,56,57,],[16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,]),'Entero':([11,12,28,32,33,34,35,36,37,52,53,54,55,56,57,],[17,17,17,17,17,17,17,17,17,17,17,17,17,17,17,]),'Booleano':([11,12,28,32,33,34,35,36,37,52,53,54,55,56,57,],[18,18,18,18,18,18,18,18,18,18,18,18,18,18,18,]),'String':([11,12,28,32,33,34,35,36,37,52,53,54,55,56,57,],[19,19,19,19,19,19,19,19,19,19,19,19,19,19,19,]),'Char':([11,12,28,32,33,34,35,36,37,52,53,54,55,56,57,],[20,20,20,20,20,20,20,20,20,20,20,20,20,20,20,]),'I64':([13,29,],[22,39,]),'F64':([13,29,],[23,40,]),'Str':([13,29,],[24,41,]),'StrA':([13,29,],[25,42,]),'Bool':([13,29,],[26,43,]),'CharAux':([13,29,],[27,44,]),'ptComa':([15,16,17,18,19,20,21,38,45,46,47,48,49,50,64,65,66,67,68,69,],[30,-21,-22,-23,-24,-25,31,51,58,59,60,61,62,63,70,71,72,73,74,75,]),}
 
 _lr_action = {}
 for _k, _v in _lr_action_items.items():
@@ -17,7 +17,7 @@ for _k, _v in _lr_action_items.items():
       _lr_action[_x][_k] = _y
 del _lr_action_items
 
-_lr_goto_items = {'INSTRUCCIONES':([0,2,],[1,5,]),'INSTRUCCION':([0,2,],[2,2,]),'DECLARACION':([0,2,],[3,3,]),'EXPRESION':([8,23,26,27,28,29,30,31,46,47,48,49,50,51,],[11,32,39,40,41,42,43,44,58,59,60,61,62,63,]),}
+_lr_goto_items = {'init':([0,],[1,]),'INSTRUCCIONES':([0,],[2,]),'INSTRUCCION':([0,2,],[3,8,]),'DECLARACION':([0,2,],[4,4,]),'ASIGNACION':([0,2,],[5,5,]),'EXPRESION':([11,12,28,32,33,34,35,36,37,52,53,54,55,56,57,],[15,21,38,45,46,47,48,49,50,64,65,66,67,68,69,]),}
 
 _lr_goto = {}
 for _k, _v in _lr_goto_items.items():
@@ -26,27 +26,30 @@ for _k, _v in _lr_goto_items.items():
        _lr_goto[_x][_k] = _y
 del _lr_goto_items
 _lr_productions = [
-  ("S' -> INSTRUCCIONES","S'",1,None,None,None),
-  ('INSTRUCCIONES -> INSTRUCCION INSTRUCCIONES','INSTRUCCIONES',2,'p_listaInstrucciones','gramatica.py',127),
-  ('INSTRUCCIONES -> INSTRUCCION','INSTRUCCIONES',1,'p_listaInstrucciones','gramatica.py',128),
-  ('INSTRUCCION -> DECLARACION','INSTRUCCION',1,'p_Instruccion_Declaracion','gramatica.py',132),
-  ('DECLARACION -> Let Id igual EXPRESION ptComa','DECLARACION',5,'p_Declaracion_Normal','gramatica.py',135),
-  ('DECLARACION -> Let Id dosPuntos I64 igual EXPRESION ptComa','DECLARACION',7,'p_Declaracion_Normal_Tipo_I64','gramatica.py',138),
-  ('DECLARACION -> Let Id dosPuntos F64 igual EXPRESION ptComa','DECLARACION',7,'p_Declaracion_Normal_Tipo_F64','gramatica.py',141),
-  ('DECLARACION -> Let Id dosPuntos String1 igual EXPRESION ptComa','DECLARACION',7,'p_Declaracion_Normal_Tipo_String','gramatica.py',144),
-  ('DECLARACION -> Let Id dosPuntos String2 igual EXPRESION ptComa','DECLARACION',7,'p_Declaracion_Normal_Tipo_String','gramatica.py',145),
-  ('DECLARACION -> Let Id dosPuntos Bool igual EXPRESION ptComa','DECLARACION',7,'p_Declaracion_Normal_Tipo_Bool','gramatica.py',148),
-  ('DECLARACION -> Let Id dosPuntos CharAux igual EXPRESION ptComa','DECLARACION',7,'p_Declaracion_Normal_Tipo_Char','gramatica.py',151),
-  ('DECLARACION -> Let Mut Id igual EXPRESION ptComa','DECLARACION',6,'p_Declaracion_Mut','gramatica.py',154),
-  ('DECLARACION -> Let Mut Id dosPuntos I64 igual EXPRESION ptComa','DECLARACION',8,'p_Declaracion_Mut_Tipo_I64','gramatica.py',157),
-  ('DECLARACION -> Let Mut Id dosPuntos F64 igual EXPRESION ptComa','DECLARACION',8,'p_Declaracion_Mut_Tipo_F64','gramatica.py',160),
-  ('DECLARACION -> Let Mut Id dosPuntos String1 igual EXPRESION ptComa','DECLARACION',8,'p_Declaracion_Mut_Tipo_String','gramatica.py',163),
-  ('DECLARACION -> Let Mut Id dosPuntos String2 igual EXPRESION ptComa','DECLARACION',8,'p_Declaracion_Mut_Tipo_String','gramatica.py',164),
-  ('DECLARACION -> Let Mut Id dosPuntos Bool igual EXPRESION ptComa','DECLARACION',8,'p_Declaracion_Mut_Tipo_Bool','gramatica.py',167),
-  ('DECLARACION -> Let Mut Id dosPuntos CharAux igual EXPRESION ptComa','DECLARACION',8,'p_Declaracion_Mut_Tipo_Char','gramatica.py',170),
-  ('EXPRESION -> Float','EXPRESION',1,'p_Expresion_Float','gramatica.py',176),
-  ('EXPRESION -> Entero','EXPRESION',1,'p_Expresion_Entero','gramatica.py',179),
-  ('EXPRESION -> Booleano','EXPRESION',1,'p_Expresion_Booleano','gramatica.py',182),
-  ('EXPRESION -> String','EXPRESION',1,'p_Expresion_String','gramatica.py',185),
-  ('EXPRESION -> Char','EXPRESION',1,'p_Expresion_Char','gramatica.py',188),
+  ("S' -> init","S'",1,None,None,None),
+  ('init -> INSTRUCCIONES','init',1,'p_init','gramatica.py',137),
+  ('INSTRUCCIONES -> INSTRUCCIONES INSTRUCCION','INSTRUCCIONES',2,'p_listaInstrucciones','gramatica.py',141),
+  ('INSTRUCCIONES -> INSTRUCCION','INSTRUCCIONES',1,'p_listaInstrucciones_Instruccion','gramatica.py',146),
+  ('INSTRUCCION -> DECLARACION','INSTRUCCION',1,'p_Instruccion_Declaracion','gramatica.py',152),
+  ('DECLARACION -> Let Id igual EXPRESION ptComa','DECLARACION',5,'p_Declaracion_Normal','gramatica.py',156),
+  ('DECLARACION -> Let Id dosPuntos I64 igual EXPRESION ptComa','DECLARACION',7,'p_Declaracion_Normal_Tipo_I64','gramatica.py',160),
+  ('DECLARACION -> Let Id dosPuntos F64 igual EXPRESION ptComa','DECLARACION',7,'p_Declaracion_Normal_Tipo_F64','gramatica.py',164),
+  ('DECLARACION -> Let Id dosPuntos Str igual EXPRESION ptComa','DECLARACION',7,'p_Declaracion_Normal_Tipo_String','gramatica.py',168),
+  ('DECLARACION -> Let Id dosPuntos StrA igual EXPRESION ptComa','DECLARACION',7,'p_Declaracion_Normal_Tipo_String','gramatica.py',169),
+  ('DECLARACION -> Let Id dosPuntos Bool igual EXPRESION ptComa','DECLARACION',7,'p_Declaracion_Normal_Tipo_Bool','gramatica.py',173),
+  ('DECLARACION -> Let Id dosPuntos CharAux igual EXPRESION ptComa','DECLARACION',7,'p_Declaracion_Normal_Tipo_Char','gramatica.py',177),
+  ('DECLARACION -> Let Mut Id igual EXPRESION ptComa','DECLARACION',6,'p_Declaracion_Mut','gramatica.py',181),
+  ('DECLARACION -> Let Mut Id dosPuntos I64 igual EXPRESION ptComa','DECLARACION',8,'p_Declaracion_Mut_Tipo_I64','gramatica.py',186),
+  ('DECLARACION -> Let Mut Id dosPuntos F64 igual EXPRESION ptComa','DECLARACION',8,'p_Declaracion_Mut_Tipo_F64','gramatica.py',190),
+  ('DECLARACION -> Let Mut Id dosPuntos Str igual EXPRESION ptComa','DECLARACION',8,'p_Declaracion_Mut_Tipo_String','gramatica.py',194),
+  ('DECLARACION -> Let Mut Id dosPuntos StrA igual EXPRESION ptComa','DECLARACION',8,'p_Declaracion_Mut_Tipo_String','gramatica.py',195),
+  ('DECLARACION -> Let Mut Id dosPuntos Bool igual EXPRESION ptComa','DECLARACION',8,'p_Declaracion_Mut_Tipo_Bool','gramatica.py',199),
+  ('DECLARACION -> Let Mut Id dosPuntos CharAux igual EXPRESION ptComa','DECLARACION',8,'p_Declaracion_Mut_Tipo_Char','gramatica.py',203),
+  ('INSTRUCCION -> ASIGNACION','INSTRUCCION',1,'p_Instruccion_Asignacion','gramatica.py',209),
+  ('ASIGNACION -> Id igual EXPRESION ptComa','ASIGNACION',4,'p_Asignacion','gramatica.py',213),
+  ('EXPRESION -> Float','EXPRESION',1,'p_Expresion_Float','gramatica.py',219),
+  ('EXPRESION -> Entero','EXPRESION',1,'p_Expresion_Entero','gramatica.py',223),
+  ('EXPRESION -> Booleano','EXPRESION',1,'p_Expresion_Booleano','gramatica.py',227),
+  ('EXPRESION -> String','EXPRESION',1,'p_Expresion_String','gramatica.py',231),
+  ('EXPRESION -> Char','EXPRESION',1,'p_Expresion_Char','gramatica.py',235),
 ]

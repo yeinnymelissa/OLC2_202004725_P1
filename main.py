@@ -158,7 +158,8 @@ def insertarDatos(tv, datos):
 if __name__ == '__main__':
     entrada = """
     let mut x = 2; 
-    let y : i64 = "hola";
+    let y : bool = true;
+    let z : &str = "hola";
     """
     analizar_entrada(entrada)
     #----------------------CREACION VENTANA----------------------

@@ -1,13 +1,12 @@
 from operator import truediv
+from Analizador.Entorno.Simbolo import Simbolo
 from Analizador.Singleton.Singleton import Singleton
-from Simbolo import *
 
 class Entorno():
-    def __init__(self, nombre):
-        self.nombre = nombre
+    def __init__(self, id, entorno_anterior):
         self.tabla_simbolos = {}
-        self.entorno_anterior = None
-        self.id = None
+        self.entorno_anterior = entorno_anterior
+        self.id = id
 
     def guardar_variable(self, nombre, valor, tipo_dato, editable, tipo_simbolo, linea, columna):
         
@@ -16,6 +15,7 @@ class Entorno():
             self.tabla_simbolos[nombre] = simbolo
             singleton = Singleton.getInstance()
             singleton.addSimbolo(simbolo)
+            self.recorrerTablaSimbolos()
             return True
         return False
 
@@ -36,6 +36,22 @@ class Entorno():
                 return self.tabla_simbolos.get(nombre)
             env = env.entorno_anterior
         return None
+
+    def actualizarVariable(self, nombre, valor):
+        env = self
+
+        while env != None:
+            if(env.tabla_simbolos.get(nombre) != None):
+                variable = env.tabla_simbolos.get(nombre)
+                variable.valor = valor
+                self.recorrerTablaSimbolos()
+                return 
+            env = env.entorno_anterior
+    
+    def recorrerTablaSimbolos(self):
+        for simbolo in self.tabla_simbolos:
+            valor = self.tabla_simbolos[simbolo]
+            print(str(simbolo) +": "+str(valor.nombre) +" / " + str(valor.valor))
 
     def obtenerValor(self, nombre):
         simbolo = self.tabla_simbolos.get(nombre, None)

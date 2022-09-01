@@ -20,55 +20,58 @@ Unused terminals:
 
 Grammar
 
-Rule 0     S' -> INSTRUCCIONES
-Rule 1     INSTRUCCIONES -> INSTRUCCION INSTRUCCIONES
-Rule 2     INSTRUCCIONES -> INSTRUCCION
-Rule 3     INSTRUCCION -> DECLARACION
-Rule 4     DECLARACION -> Let Id igual EXPRESION ptComa
-Rule 5     DECLARACION -> Let Id dosPuntos I64 igual EXPRESION ptComa
-Rule 6     DECLARACION -> Let Id dosPuntos F64 igual EXPRESION ptComa
-Rule 7     DECLARACION -> Let Id dosPuntos String1 igual EXPRESION ptComa
-Rule 8     DECLARACION -> Let Id dosPuntos String2 igual EXPRESION ptComa
-Rule 9     DECLARACION -> Let Id dosPuntos Bool igual EXPRESION ptComa
-Rule 10    DECLARACION -> Let Id dosPuntos CharAux igual EXPRESION ptComa
-Rule 11    DECLARACION -> Let Mut Id igual EXPRESION ptComa
-Rule 12    DECLARACION -> Let Mut Id dosPuntos I64 igual EXPRESION ptComa
-Rule 13    DECLARACION -> Let Mut Id dosPuntos F64 igual EXPRESION ptComa
-Rule 14    DECLARACION -> Let Mut Id dosPuntos String1 igual EXPRESION ptComa
-Rule 15    DECLARACION -> Let Mut Id dosPuntos String2 igual EXPRESION ptComa
-Rule 16    DECLARACION -> Let Mut Id dosPuntos Bool igual EXPRESION ptComa
-Rule 17    DECLARACION -> Let Mut Id dosPuntos CharAux igual EXPRESION ptComa
-Rule 18    EXPRESION -> Float
-Rule 19    EXPRESION -> Entero
-Rule 20    EXPRESION -> Booleano
-Rule 21    EXPRESION -> String
-Rule 22    EXPRESION -> Char
+Rule 0     S' -> init
+Rule 1     init -> INSTRUCCIONES
+Rule 2     INSTRUCCIONES -> INSTRUCCIONES INSTRUCCION
+Rule 3     INSTRUCCIONES -> INSTRUCCION
+Rule 4     INSTRUCCION -> DECLARACION
+Rule 5     DECLARACION -> Let Id igual EXPRESION ptComa
+Rule 6     DECLARACION -> Let Id dosPuntos I64 igual EXPRESION ptComa
+Rule 7     DECLARACION -> Let Id dosPuntos F64 igual EXPRESION ptComa
+Rule 8     DECLARACION -> Let Id dosPuntos Str igual EXPRESION ptComa
+Rule 9     DECLARACION -> Let Id dosPuntos StrA igual EXPRESION ptComa
+Rule 10    DECLARACION -> Let Id dosPuntos Bool igual EXPRESION ptComa
+Rule 11    DECLARACION -> Let Id dosPuntos CharAux igual EXPRESION ptComa
+Rule 12    DECLARACION -> Let Mut Id igual EXPRESION ptComa
+Rule 13    DECLARACION -> Let Mut Id dosPuntos I64 igual EXPRESION ptComa
+Rule 14    DECLARACION -> Let Mut Id dosPuntos F64 igual EXPRESION ptComa
+Rule 15    DECLARACION -> Let Mut Id dosPuntos Str igual EXPRESION ptComa
+Rule 16    DECLARACION -> Let Mut Id dosPuntos StrA igual EXPRESION ptComa
+Rule 17    DECLARACION -> Let Mut Id dosPuntos Bool igual EXPRESION ptComa
+Rule 18    DECLARACION -> Let Mut Id dosPuntos CharAux igual EXPRESION ptComa
+Rule 19    INSTRUCCION -> ASIGNACION
+Rule 20    ASIGNACION -> Id igual EXPRESION ptComa
+Rule 21    EXPRESION -> Float
+Rule 22    EXPRESION -> Entero
+Rule 23    EXPRESION -> Booleano
+Rule 24    EXPRESION -> String
+Rule 25    EXPRESION -> Char
 
 Terminals, with rules where they appear
 
-Bool                 : 9 16
-Booleano             : 20
-Char                 : 22
-CharAux              : 10 17
+Bool                 : 10 17
+Booleano             : 23
+Char                 : 25
+CharAux              : 11 18
 Comentario           : 
-Entero               : 19
-F64                  : 6 13
+Entero               : 22
+F64                  : 7 14
 False                : 
-Float                : 18
-I64                  : 5 12
-Id                   : 4 5 6 7 8 9 10 11 12 13 14 15 16 17
-Let                  : 4 5 6 7 8 9 10 11 12 13 14 15 16 17
-Mut                  : 11 12 13 14 15 16 17
-String               : 21
-String1              : 7 14
-String2              : 8 15
+Float                : 21
+I64                  : 6 13
+Id                   : 5 6 7 8 9 10 11 12 13 14 15 16 17 18 20
+Let                  : 5 6 7 8 9 10 11 12 13 14 15 16 17 18
+Mut                  : 12 13 14 15 16 17 18
+Str                  : 8 15
+StrA                 : 9 16
+String               : 24
 True                 : 
 diferenteQue         : 
 dividido             : 
 dobleIgual           : 
-dosPuntos            : 5 6 7 8 9 10 12 13 14 15 16 17
+dosPuntos            : 6 7 8 9 10 11 13 14 15 16 17 18
 error                : 
-igual                : 4 5 6 7 8 9 10 11 12 13 14 15 16 17
+igual                : 5 6 7 8 9 10 11 12 13 14 15 16 17 18 20
 llaveA               : 
 llaveC               : 
 mas                  : 
@@ -78,753 +81,837 @@ menos                :
 parA                 : 
 parC                 : 
 por                  : 
-ptComa               : 4 5 6 7 8 9 10 11 12 13 14 15 16 17
+ptComa               : 5 6 7 8 9 10 11 12 13 14 15 16 17 18 20
 
 Nonterminals, with rules where they appear
 
-DECLARACION          : 3
-EXPRESION            : 4 5 6 7 8 9 10 11 12 13 14 15 16 17
-INSTRUCCION          : 1 2
-INSTRUCCIONES        : 1 0
+ASIGNACION           : 19
+DECLARACION          : 4
+EXPRESION            : 5 6 7 8 9 10 11 12 13 14 15 16 17 18 20
+INSTRUCCION          : 2 3
+INSTRUCCIONES        : 1 2
+init                 : 0
 
 Parsing method: LALR
 
 state 0
 
-    (0) S' -> . INSTRUCCIONES
-    (1) INSTRUCCIONES -> . INSTRUCCION INSTRUCCIONES
-    (2) INSTRUCCIONES -> . INSTRUCCION
-    (3) INSTRUCCION -> . DECLARACION
-    (4) DECLARACION -> . Let Id igual EXPRESION ptComa
-    (5) DECLARACION -> . Let Id dosPuntos I64 igual EXPRESION ptComa
-    (6) DECLARACION -> . Let Id dosPuntos F64 igual EXPRESION ptComa
-    (7) DECLARACION -> . Let Id dosPuntos String1 igual EXPRESION ptComa
-    (8) DECLARACION -> . Let Id dosPuntos String2 igual EXPRESION ptComa
-    (9) DECLARACION -> . Let Id dosPuntos Bool igual EXPRESION ptComa
-    (10) DECLARACION -> . Let Id dosPuntos CharAux igual EXPRESION ptComa
-    (11) DECLARACION -> . Let Mut Id igual EXPRESION ptComa
-    (12) DECLARACION -> . Let Mut Id dosPuntos I64 igual EXPRESION ptComa
-    (13) DECLARACION -> . Let Mut Id dosPuntos F64 igual EXPRESION ptComa
-    (14) DECLARACION -> . Let Mut Id dosPuntos String1 igual EXPRESION ptComa
-    (15) DECLARACION -> . Let Mut Id dosPuntos String2 igual EXPRESION ptComa
-    (16) DECLARACION -> . Let Mut Id dosPuntos Bool igual EXPRESION ptComa
-    (17) DECLARACION -> . Let Mut Id dosPuntos CharAux igual EXPRESION ptComa
+    (0) S' -> . init
+    (1) init -> . INSTRUCCIONES
+    (2) INSTRUCCIONES -> . INSTRUCCIONES INSTRUCCION
+    (3) INSTRUCCIONES -> . INSTRUCCION
+    (4) INSTRUCCION -> . DECLARACION
+    (19) INSTRUCCION -> . ASIGNACION
+    (5) DECLARACION -> . Let Id igual EXPRESION ptComa
+    (6) DECLARACION -> . Let Id dosPuntos I64 igual EXPRESION ptComa
+    (7) DECLARACION -> . Let Id dosPuntos F64 igual EXPRESION ptComa
+    (8) DECLARACION -> . Let Id dosPuntos Str igual EXPRESION ptComa
+    (9) DECLARACION -> . Let Id dosPuntos StrA igual EXPRESION ptComa
+    (10) DECLARACION -> . Let Id dosPuntos Bool igual EXPRESION ptComa
+    (11) DECLARACION -> . Let Id dosPuntos CharAux igual EXPRESION ptComa
+    (12) DECLARACION -> . Let Mut Id igual EXPRESION ptComa
+    (13) DECLARACION -> . Let Mut Id dosPuntos I64 igual EXPRESION ptComa
+    (14) DECLARACION -> . Let Mut Id dosPuntos F64 igual EXPRESION ptComa
+    (15) DECLARACION -> . Let Mut Id dosPuntos Str igual EXPRESION ptComa
+    (16) DECLARACION -> . Let Mut Id dosPuntos StrA igual EXPRESION ptComa
+    (17) DECLARACION -> . Let Mut Id dosPuntos Bool igual EXPRESION ptComa
+    (18) DECLARACION -> . Let Mut Id dosPuntos CharAux igual EXPRESION ptComa
+    (20) ASIGNACION -> . Id igual EXPRESION ptComa
 
-    Let             shift and go to state 4
+    Let             shift and go to state 6
+    Id              shift and go to state 7
 
-    INSTRUCCIONES                  shift and go to state 1
-    INSTRUCCION                    shift and go to state 2
-    DECLARACION                    shift and go to state 3
+    init                           shift and go to state 1
+    INSTRUCCIONES                  shift and go to state 2
+    INSTRUCCION                    shift and go to state 3
+    DECLARACION                    shift and go to state 4
+    ASIGNACION                     shift and go to state 5
 
 state 1
 
-    (0) S' -> INSTRUCCIONES .
+    (0) S' -> init .
 
 
 
 state 2
 
-    (1) INSTRUCCIONES -> INSTRUCCION . INSTRUCCIONES
-    (2) INSTRUCCIONES -> INSTRUCCION .
-    (1) INSTRUCCIONES -> . INSTRUCCION INSTRUCCIONES
-    (2) INSTRUCCIONES -> . INSTRUCCION
-    (3) INSTRUCCION -> . DECLARACION
-    (4) DECLARACION -> . Let Id igual EXPRESION ptComa
-    (5) DECLARACION -> . Let Id dosPuntos I64 igual EXPRESION ptComa
-    (6) DECLARACION -> . Let Id dosPuntos F64 igual EXPRESION ptComa
-    (7) DECLARACION -> . Let Id dosPuntos String1 igual EXPRESION ptComa
-    (8) DECLARACION -> . Let Id dosPuntos String2 igual EXPRESION ptComa
-    (9) DECLARACION -> . Let Id dosPuntos Bool igual EXPRESION ptComa
-    (10) DECLARACION -> . Let Id dosPuntos CharAux igual EXPRESION ptComa
-    (11) DECLARACION -> . Let Mut Id igual EXPRESION ptComa
-    (12) DECLARACION -> . Let Mut Id dosPuntos I64 igual EXPRESION ptComa
-    (13) DECLARACION -> . Let Mut Id dosPuntos F64 igual EXPRESION ptComa
-    (14) DECLARACION -> . Let Mut Id dosPuntos String1 igual EXPRESION ptComa
-    (15) DECLARACION -> . Let Mut Id dosPuntos String2 igual EXPRESION ptComa
-    (16) DECLARACION -> . Let Mut Id dosPuntos Bool igual EXPRESION ptComa
-    (17) DECLARACION -> . Let Mut Id dosPuntos CharAux igual EXPRESION ptComa
+    (1) init -> INSTRUCCIONES .
+    (2) INSTRUCCIONES -> INSTRUCCIONES . INSTRUCCION
+    (4) INSTRUCCION -> . DECLARACION
+    (19) INSTRUCCION -> . ASIGNACION
+    (5) DECLARACION -> . Let Id igual EXPRESION ptComa
+    (6) DECLARACION -> . Let Id dosPuntos I64 igual EXPRESION ptComa
+    (7) DECLARACION -> . Let Id dosPuntos F64 igual EXPRESION ptComa
+    (8) DECLARACION -> . Let Id dosPuntos Str igual EXPRESION ptComa
+    (9) DECLARACION -> . Let Id dosPuntos StrA igual EXPRESION ptComa
+    (10) DECLARACION -> . Let Id dosPuntos Bool igual EXPRESION ptComa
+    (11) DECLARACION -> . Let Id dosPuntos CharAux igual EXPRESION ptComa
+    (12) DECLARACION -> . Let Mut Id igual EXPRESION ptComa
+    (13) DECLARACION -> . Let Mut Id dosPuntos I64 igual EXPRESION ptComa
+    (14) DECLARACION -> . Let Mut Id dosPuntos F64 igual EXPRESION ptComa
+    (15) DECLARACION -> . Let Mut Id dosPuntos Str igual EXPRESION ptComa
+    (16) DECLARACION -> . Let Mut Id dosPuntos StrA igual EXPRESION ptComa
+    (17) DECLARACION -> . Let Mut Id dosPuntos Bool igual EXPRESION ptComa
+    (18) DECLARACION -> . Let Mut Id dosPuntos CharAux igual EXPRESION ptComa
+    (20) ASIGNACION -> . Id igual EXPRESION ptComa
 
-    $end            reduce using rule 2 (INSTRUCCIONES -> INSTRUCCION .)
-    Let             shift and go to state 4
+    $end            reduce using rule 1 (init -> INSTRUCCIONES .)
+    Let             shift and go to state 6
+    Id              shift and go to state 7
 
-    INSTRUCCION                    shift and go to state 2
-    INSTRUCCIONES                  shift and go to state 5
-    DECLARACION                    shift and go to state 3
+    INSTRUCCION                    shift and go to state 8
+    DECLARACION                    shift and go to state 4
+    ASIGNACION                     shift and go to state 5
 
 state 3
 
-    (3) INSTRUCCION -> DECLARACION .
+    (3) INSTRUCCIONES -> INSTRUCCION .
 
-    Let             reduce using rule 3 (INSTRUCCION -> DECLARACION .)
-    $end            reduce using rule 3 (INSTRUCCION -> DECLARACION .)
+    Let             reduce using rule 3 (INSTRUCCIONES -> INSTRUCCION .)
+    Id              reduce using rule 3 (INSTRUCCIONES -> INSTRUCCION .)
+    $end            reduce using rule 3 (INSTRUCCIONES -> INSTRUCCION .)
 
 
 state 4
 
-    (4) DECLARACION -> Let . Id igual EXPRESION ptComa
-    (5) DECLARACION -> Let . Id dosPuntos I64 igual EXPRESION ptComa
-    (6) DECLARACION -> Let . Id dosPuntos F64 igual EXPRESION ptComa
-    (7) DECLARACION -> Let . Id dosPuntos String1 igual EXPRESION ptComa
-    (8) DECLARACION -> Let . Id dosPuntos String2 igual EXPRESION ptComa
-    (9) DECLARACION -> Let . Id dosPuntos Bool igual EXPRESION ptComa
-    (10) DECLARACION -> Let . Id dosPuntos CharAux igual EXPRESION ptComa
-    (11) DECLARACION -> Let . Mut Id igual EXPRESION ptComa
-    (12) DECLARACION -> Let . Mut Id dosPuntos I64 igual EXPRESION ptComa
-    (13) DECLARACION -> Let . Mut Id dosPuntos F64 igual EXPRESION ptComa
-    (14) DECLARACION -> Let . Mut Id dosPuntos String1 igual EXPRESION ptComa
-    (15) DECLARACION -> Let . Mut Id dosPuntos String2 igual EXPRESION ptComa
-    (16) DECLARACION -> Let . Mut Id dosPuntos Bool igual EXPRESION ptComa
-    (17) DECLARACION -> Let . Mut Id dosPuntos CharAux igual EXPRESION ptComa
+    (4) INSTRUCCION -> DECLARACION .
 
-    Id              shift and go to state 6
-    Mut             shift and go to state 7
+    Let             reduce using rule 4 (INSTRUCCION -> DECLARACION .)
+    Id              reduce using rule 4 (INSTRUCCION -> DECLARACION .)
+    $end            reduce using rule 4 (INSTRUCCION -> DECLARACION .)
 
 
 state 5
 
-    (1) INSTRUCCIONES -> INSTRUCCION INSTRUCCIONES .
+    (19) INSTRUCCION -> ASIGNACION .
 
-    $end            reduce using rule 1 (INSTRUCCIONES -> INSTRUCCION INSTRUCCIONES .)
+    Let             reduce using rule 19 (INSTRUCCION -> ASIGNACION .)
+    Id              reduce using rule 19 (INSTRUCCION -> ASIGNACION .)
+    $end            reduce using rule 19 (INSTRUCCION -> ASIGNACION .)
 
 
 state 6
 
-    (4) DECLARACION -> Let Id . igual EXPRESION ptComa
-    (5) DECLARACION -> Let Id . dosPuntos I64 igual EXPRESION ptComa
-    (6) DECLARACION -> Let Id . dosPuntos F64 igual EXPRESION ptComa
-    (7) DECLARACION -> Let Id . dosPuntos String1 igual EXPRESION ptComa
-    (8) DECLARACION -> Let Id . dosPuntos String2 igual EXPRESION ptComa
-    (9) DECLARACION -> Let Id . dosPuntos Bool igual EXPRESION ptComa
-    (10) DECLARACION -> Let Id . dosPuntos CharAux igual EXPRESION ptComa
+    (5) DECLARACION -> Let . Id igual EXPRESION ptComa
+    (6) DECLARACION -> Let . Id dosPuntos I64 igual EXPRESION ptComa
+    (7) DECLARACION -> Let . Id dosPuntos F64 igual EXPRESION ptComa
+    (8) DECLARACION -> Let . Id dosPuntos Str igual EXPRESION ptComa
+    (9) DECLARACION -> Let . Id dosPuntos StrA igual EXPRESION ptComa
+    (10) DECLARACION -> Let . Id dosPuntos Bool igual EXPRESION ptComa
+    (11) DECLARACION -> Let . Id dosPuntos CharAux igual EXPRESION ptComa
+    (12) DECLARACION -> Let . Mut Id igual EXPRESION ptComa
+    (13) DECLARACION -> Let . Mut Id dosPuntos I64 igual EXPRESION ptComa
+    (14) DECLARACION -> Let . Mut Id dosPuntos F64 igual EXPRESION ptComa
+    (15) DECLARACION -> Let . Mut Id dosPuntos Str igual EXPRESION ptComa
+    (16) DECLARACION -> Let . Mut Id dosPuntos StrA igual EXPRESION ptComa
+    (17) DECLARACION -> Let . Mut Id dosPuntos Bool igual EXPRESION ptComa
+    (18) DECLARACION -> Let . Mut Id dosPuntos CharAux igual EXPRESION ptComa
 
-    igual           shift and go to state 8
-    dosPuntos       shift and go to state 9
+    Id              shift and go to state 9
+    Mut             shift and go to state 10
 
 
 state 7
 
-    (11) DECLARACION -> Let Mut . Id igual EXPRESION ptComa
-    (12) DECLARACION -> Let Mut . Id dosPuntos I64 igual EXPRESION ptComa
-    (13) DECLARACION -> Let Mut . Id dosPuntos F64 igual EXPRESION ptComa
-    (14) DECLARACION -> Let Mut . Id dosPuntos String1 igual EXPRESION ptComa
-    (15) DECLARACION -> Let Mut . Id dosPuntos String2 igual EXPRESION ptComa
-    (16) DECLARACION -> Let Mut . Id dosPuntos Bool igual EXPRESION ptComa
-    (17) DECLARACION -> Let Mut . Id dosPuntos CharAux igual EXPRESION ptComa
+    (20) ASIGNACION -> Id . igual EXPRESION ptComa
 
-    Id              shift and go to state 10
+    igual           shift and go to state 11
 
 
 state 8
 
-    (4) DECLARACION -> Let Id igual . EXPRESION ptComa
-    (18) EXPRESION -> . Float
-    (19) EXPRESION -> . Entero
-    (20) EXPRESION -> . Booleano
-    (21) EXPRESION -> . String
-    (22) EXPRESION -> . Char
+    (2) INSTRUCCIONES -> INSTRUCCIONES INSTRUCCION .
 
-    Float           shift and go to state 12
-    Entero          shift and go to state 13
-    Booleano        shift and go to state 14
-    String          shift and go to state 15
-    Char            shift and go to state 16
+    Let             reduce using rule 2 (INSTRUCCIONES -> INSTRUCCIONES INSTRUCCION .)
+    Id              reduce using rule 2 (INSTRUCCIONES -> INSTRUCCIONES INSTRUCCION .)
+    $end            reduce using rule 2 (INSTRUCCIONES -> INSTRUCCIONES INSTRUCCION .)
 
-    EXPRESION                      shift and go to state 11
 
 state 9
 
-    (5) DECLARACION -> Let Id dosPuntos . I64 igual EXPRESION ptComa
-    (6) DECLARACION -> Let Id dosPuntos . F64 igual EXPRESION ptComa
-    (7) DECLARACION -> Let Id dosPuntos . String1 igual EXPRESION ptComa
-    (8) DECLARACION -> Let Id dosPuntos . String2 igual EXPRESION ptComa
-    (9) DECLARACION -> Let Id dosPuntos . Bool igual EXPRESION ptComa
-    (10) DECLARACION -> Let Id dosPuntos . CharAux igual EXPRESION ptComa
+    (5) DECLARACION -> Let Id . igual EXPRESION ptComa
+    (6) DECLARACION -> Let Id . dosPuntos I64 igual EXPRESION ptComa
+    (7) DECLARACION -> Let Id . dosPuntos F64 igual EXPRESION ptComa
+    (8) DECLARACION -> Let Id . dosPuntos Str igual EXPRESION ptComa
+    (9) DECLARACION -> Let Id . dosPuntos StrA igual EXPRESION ptComa
+    (10) DECLARACION -> Let Id . dosPuntos Bool igual EXPRESION ptComa
+    (11) DECLARACION -> Let Id . dosPuntos CharAux igual EXPRESION ptComa
 
-    I64             shift and go to state 17
-    F64             shift and go to state 18
-    String1         shift and go to state 19
-    String2         shift and go to state 20
-    Bool            shift and go to state 21
-    CharAux         shift and go to state 22
+    igual           shift and go to state 12
+    dosPuntos       shift and go to state 13
 
 
 state 10
 
-    (11) DECLARACION -> Let Mut Id . igual EXPRESION ptComa
-    (12) DECLARACION -> Let Mut Id . dosPuntos I64 igual EXPRESION ptComa
-    (13) DECLARACION -> Let Mut Id . dosPuntos F64 igual EXPRESION ptComa
-    (14) DECLARACION -> Let Mut Id . dosPuntos String1 igual EXPRESION ptComa
-    (15) DECLARACION -> Let Mut Id . dosPuntos String2 igual EXPRESION ptComa
-    (16) DECLARACION -> Let Mut Id . dosPuntos Bool igual EXPRESION ptComa
-    (17) DECLARACION -> Let Mut Id . dosPuntos CharAux igual EXPRESION ptComa
+    (12) DECLARACION -> Let Mut . Id igual EXPRESION ptComa
+    (13) DECLARACION -> Let Mut . Id dosPuntos I64 igual EXPRESION ptComa
+    (14) DECLARACION -> Let Mut . Id dosPuntos F64 igual EXPRESION ptComa
+    (15) DECLARACION -> Let Mut . Id dosPuntos Str igual EXPRESION ptComa
+    (16) DECLARACION -> Let Mut . Id dosPuntos StrA igual EXPRESION ptComa
+    (17) DECLARACION -> Let Mut . Id dosPuntos Bool igual EXPRESION ptComa
+    (18) DECLARACION -> Let Mut . Id dosPuntos CharAux igual EXPRESION ptComa
 
-    igual           shift and go to state 23
-    dosPuntos       shift and go to state 24
+    Id              shift and go to state 14
 
 
 state 11
 
-    (4) DECLARACION -> Let Id igual EXPRESION . ptComa
+    (20) ASIGNACION -> Id igual . EXPRESION ptComa
+    (21) EXPRESION -> . Float
+    (22) EXPRESION -> . Entero
+    (23) EXPRESION -> . Booleano
+    (24) EXPRESION -> . String
+    (25) EXPRESION -> . Char
 
-    ptComa          shift and go to state 25
+    Float           shift and go to state 16
+    Entero          shift and go to state 17
+    Booleano        shift and go to state 18
+    String          shift and go to state 19
+    Char            shift and go to state 20
 
+    EXPRESION                      shift and go to state 15
 
 state 12
 
-    (18) EXPRESION -> Float .
+    (5) DECLARACION -> Let Id igual . EXPRESION ptComa
+    (21) EXPRESION -> . Float
+    (22) EXPRESION -> . Entero
+    (23) EXPRESION -> . Booleano
+    (24) EXPRESION -> . String
+    (25) EXPRESION -> . Char
 
-    ptComa          reduce using rule 18 (EXPRESION -> Float .)
+    Float           shift and go to state 16
+    Entero          shift and go to state 17
+    Booleano        shift and go to state 18
+    String          shift and go to state 19
+    Char            shift and go to state 20
 
+    EXPRESION                      shift and go to state 21
 
 state 13
 
-    (19) EXPRESION -> Entero .
+    (6) DECLARACION -> Let Id dosPuntos . I64 igual EXPRESION ptComa
+    (7) DECLARACION -> Let Id dosPuntos . F64 igual EXPRESION ptComa
+    (8) DECLARACION -> Let Id dosPuntos . Str igual EXPRESION ptComa
+    (9) DECLARACION -> Let Id dosPuntos . StrA igual EXPRESION ptComa
+    (10) DECLARACION -> Let Id dosPuntos . Bool igual EXPRESION ptComa
+    (11) DECLARACION -> Let Id dosPuntos . CharAux igual EXPRESION ptComa
 
-    ptComa          reduce using rule 19 (EXPRESION -> Entero .)
+    I64             shift and go to state 22
+    F64             shift and go to state 23
+    Str             shift and go to state 24
+    StrA            shift and go to state 25
+    Bool            shift and go to state 26
+    CharAux         shift and go to state 27
 
 
 state 14
 
-    (20) EXPRESION -> Booleano .
+    (12) DECLARACION -> Let Mut Id . igual EXPRESION ptComa
+    (13) DECLARACION -> Let Mut Id . dosPuntos I64 igual EXPRESION ptComa
+    (14) DECLARACION -> Let Mut Id . dosPuntos F64 igual EXPRESION ptComa
+    (15) DECLARACION -> Let Mut Id . dosPuntos Str igual EXPRESION ptComa
+    (16) DECLARACION -> Let Mut Id . dosPuntos StrA igual EXPRESION ptComa
+    (17) DECLARACION -> Let Mut Id . dosPuntos Bool igual EXPRESION ptComa
+    (18) DECLARACION -> Let Mut Id . dosPuntos CharAux igual EXPRESION ptComa
 
-    ptComa          reduce using rule 20 (EXPRESION -> Booleano .)
+    igual           shift and go to state 28
+    dosPuntos       shift and go to state 29
 
 
 state 15
 
-    (21) EXPRESION -> String .
+    (20) ASIGNACION -> Id igual EXPRESION . ptComa
 
-    ptComa          reduce using rule 21 (EXPRESION -> String .)
+    ptComa          shift and go to state 30
 
 
 state 16
 
-    (22) EXPRESION -> Char .
+    (21) EXPRESION -> Float .
 
-    ptComa          reduce using rule 22 (EXPRESION -> Char .)
+    ptComa          reduce using rule 21 (EXPRESION -> Float .)
 
 
 state 17
 
-    (5) DECLARACION -> Let Id dosPuntos I64 . igual EXPRESION ptComa
+    (22) EXPRESION -> Entero .
 
-    igual           shift and go to state 26
+    ptComa          reduce using rule 22 (EXPRESION -> Entero .)
 
 
 state 18
 
-    (6) DECLARACION -> Let Id dosPuntos F64 . igual EXPRESION ptComa
+    (23) EXPRESION -> Booleano .
 
-    igual           shift and go to state 27
+    ptComa          reduce using rule 23 (EXPRESION -> Booleano .)
 
 
 state 19
 
-    (7) DECLARACION -> Let Id dosPuntos String1 . igual EXPRESION ptComa
+    (24) EXPRESION -> String .
 
-    igual           shift and go to state 28
+    ptComa          reduce using rule 24 (EXPRESION -> String .)
 
 
 state 20
 
-    (8) DECLARACION -> Let Id dosPuntos String2 . igual EXPRESION ptComa
+    (25) EXPRESION -> Char .
 
-    igual           shift and go to state 29
+    ptComa          reduce using rule 25 (EXPRESION -> Char .)
 
 
 state 21
 
-    (9) DECLARACION -> Let Id dosPuntos Bool . igual EXPRESION ptComa
+    (5) DECLARACION -> Let Id igual EXPRESION . ptComa
 
-    igual           shift and go to state 30
+    ptComa          shift and go to state 31
 
 
 state 22
 
-    (10) DECLARACION -> Let Id dosPuntos CharAux . igual EXPRESION ptComa
+    (6) DECLARACION -> Let Id dosPuntos I64 . igual EXPRESION ptComa
 
-    igual           shift and go to state 31
+    igual           shift and go to state 32
 
 
 state 23
 
-    (11) DECLARACION -> Let Mut Id igual . EXPRESION ptComa
-    (18) EXPRESION -> . Float
-    (19) EXPRESION -> . Entero
-    (20) EXPRESION -> . Booleano
-    (21) EXPRESION -> . String
-    (22) EXPRESION -> . Char
+    (7) DECLARACION -> Let Id dosPuntos F64 . igual EXPRESION ptComa
 
-    Float           shift and go to state 12
-    Entero          shift and go to state 13
-    Booleano        shift and go to state 14
-    String          shift and go to state 15
-    Char            shift and go to state 16
+    igual           shift and go to state 33
 
-    EXPRESION                      shift and go to state 32
 
 state 24
 
-    (12) DECLARACION -> Let Mut Id dosPuntos . I64 igual EXPRESION ptComa
-    (13) DECLARACION -> Let Mut Id dosPuntos . F64 igual EXPRESION ptComa
-    (14) DECLARACION -> Let Mut Id dosPuntos . String1 igual EXPRESION ptComa
-    (15) DECLARACION -> Let Mut Id dosPuntos . String2 igual EXPRESION ptComa
-    (16) DECLARACION -> Let Mut Id dosPuntos . Bool igual EXPRESION ptComa
-    (17) DECLARACION -> Let Mut Id dosPuntos . CharAux igual EXPRESION ptComa
+    (8) DECLARACION -> Let Id dosPuntos Str . igual EXPRESION ptComa
 
-    I64             shift and go to state 33
-    F64             shift and go to state 34
-    String1         shift and go to state 35
-    String2         shift and go to state 36
-    Bool            shift and go to state 37
-    CharAux         shift and go to state 38
+    igual           shift and go to state 34
 
 
 state 25
 
-    (4) DECLARACION -> Let Id igual EXPRESION ptComa .
+    (9) DECLARACION -> Let Id dosPuntos StrA . igual EXPRESION ptComa
 
-    Let             reduce using rule 4 (DECLARACION -> Let Id igual EXPRESION ptComa .)
-    $end            reduce using rule 4 (DECLARACION -> Let Id igual EXPRESION ptComa .)
+    igual           shift and go to state 35
 
 
 state 26
 
-    (5) DECLARACION -> Let Id dosPuntos I64 igual . EXPRESION ptComa
-    (18) EXPRESION -> . Float
-    (19) EXPRESION -> . Entero
-    (20) EXPRESION -> . Booleano
-    (21) EXPRESION -> . String
-    (22) EXPRESION -> . Char
+    (10) DECLARACION -> Let Id dosPuntos Bool . igual EXPRESION ptComa
 
-    Float           shift and go to state 12
-    Entero          shift and go to state 13
-    Booleano        shift and go to state 14
-    String          shift and go to state 15
-    Char            shift and go to state 16
+    igual           shift and go to state 36
 
-    EXPRESION                      shift and go to state 39
 
 state 27
 
-    (6) DECLARACION -> Let Id dosPuntos F64 igual . EXPRESION ptComa
-    (18) EXPRESION -> . Float
-    (19) EXPRESION -> . Entero
-    (20) EXPRESION -> . Booleano
-    (21) EXPRESION -> . String
-    (22) EXPRESION -> . Char
+    (11) DECLARACION -> Let Id dosPuntos CharAux . igual EXPRESION ptComa
 
-    Float           shift and go to state 12
-    Entero          shift and go to state 13
-    Booleano        shift and go to state 14
-    String          shift and go to state 15
-    Char            shift and go to state 16
+    igual           shift and go to state 37
 
-    EXPRESION                      shift and go to state 40
 
 state 28
 
-    (7) DECLARACION -> Let Id dosPuntos String1 igual . EXPRESION ptComa
-    (18) EXPRESION -> . Float
-    (19) EXPRESION -> . Entero
-    (20) EXPRESION -> . Booleano
-    (21) EXPRESION -> . String
-    (22) EXPRESION -> . Char
+    (12) DECLARACION -> Let Mut Id igual . EXPRESION ptComa
+    (21) EXPRESION -> . Float
+    (22) EXPRESION -> . Entero
+    (23) EXPRESION -> . Booleano
+    (24) EXPRESION -> . String
+    (25) EXPRESION -> . Char
 
-    Float           shift and go to state 12
-    Entero          shift and go to state 13
-    Booleano        shift and go to state 14
-    String          shift and go to state 15
-    Char            shift and go to state 16
+    Float           shift and go to state 16
+    Entero          shift and go to state 17
+    Booleano        shift and go to state 18
+    String          shift and go to state 19
+    Char            shift and go to state 20
 
-    EXPRESION                      shift and go to state 41
+    EXPRESION                      shift and go to state 38
 
 state 29
 
-    (8) DECLARACION -> Let Id dosPuntos String2 igual . EXPRESION ptComa
-    (18) EXPRESION -> . Float
-    (19) EXPRESION -> . Entero
-    (20) EXPRESION -> . Booleano
-    (21) EXPRESION -> . String
-    (22) EXPRESION -> . Char
+    (13) DECLARACION -> Let Mut Id dosPuntos . I64 igual EXPRESION ptComa
+    (14) DECLARACION -> Let Mut Id dosPuntos . F64 igual EXPRESION ptComa
+    (15) DECLARACION -> Let Mut Id dosPuntos . Str igual EXPRESION ptComa
+    (16) DECLARACION -> Let Mut Id dosPuntos . StrA igual EXPRESION ptComa
+    (17) DECLARACION -> Let Mut Id dosPuntos . Bool igual EXPRESION ptComa
+    (18) DECLARACION -> Let Mut Id dosPuntos . CharAux igual EXPRESION ptComa
 
-    Float           shift and go to state 12
-    Entero          shift and go to state 13
-    Booleano        shift and go to state 14
-    String          shift and go to state 15
-    Char            shift and go to state 16
+    I64             shift and go to state 39
+    F64             shift and go to state 40
+    Str             shift and go to state 41
+    StrA            shift and go to state 42
+    Bool            shift and go to state 43
+    CharAux         shift and go to state 44
 
-    EXPRESION                      shift and go to state 42
 
 state 30
 
-    (9) DECLARACION -> Let Id dosPuntos Bool igual . EXPRESION ptComa
-    (18) EXPRESION -> . Float
-    (19) EXPRESION -> . Entero
-    (20) EXPRESION -> . Booleano
-    (21) EXPRESION -> . String
-    (22) EXPRESION -> . Char
+    (20) ASIGNACION -> Id igual EXPRESION ptComa .
 
-    Float           shift and go to state 12
-    Entero          shift and go to state 13
-    Booleano        shift and go to state 14
-    String          shift and go to state 15
-    Char            shift and go to state 16
+    Let             reduce using rule 20 (ASIGNACION -> Id igual EXPRESION ptComa .)
+    Id              reduce using rule 20 (ASIGNACION -> Id igual EXPRESION ptComa .)
+    $end            reduce using rule 20 (ASIGNACION -> Id igual EXPRESION ptComa .)
 
-    EXPRESION                      shift and go to state 43
 
 state 31
 
-    (10) DECLARACION -> Let Id dosPuntos CharAux igual . EXPRESION ptComa
-    (18) EXPRESION -> . Float
-    (19) EXPRESION -> . Entero
-    (20) EXPRESION -> . Booleano
-    (21) EXPRESION -> . String
-    (22) EXPRESION -> . Char
+    (5) DECLARACION -> Let Id igual EXPRESION ptComa .
 
-    Float           shift and go to state 12
-    Entero          shift and go to state 13
-    Booleano        shift and go to state 14
-    String          shift and go to state 15
-    Char            shift and go to state 16
+    Let             reduce using rule 5 (DECLARACION -> Let Id igual EXPRESION ptComa .)
+    Id              reduce using rule 5 (DECLARACION -> Let Id igual EXPRESION ptComa .)
+    $end            reduce using rule 5 (DECLARACION -> Let Id igual EXPRESION ptComa .)
 
-    EXPRESION                      shift and go to state 44
 
 state 32
 
-    (11) DECLARACION -> Let Mut Id igual EXPRESION . ptComa
+    (6) DECLARACION -> Let Id dosPuntos I64 igual . EXPRESION ptComa
+    (21) EXPRESION -> . Float
+    (22) EXPRESION -> . Entero
+    (23) EXPRESION -> . Booleano
+    (24) EXPRESION -> . String
+    (25) EXPRESION -> . Char
 
-    ptComa          shift and go to state 45
+    Float           shift and go to state 16
+    Entero          shift and go to state 17
+    Booleano        shift and go to state 18
+    String          shift and go to state 19
+    Char            shift and go to state 20
 
+    EXPRESION                      shift and go to state 45
 
 state 33
 
-    (12) DECLARACION -> Let Mut Id dosPuntos I64 . igual EXPRESION ptComa
+    (7) DECLARACION -> Let Id dosPuntos F64 igual . EXPRESION ptComa
+    (21) EXPRESION -> . Float
+    (22) EXPRESION -> . Entero
+    (23) EXPRESION -> . Booleano
+    (24) EXPRESION -> . String
+    (25) EXPRESION -> . Char
 
-    igual           shift and go to state 46
+    Float           shift and go to state 16
+    Entero          shift and go to state 17
+    Booleano        shift and go to state 18
+    String          shift and go to state 19
+    Char            shift and go to state 20
 
+    EXPRESION                      shift and go to state 46
 
 state 34
 
-    (13) DECLARACION -> Let Mut Id dosPuntos F64 . igual EXPRESION ptComa
+    (8) DECLARACION -> Let Id dosPuntos Str igual . EXPRESION ptComa
+    (21) EXPRESION -> . Float
+    (22) EXPRESION -> . Entero
+    (23) EXPRESION -> . Booleano
+    (24) EXPRESION -> . String
+    (25) EXPRESION -> . Char
 
-    igual           shift and go to state 47
+    Float           shift and go to state 16
+    Entero          shift and go to state 17
+    Booleano        shift and go to state 18
+    String          shift and go to state 19
+    Char            shift and go to state 20
 
+    EXPRESION                      shift and go to state 47
 
 state 35
 
-    (14) DECLARACION -> Let Mut Id dosPuntos String1 . igual EXPRESION ptComa
+    (9) DECLARACION -> Let Id dosPuntos StrA igual . EXPRESION ptComa
+    (21) EXPRESION -> . Float
+    (22) EXPRESION -> . Entero
+    (23) EXPRESION -> . Booleano
+    (24) EXPRESION -> . String
+    (25) EXPRESION -> . Char
 
-    igual           shift and go to state 48
+    Float           shift and go to state 16
+    Entero          shift and go to state 17
+    Booleano        shift and go to state 18
+    String          shift and go to state 19
+    Char            shift and go to state 20
 
+    EXPRESION                      shift and go to state 48
 
 state 36
 
-    (15) DECLARACION -> Let Mut Id dosPuntos String2 . igual EXPRESION ptComa
+    (10) DECLARACION -> Let Id dosPuntos Bool igual . EXPRESION ptComa
+    (21) EXPRESION -> . Float
+    (22) EXPRESION -> . Entero
+    (23) EXPRESION -> . Booleano
+    (24) EXPRESION -> . String
+    (25) EXPRESION -> . Char
 
-    igual           shift and go to state 49
+    Float           shift and go to state 16
+    Entero          shift and go to state 17
+    Booleano        shift and go to state 18
+    String          shift and go to state 19
+    Char            shift and go to state 20
 
+    EXPRESION                      shift and go to state 49
 
 state 37
 
-    (16) DECLARACION -> Let Mut Id dosPuntos Bool . igual EXPRESION ptComa
+    (11) DECLARACION -> Let Id dosPuntos CharAux igual . EXPRESION ptComa
+    (21) EXPRESION -> . Float
+    (22) EXPRESION -> . Entero
+    (23) EXPRESION -> . Booleano
+    (24) EXPRESION -> . String
+    (25) EXPRESION -> . Char
 
-    igual           shift and go to state 50
+    Float           shift and go to state 16
+    Entero          shift and go to state 17
+    Booleano        shift and go to state 18
+    String          shift and go to state 19
+    Char            shift and go to state 20
 
+    EXPRESION                      shift and go to state 50
 
 state 38
 
-    (17) DECLARACION -> Let Mut Id dosPuntos CharAux . igual EXPRESION ptComa
+    (12) DECLARACION -> Let Mut Id igual EXPRESION . ptComa
 
-    igual           shift and go to state 51
+    ptComa          shift and go to state 51
 
 
 state 39
 
-    (5) DECLARACION -> Let Id dosPuntos I64 igual EXPRESION . ptComa
+    (13) DECLARACION -> Let Mut Id dosPuntos I64 . igual EXPRESION ptComa
 
-    ptComa          shift and go to state 52
+    igual           shift and go to state 52
 
 
 state 40
 
-    (6) DECLARACION -> Let Id dosPuntos F64 igual EXPRESION . ptComa
+    (14) DECLARACION -> Let Mut Id dosPuntos F64 . igual EXPRESION ptComa
 
-    ptComa          shift and go to state 53
+    igual           shift and go to state 53
 
 
 state 41
 
-    (7) DECLARACION -> Let Id dosPuntos String1 igual EXPRESION . ptComa
+    (15) DECLARACION -> Let Mut Id dosPuntos Str . igual EXPRESION ptComa
 
-    ptComa          shift and go to state 54
+    igual           shift and go to state 54
 
 
 state 42
 
-    (8) DECLARACION -> Let Id dosPuntos String2 igual EXPRESION . ptComa
+    (16) DECLARACION -> Let Mut Id dosPuntos StrA . igual EXPRESION ptComa
 
-    ptComa          shift and go to state 55
+    igual           shift and go to state 55
 
 
 state 43
 
-    (9) DECLARACION -> Let Id dosPuntos Bool igual EXPRESION . ptComa
+    (17) DECLARACION -> Let Mut Id dosPuntos Bool . igual EXPRESION ptComa
 
-    ptComa          shift and go to state 56
+    igual           shift and go to state 56
 
 
 state 44
 
-    (10) DECLARACION -> Let Id dosPuntos CharAux igual EXPRESION . ptComa
+    (18) DECLARACION -> Let Mut Id dosPuntos CharAux . igual EXPRESION ptComa
 
-    ptComa          shift and go to state 57
+    igual           shift and go to state 57
 
 
 state 45
 
-    (11) DECLARACION -> Let Mut Id igual EXPRESION ptComa .
+    (6) DECLARACION -> Let Id dosPuntos I64 igual EXPRESION . ptComa
 
-    Let             reduce using rule 11 (DECLARACION -> Let Mut Id igual EXPRESION ptComa .)
-    $end            reduce using rule 11 (DECLARACION -> Let Mut Id igual EXPRESION ptComa .)
+    ptComa          shift and go to state 58
 
 
 state 46
 
-    (12) DECLARACION -> Let Mut Id dosPuntos I64 igual . EXPRESION ptComa
-    (18) EXPRESION -> . Float
-    (19) EXPRESION -> . Entero
-    (20) EXPRESION -> . Booleano
-    (21) EXPRESION -> . String
-    (22) EXPRESION -> . Char
+    (7) DECLARACION -> Let Id dosPuntos F64 igual EXPRESION . ptComa
 
-    Float           shift and go to state 12
-    Entero          shift and go to state 13
-    Booleano        shift and go to state 14
-    String          shift and go to state 15
-    Char            shift and go to state 16
+    ptComa          shift and go to state 59
 
-    EXPRESION                      shift and go to state 58
 
 state 47
 
-    (13) DECLARACION -> Let Mut Id dosPuntos F64 igual . EXPRESION ptComa
-    (18) EXPRESION -> . Float
-    (19) EXPRESION -> . Entero
-    (20) EXPRESION -> . Booleano
-    (21) EXPRESION -> . String
-    (22) EXPRESION -> . Char
+    (8) DECLARACION -> Let Id dosPuntos Str igual EXPRESION . ptComa
 
-    Float           shift and go to state 12
-    Entero          shift and go to state 13
-    Booleano        shift and go to state 14
-    String          shift and go to state 15
-    Char            shift and go to state 16
+    ptComa          shift and go to state 60
 
-    EXPRESION                      shift and go to state 59
 
 state 48
 
-    (14) DECLARACION -> Let Mut Id dosPuntos String1 igual . EXPRESION ptComa
-    (18) EXPRESION -> . Float
-    (19) EXPRESION -> . Entero
-    (20) EXPRESION -> . Booleano
-    (21) EXPRESION -> . String
-    (22) EXPRESION -> . Char
+    (9) DECLARACION -> Let Id dosPuntos StrA igual EXPRESION . ptComa
 
-    Float           shift and go to state 12
-    Entero          shift and go to state 13
-    Booleano        shift and go to state 14
-    String          shift and go to state 15
-    Char            shift and go to state 16
+    ptComa          shift and go to state 61
 
-    EXPRESION                      shift and go to state 60
 
 state 49
 
-    (15) DECLARACION -> Let Mut Id dosPuntos String2 igual . EXPRESION ptComa
-    (18) EXPRESION -> . Float
-    (19) EXPRESION -> . Entero
-    (20) EXPRESION -> . Booleano
-    (21) EXPRESION -> . String
-    (22) EXPRESION -> . Char
+    (10) DECLARACION -> Let Id dosPuntos Bool igual EXPRESION . ptComa
 
-    Float           shift and go to state 12
-    Entero          shift and go to state 13
-    Booleano        shift and go to state 14
-    String          shift and go to state 15
-    Char            shift and go to state 16
+    ptComa          shift and go to state 62
 
-    EXPRESION                      shift and go to state 61
 
 state 50
 
-    (16) DECLARACION -> Let Mut Id dosPuntos Bool igual . EXPRESION ptComa
-    (18) EXPRESION -> . Float
-    (19) EXPRESION -> . Entero
-    (20) EXPRESION -> . Booleano
-    (21) EXPRESION -> . String
-    (22) EXPRESION -> . Char
+    (11) DECLARACION -> Let Id dosPuntos CharAux igual EXPRESION . ptComa
 
-    Float           shift and go to state 12
-    Entero          shift and go to state 13
-    Booleano        shift and go to state 14
-    String          shift and go to state 15
-    Char            shift and go to state 16
+    ptComa          shift and go to state 63
 
-    EXPRESION                      shift and go to state 62
 
 state 51
 
-    (17) DECLARACION -> Let Mut Id dosPuntos CharAux igual . EXPRESION ptComa
-    (18) EXPRESION -> . Float
-    (19) EXPRESION -> . Entero
-    (20) EXPRESION -> . Booleano
-    (21) EXPRESION -> . String
-    (22) EXPRESION -> . Char
+    (12) DECLARACION -> Let Mut Id igual EXPRESION ptComa .
 
-    Float           shift and go to state 12
-    Entero          shift and go to state 13
-    Booleano        shift and go to state 14
-    String          shift and go to state 15
-    Char            shift and go to state 16
+    Let             reduce using rule 12 (DECLARACION -> Let Mut Id igual EXPRESION ptComa .)
+    Id              reduce using rule 12 (DECLARACION -> Let Mut Id igual EXPRESION ptComa .)
+    $end            reduce using rule 12 (DECLARACION -> Let Mut Id igual EXPRESION ptComa .)
 
-    EXPRESION                      shift and go to state 63
 
 state 52
 
-    (5) DECLARACION -> Let Id dosPuntos I64 igual EXPRESION ptComa .
+    (13) DECLARACION -> Let Mut Id dosPuntos I64 igual . EXPRESION ptComa
+    (21) EXPRESION -> . Float
+    (22) EXPRESION -> . Entero
+    (23) EXPRESION -> . Booleano
+    (24) EXPRESION -> . String
+    (25) EXPRESION -> . Char
 
-    Let             reduce using rule 5 (DECLARACION -> Let Id dosPuntos I64 igual EXPRESION ptComa .)
-    $end            reduce using rule 5 (DECLARACION -> Let Id dosPuntos I64 igual EXPRESION ptComa .)
+    Float           shift and go to state 16
+    Entero          shift and go to state 17
+    Booleano        shift and go to state 18
+    String          shift and go to state 19
+    Char            shift and go to state 20
 
+    EXPRESION                      shift and go to state 64
 
 state 53
 
-    (6) DECLARACION -> Let Id dosPuntos F64 igual EXPRESION ptComa .
+    (14) DECLARACION -> Let Mut Id dosPuntos F64 igual . EXPRESION ptComa
+    (21) EXPRESION -> . Float
+    (22) EXPRESION -> . Entero
+    (23) EXPRESION -> . Booleano
+    (24) EXPRESION -> . String
+    (25) EXPRESION -> . Char
 
-    Let             reduce using rule 6 (DECLARACION -> Let Id dosPuntos F64 igual EXPRESION ptComa .)
-    $end            reduce using rule 6 (DECLARACION -> Let Id dosPuntos F64 igual EXPRESION ptComa .)
+    Float           shift and go to state 16
+    Entero          shift and go to state 17
+    Booleano        shift and go to state 18
+    String          shift and go to state 19
+    Char            shift and go to state 20
 
+    EXPRESION                      shift and go to state 65
 
 state 54
 
-    (7) DECLARACION -> Let Id dosPuntos String1 igual EXPRESION ptComa .
+    (15) DECLARACION -> Let Mut Id dosPuntos Str igual . EXPRESION ptComa
+    (21) EXPRESION -> . Float
+    (22) EXPRESION -> . Entero
+    (23) EXPRESION -> . Booleano
+    (24) EXPRESION -> . String
+    (25) EXPRESION -> . Char
 
-    Let             reduce using rule 7 (DECLARACION -> Let Id dosPuntos String1 igual EXPRESION ptComa .)
-    $end            reduce using rule 7 (DECLARACION -> Let Id dosPuntos String1 igual EXPRESION ptComa .)
+    Float           shift and go to state 16
+    Entero          shift and go to state 17
+    Booleano        shift and go to state 18
+    String          shift and go to state 19
+    Char            shift and go to state 20
 
+    EXPRESION                      shift and go to state 66
 
 state 55
 
-    (8) DECLARACION -> Let Id dosPuntos String2 igual EXPRESION ptComa .
+    (16) DECLARACION -> Let Mut Id dosPuntos StrA igual . EXPRESION ptComa
+    (21) EXPRESION -> . Float
+    (22) EXPRESION -> . Entero
+    (23) EXPRESION -> . Booleano
+    (24) EXPRESION -> . String
+    (25) EXPRESION -> . Char
 
-    Let             reduce using rule 8 (DECLARACION -> Let Id dosPuntos String2 igual EXPRESION ptComa .)
-    $end            reduce using rule 8 (DECLARACION -> Let Id dosPuntos String2 igual EXPRESION ptComa .)
+    Float           shift and go to state 16
+    Entero          shift and go to state 17
+    Booleano        shift and go to state 18
+    String          shift and go to state 19
+    Char            shift and go to state 20
 
+    EXPRESION                      shift and go to state 67
 
 state 56
 
-    (9) DECLARACION -> Let Id dosPuntos Bool igual EXPRESION ptComa .
+    (17) DECLARACION -> Let Mut Id dosPuntos Bool igual . EXPRESION ptComa
+    (21) EXPRESION -> . Float
+    (22) EXPRESION -> . Entero
+    (23) EXPRESION -> . Booleano
+    (24) EXPRESION -> . String
+    (25) EXPRESION -> . Char
 
-    Let             reduce using rule 9 (DECLARACION -> Let Id dosPuntos Bool igual EXPRESION ptComa .)
-    $end            reduce using rule 9 (DECLARACION -> Let Id dosPuntos Bool igual EXPRESION ptComa .)
+    Float           shift and go to state 16
+    Entero          shift and go to state 17
+    Booleano        shift and go to state 18
+    String          shift and go to state 19
+    Char            shift and go to state 20
 
+    EXPRESION                      shift and go to state 68
 
 state 57
 
-    (10) DECLARACION -> Let Id dosPuntos CharAux igual EXPRESION ptComa .
+    (18) DECLARACION -> Let Mut Id dosPuntos CharAux igual . EXPRESION ptComa
+    (21) EXPRESION -> . Float
+    (22) EXPRESION -> . Entero
+    (23) EXPRESION -> . Booleano
+    (24) EXPRESION -> . String
+    (25) EXPRESION -> . Char
 
-    Let             reduce using rule 10 (DECLARACION -> Let Id dosPuntos CharAux igual EXPRESION ptComa .)
-    $end            reduce using rule 10 (DECLARACION -> Let Id dosPuntos CharAux igual EXPRESION ptComa .)
+    Float           shift and go to state 16
+    Entero          shift and go to state 17
+    Booleano        shift and go to state 18
+    String          shift and go to state 19
+    Char            shift and go to state 20
 
+    EXPRESION                      shift and go to state 69
 
 state 58
 
-    (12) DECLARACION -> Let Mut Id dosPuntos I64 igual EXPRESION . ptComa
+    (6) DECLARACION -> Let Id dosPuntos I64 igual EXPRESION ptComa .
 
-    ptComa          shift and go to state 64
+    Let             reduce using rule 6 (DECLARACION -> Let Id dosPuntos I64 igual EXPRESION ptComa .)
+    Id              reduce using rule 6 (DECLARACION -> Let Id dosPuntos I64 igual EXPRESION ptComa .)
+    $end            reduce using rule 6 (DECLARACION -> Let Id dosPuntos I64 igual EXPRESION ptComa .)
 
 
 state 59
 
-    (13) DECLARACION -> Let Mut Id dosPuntos F64 igual EXPRESION . ptComa
+    (7) DECLARACION -> Let Id dosPuntos F64 igual EXPRESION ptComa .
 
-    ptComa          shift and go to state 65
+    Let             reduce using rule 7 (DECLARACION -> Let Id dosPuntos F64 igual EXPRESION ptComa .)
+    Id              reduce using rule 7 (DECLARACION -> Let Id dosPuntos F64 igual EXPRESION ptComa .)
+    $end            reduce using rule 7 (DECLARACION -> Let Id dosPuntos F64 igual EXPRESION ptComa .)
 
 
 state 60
 
-    (14) DECLARACION -> Let Mut Id dosPuntos String1 igual EXPRESION . ptComa
+    (8) DECLARACION -> Let Id dosPuntos Str igual EXPRESION ptComa .
 
-    ptComa          shift and go to state 66
+    Let             reduce using rule 8 (DECLARACION -> Let Id dosPuntos Str igual EXPRESION ptComa .)
+    Id              reduce using rule 8 (DECLARACION -> Let Id dosPuntos Str igual EXPRESION ptComa .)
+    $end            reduce using rule 8 (DECLARACION -> Let Id dosPuntos Str igual EXPRESION ptComa .)
 
 
 state 61
 
-    (15) DECLARACION -> Let Mut Id dosPuntos String2 igual EXPRESION . ptComa
+    (9) DECLARACION -> Let Id dosPuntos StrA igual EXPRESION ptComa .
 
-    ptComa          shift and go to state 67
+    Let             reduce using rule 9 (DECLARACION -> Let Id dosPuntos StrA igual EXPRESION ptComa .)
+    Id              reduce using rule 9 (DECLARACION -> Let Id dosPuntos StrA igual EXPRESION ptComa .)
+    $end            reduce using rule 9 (DECLARACION -> Let Id dosPuntos StrA igual EXPRESION ptComa .)
 
 
 state 62
 
-    (16) DECLARACION -> Let Mut Id dosPuntos Bool igual EXPRESION . ptComa
+    (10) DECLARACION -> Let Id dosPuntos Bool igual EXPRESION ptComa .
 
-    ptComa          shift and go to state 68
+    Let             reduce using rule 10 (DECLARACION -> Let Id dosPuntos Bool igual EXPRESION ptComa .)
+    Id              reduce using rule 10 (DECLARACION -> Let Id dosPuntos Bool igual EXPRESION ptComa .)
+    $end            reduce using rule 10 (DECLARACION -> Let Id dosPuntos Bool igual EXPRESION ptComa .)
 
 
 state 63
 
-    (17) DECLARACION -> Let Mut Id dosPuntos CharAux igual EXPRESION . ptComa
+    (11) DECLARACION -> Let Id dosPuntos CharAux igual EXPRESION ptComa .
 
-    ptComa          shift and go to state 69
+    Let             reduce using rule 11 (DECLARACION -> Let Id dosPuntos CharAux igual EXPRESION ptComa .)
+    Id              reduce using rule 11 (DECLARACION -> Let Id dosPuntos CharAux igual EXPRESION ptComa .)
+    $end            reduce using rule 11 (DECLARACION -> Let Id dosPuntos CharAux igual EXPRESION ptComa .)
 
 
 state 64
 
-    (12) DECLARACION -> Let Mut Id dosPuntos I64 igual EXPRESION ptComa .
+    (13) DECLARACION -> Let Mut Id dosPuntos I64 igual EXPRESION . ptComa
 
-    Let             reduce using rule 12 (DECLARACION -> Let Mut Id dosPuntos I64 igual EXPRESION ptComa .)
-    $end            reduce using rule 12 (DECLARACION -> Let Mut Id dosPuntos I64 igual EXPRESION ptComa .)
+    ptComa          shift and go to state 70
 
 
 state 65
 
-    (13) DECLARACION -> Let Mut Id dosPuntos F64 igual EXPRESION ptComa .
+    (14) DECLARACION -> Let Mut Id dosPuntos F64 igual EXPRESION . ptComa
 
-    Let             reduce using rule 13 (DECLARACION -> Let Mut Id dosPuntos F64 igual EXPRESION ptComa .)
-    $end            reduce using rule 13 (DECLARACION -> Let Mut Id dosPuntos F64 igual EXPRESION ptComa .)
+    ptComa          shift and go to state 71
 
 
 state 66
 
-    (14) DECLARACION -> Let Mut Id dosPuntos String1 igual EXPRESION ptComa .
+    (15) DECLARACION -> Let Mut Id dosPuntos Str igual EXPRESION . ptComa
 
-    Let             reduce using rule 14 (DECLARACION -> Let Mut Id dosPuntos String1 igual EXPRESION ptComa .)
-    $end            reduce using rule 14 (DECLARACION -> Let Mut Id dosPuntos String1 igual EXPRESION ptComa .)
+    ptComa          shift and go to state 72
 
 
 state 67
 
-    (15) DECLARACION -> Let Mut Id dosPuntos String2 igual EXPRESION ptComa .
+    (16) DECLARACION -> Let Mut Id dosPuntos StrA igual EXPRESION . ptComa
 
-    Let             reduce using rule 15 (DECLARACION -> Let Mut Id dosPuntos String2 igual EXPRESION ptComa .)
-    $end            reduce using rule 15 (DECLARACION -> Let Mut Id dosPuntos String2 igual EXPRESION ptComa .)
+    ptComa          shift and go to state 73
 
 
 state 68
 
-    (16) DECLARACION -> Let Mut Id dosPuntos Bool igual EXPRESION ptComa .
+    (17) DECLARACION -> Let Mut Id dosPuntos Bool igual EXPRESION . ptComa
 
-    Let             reduce using rule 16 (DECLARACION -> Let Mut Id dosPuntos Bool igual EXPRESION ptComa .)
-    $end            reduce using rule 16 (DECLARACION -> Let Mut Id dosPuntos Bool igual EXPRESION ptComa .)
+    ptComa          shift and go to state 74
 
 
 state 69
 
-    (17) DECLARACION -> Let Mut Id dosPuntos CharAux igual EXPRESION ptComa .
+    (18) DECLARACION -> Let Mut Id dosPuntos CharAux igual EXPRESION . ptComa
 
-    Let             reduce using rule 17 (DECLARACION -> Let Mut Id dosPuntos CharAux igual EXPRESION ptComa .)
-    $end            reduce using rule 17 (DECLARACION -> Let Mut Id dosPuntos CharAux igual EXPRESION ptComa .)
+    ptComa          shift and go to state 75
+
+
+state 70
+
+    (13) DECLARACION -> Let Mut Id dosPuntos I64 igual EXPRESION ptComa .
+
+    Let             reduce using rule 13 (DECLARACION -> Let Mut Id dosPuntos I64 igual EXPRESION ptComa .)
+    Id              reduce using rule 13 (DECLARACION -> Let Mut Id dosPuntos I64 igual EXPRESION ptComa .)
+    $end            reduce using rule 13 (DECLARACION -> Let Mut Id dosPuntos I64 igual EXPRESION ptComa .)
+
+
+state 71
+
+    (14) DECLARACION -> Let Mut Id dosPuntos F64 igual EXPRESION ptComa .
+
+    Let             reduce using rule 14 (DECLARACION -> Let Mut Id dosPuntos F64 igual EXPRESION ptComa .)
+    Id              reduce using rule 14 (DECLARACION -> Let Mut Id dosPuntos F64 igual EXPRESION ptComa .)
+    $end            reduce using rule 14 (DECLARACION -> Let Mut Id dosPuntos F64 igual EXPRESION ptComa .)
+
+
+state 72
+
+    (15) DECLARACION -> Let Mut Id dosPuntos Str igual EXPRESION ptComa .
+
+    Let             reduce using rule 15 (DECLARACION -> Let Mut Id dosPuntos Str igual EXPRESION ptComa .)
+    Id              reduce using rule 15 (DECLARACION -> Let Mut Id dosPuntos Str igual EXPRESION ptComa .)
+    $end            reduce using rule 15 (DECLARACION -> Let Mut Id dosPuntos Str igual EXPRESION ptComa .)
+
+
+state 73
+
+    (16) DECLARACION -> Let Mut Id dosPuntos StrA igual EXPRESION ptComa .
+
+    Let             reduce using rule 16 (DECLARACION -> Let Mut Id dosPuntos StrA igual EXPRESION ptComa .)
+    Id              reduce using rule 16 (DECLARACION -> Let Mut Id dosPuntos StrA igual EXPRESION ptComa .)
+    $end            reduce using rule 16 (DECLARACION -> Let Mut Id dosPuntos StrA igual EXPRESION ptComa .)
+
+
+state 74
+
+    (17) DECLARACION -> Let Mut Id dosPuntos Bool igual EXPRESION ptComa .
+
+    Let             reduce using rule 17 (DECLARACION -> Let Mut Id dosPuntos Bool igual EXPRESION ptComa .)
+    Id              reduce using rule 17 (DECLARACION -> Let Mut Id dosPuntos Bool igual EXPRESION ptComa .)
+    $end            reduce using rule 17 (DECLARACION -> Let Mut Id dosPuntos Bool igual EXPRESION ptComa .)
+
+
+state 75
+
+    (18) DECLARACION -> Let Mut Id dosPuntos CharAux igual EXPRESION ptComa .
+
+    Let             reduce using rule 18 (DECLARACION -> Let Mut Id dosPuntos CharAux igual EXPRESION ptComa .)
+    Id              reduce using rule 18 (DECLARACION -> Let Mut Id dosPuntos CharAux igual EXPRESION ptComa .)
+    $end            reduce using rule 18 (DECLARACION -> Let Mut Id dosPuntos CharAux igual EXPRESION ptComa .)
 
