@@ -16,9 +16,9 @@ class Acceso(Expresion):
             singleton = Singleton.getInstance()
             error = Error("Variable inexistente.", "Semántico", self.linea, self.columna)
             singleton.addError(error)
-            return {'valor': None, 'Tipo': TipoDato.error}
+            return {'valor': None, 'tipo': TipoDato.error}
         
-        return {'valor': variable.valor, 'Tipo': variable.tipo_dato}
+        return {'valor': variable.valor, 'tipo': variable.tipo_dato}
     
     def ast(self):
         pass

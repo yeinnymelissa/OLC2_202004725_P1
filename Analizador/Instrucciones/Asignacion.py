@@ -1,4 +1,3 @@
-from tokenize import Single
 from Analizador.Instrucciones.Instruccion import *
 from Analizador.Singleton.Singleton import *
 from Analizador.Entorno.Entorno import *
@@ -29,6 +28,9 @@ class Asignacion(Instruccion):
                 print(error.descripcion)
                 bandera = False
             if(variable.tipo_dato != expresion['tipo']):
+                if(variable.tipo_dato == TipoDato.str and expresion['tipo'] == TipoDato.string):
+                    env.actualizarVariable(self.nombre, expresion['valor'])
+                    return
                 error = Error("La asignacion no se puede realizar porque la variable es tipo "+singleton.getTipo(variable.tipo_dato)+" y se le quiere asignar un tipo "+singleton.getTipo(expresion['tipo'])+".", "Semántico", self.linea, self.columna)
                 singleton.addError(error)
                 print(error.descripcion)

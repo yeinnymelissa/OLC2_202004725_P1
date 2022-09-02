@@ -1,3 +1,4 @@
+from __future__ import division
 import enum
 
 
@@ -6,6 +7,9 @@ class TipoSimbolo(enum.Enum):
     funcion = 1
     modulo = 2
 
+class TipoPrint(enum.Enum):
+    expresion = 0
+    vec = 1
 
 class TipoDato(enum.Enum):
     error = 0
@@ -14,6 +18,17 @@ class TipoDato(enum.Enum):
     bool = 3
     char = 4
     string = 5
+    str = 6
+
+class TipoAritmetica(enum.Enum):
+    suma = 0
+    resta = 1
+    multiplicacion = 2
+    division = 3
+    powi = 4
+    powf = 5
+    modulo = 6
+    negado = 7
 
 
 global validator

@@ -19,7 +19,7 @@ class Literal(Expresion):
         elif(self.tipo == TipoDato.bool):
             return {'valor': self.valor, 'tipo': TipoDato.bool}
         else:
-            return {'valor': self.valor, 'tipo': TipoDato.bool}
+            return {'valor': self.valor, 'tipo': TipoDato.error}
 
     def ast(self):
         pass

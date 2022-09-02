@@ -6,9 +6,9 @@ _tabversion = '3.10'
 
 _lr_method = 'LALR'
 
-_lr_signature = 'Bool Booleano Char CharAux Comentario Entero F64 False Float I64 Id Let Mut Str StrA String True diferenteQue dividido dobleIgual dosPuntos igual llaveA llaveC mas mayorQue menorQue menos parA parC por ptComainit : INSTRUCCIONESINSTRUCCIONES : INSTRUCCIONES INSTRUCCIONINSTRUCCIONES : INSTRUCCIONINSTRUCCION : DECLARACIONDECLARACION : Let Id igual EXPRESION ptComaDECLARACION : Let Id dosPuntos I64 igual EXPRESION ptComaDECLARACION : Let Id dosPuntos F64 igual EXPRESION ptComaDECLARACION : Let Id dosPuntos Str igual EXPRESION ptComa\n                    | Let Id dosPuntos StrA igual EXPRESION ptComaDECLARACION : Let Id dosPuntos Bool igual EXPRESION ptComaDECLARACION : Let Id dosPuntos CharAux igual EXPRESION ptComaDECLARACION : Let Mut Id igual EXPRESION ptComaDECLARACION : Let Mut Id dosPuntos I64 igual EXPRESION ptComaDECLARACION : Let Mut Id dosPuntos F64 igual EXPRESION ptComaDECLARACION : Let Mut Id dosPuntos Str igual EXPRESION ptComa\n                    | Let Mut Id dosPuntos StrA igual EXPRESION ptComaDECLARACION : Let Mut Id dosPuntos Bool igual EXPRESION ptComaDECLARACION : Let Mut Id dosPuntos CharAux igual EXPRESION ptComaINSTRUCCION : ASIGNACIONASIGNACION : Id igual EXPRESION ptComaEXPRESION : FloatEXPRESION : EnteroEXPRESION : BooleanoEXPRESION : StringEXPRESION : Char'
+_lr_signature = 'leftOrleftAndleftmasmenosnonassocmenorQuemayorQuemenorIgualmayorIgualdobleIgualdiferenteQueleftpordivididomoduloleftPowiPowfrightnotleftUMINUSleftUPARAnd Bool Booleano Char CharAux Coma Comentario Entero F64 False Float I64 Id Let Mut Or ParA ParC Powf Powi PrintLn Str StrA String True diferenteQue dividido dobleIgual dosPuntos igual llaveA llaveC mas mayorIgual mayorQue menorIgual menorQue menos modulo not por ptComainit : INSTRUCCIONESINSTRUCCIONES : INSTRUCCIONES INSTRUCCIONINSTRUCCIONES : INSTRUCCIONINSTRUCCION : DECLARACIONDECLARACION : Let Id igual EXPRESION ptComaDECLARACION : Let Id dosPuntos I64 igual EXPRESION ptComaDECLARACION : Let Id dosPuntos F64 igual EXPRESION ptComaDECLARACION : Let Id dosPuntos StrA igual EXPRESION ptComaDECLARACION : Let Id dosPuntos Str igual EXPRESION ptComaDECLARACION : Let Id dosPuntos Bool igual EXPRESION ptComaDECLARACION : Let Id dosPuntos CharAux igual EXPRESION ptComaDECLARACION : Let Mut Id igual EXPRESION ptComaDECLARACION : Let Mut Id dosPuntos I64 igual EXPRESION ptComaDECLARACION : Let Mut Id dosPuntos F64 igual EXPRESION ptComaDECLARACION : Let Mut Id dosPuntos StrA igual EXPRESION ptComaDECLARACION : Let Mut Id dosPuntos Str igual EXPRESION ptComaDECLARACION : Let Mut Id dosPuntos Bool igual EXPRESION ptComaDECLARACION : Let Mut Id dosPuntos CharAux igual EXPRESION ptComaINSTRUCCION : ASIGNACIONASIGNACION : Id igual EXPRESION ptComaINSTRUCCION : IMPRIMIRIMPRIMIR : PrintLn not ParA String ParC ptComaIMPRIMIR : PrintLn not ParA String Coma COMASEX ParC ptComaCOMASEX : COMASEX Coma EXPRESIONCOMASEX : EXPRESIONEXPRESION : EXPRESION mas EXPRESIONEXPRESION : EXPRESION menos EXPRESIONEXPRESION : EXPRESION por EXPRESIONEXPRESION : EXPRESION dividido EXPRESIONEXPRESION : EXPRESION modulo EXPRESIONEXPRESION : menos EXPRESION %prec UMINUSEXPRESION : ParA EXPRESION ParC %prec UPAREXPRESION : I64 dosPuntos dosPuntos Powi ParA EXPRESION Coma EXPRESION ParCEXPRESION : F64 dosPuntos dosPuntos Powf ParA EXPRESION Coma EXPRESION ParCEXPRESION : FloatEXPRESION : EnteroEXPRESION : BooleanoEXPRESION : StringEXPRESION : CharEXPRESION : Id'
     
-_lr_action_items = {'Let':([0,2,3,4,5,8,30,31,51,58,59,60,61,62,63,70,71,72,73,74,75,],[6,6,-3,-4,-19,-2,-20,-5,-12,-6,-7,-8,-9,-10,-11,-13,-14,-15,-16,-17,-18,]),'Id':([0,2,3,4,5,6,8,10,30,31,51,58,59,60,61,62,63,70,71,72,73,74,75,],[7,7,-3,-4,-19,9,-2,14,-20,-5,-12,-6,-7,-8,-9,-10,-11,-13,-14,-15,-16,-17,-18,]),'$end':([1,2,3,4,5,8,30,31,51,58,59,60,61,62,63,70,71,72,73,74,75,],[0,-1,-3,-4,-19,-2,-20,-5,-12,-6,-7,-8,-9,-10,-11,-13,-14,-15,-16,-17,-18,]),'Mut':([6,],[10,]),'igual':([7,9,14,22,23,24,25,26,27,39,40,41,42,43,44,],[11,12,28,32,33,34,35,36,37,52,53,54,55,56,57,]),'dosPuntos':([9,14,],[13,29,]),'Float':([11,12,28,32,33,34,35,36,37,52,53,54,55,56,57,],[16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,]),'Entero':([11,12,28,32,33,34,35,36,37,52,53,54,55,56,57,],[17,17,17,17,17,17,17,17,17,17,17,17,17,17,17,]),'Booleano':([11,12,28,32,33,34,35,36,37,52,53,54,55,56,57,],[18,18,18,18,18,18,18,18,18,18,18,18,18,18,18,]),'String':([11,12,28,32,33,34,35,36,37,52,53,54,55,56,57,],[19,19,19,19,19,19,19,19,19,19,19,19,19,19,19,]),'Char':([11,12,28,32,33,34,35,36,37,52,53,54,55,56,57,],[20,20,20,20,20,20,20,20,20,20,20,20,20,20,20,]),'I64':([13,29,],[22,39,]),'F64':([13,29,],[23,40,]),'Str':([13,29,],[24,41,]),'StrA':([13,29,],[25,42,]),'Bool':([13,29,],[26,43,]),'CharAux':([13,29,],[27,44,]),'ptComa':([15,16,17,18,19,20,21,38,45,46,47,48,49,50,64,65,66,67,68,69,],[30,-21,-22,-23,-24,-25,31,51,58,59,60,61,62,63,70,71,72,73,74,75,]),}
+_lr_action_items = {'Let':([0,2,3,4,5,6,10,39,50,80,89,92,93,94,95,96,97,108,109,110,111,112,113,117,],[7,7,-3,-4,-19,-21,-2,-20,-5,-12,-22,-6,-7,-8,-9,-10,-11,-13,-14,-15,-16,-17,-18,-23,]),'Id':([0,2,3,4,5,6,7,10,12,13,15,20,21,37,39,40,41,42,43,44,50,51,52,53,54,55,56,73,80,81,82,83,84,85,86,89,92,93,94,95,96,97,104,105,106,108,109,110,111,112,113,117,118,119,],[8,8,-3,-4,-19,-21,11,-2,17,18,18,18,18,18,-20,18,18,18,18,18,-5,18,18,18,18,18,18,18,-12,18,18,18,18,18,18,-22,-6,-7,-8,-9,-10,-11,18,18,18,-13,-14,-15,-16,-17,-18,-23,18,18,]),'PrintLn':([0,2,3,4,5,6,10,39,50,80,89,92,93,94,95,96,97,108,109,110,111,112,113,117,],[9,9,-3,-4,-19,-21,-2,-20,-5,-12,-22,-6,-7,-8,-9,-10,-11,-13,-14,-15,-16,-17,-18,-23,]),'$end':([1,2,3,4,5,6,10,39,50,80,89,92,93,94,95,96,97,108,109,110,111,112,113,117,],[0,-1,-3,-4,-19,-21,-2,-20,-5,-12,-22,-6,-7,-8,-9,-10,-11,-13,-14,-15,-16,-17,-18,-23,]),'Mut':([7,],[12,]),'igual':([8,11,17,31,32,33,34,35,36,58,59,60,61,62,63,],[13,15,37,51,52,53,54,55,56,81,82,83,84,85,86,]),'not':([9,],[14,]),'dosPuntos':([11,17,22,23,47,48,],[16,38,47,48,70,71,]),'menos':([13,15,18,19,20,21,24,25,26,27,28,30,37,40,41,42,43,44,45,46,51,52,53,54,55,56,57,64,65,66,67,68,69,73,74,75,76,77,78,79,81,82,83,84,85,86,91,98,99,100,101,102,103,104,105,106,114,115,116,118,119,120,121,122,123,],[20,20,-40,41,20,20,-35,-36,-37,-38,-39,41,20,20,20,20,20,20,-31,41,20,20,20,20,20,20,41,-26,-27,-28,-29,-30,-32,20,41,41,41,41,41,41,20,20,20,20,20,20,41,41,41,41,41,41,41,20,20,20,41,41,41,20,20,41,41,-33,-34,]),'ParA':([13,14,15,20,21,37,40,41,42,43,44,51,52,53,54,55,56,73,81,82,83,84,85,86,87,88,104,105,106,118,119,],[21,29,21,21,21,21,21,21,21,21,21,21,21,21,21,21,21,21,21,21,21,21,21,21,104,105,21,21,21,21,21,]),'I64':([13,15,16,20,21,37,38,40,41,42,43,44,51,52,53,54,55,56,73,81,82,83,84,85,86,104,105,106,118,119,],[22,22,31,22,22,22,58,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,]),'F64':([13,15,16,20,21,37,38,40,41,42,43,44,51,52,53,54,55,56,73,81,82,83,84,85,86,104,105,106,118,119,],[23,23,32,23,23,23,59,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,]),'Float':([13,15,20,21,37,40,41,42,43,44,51,52,53,54,55,56,73,81,82,83,84,85,86,104,105,106,118,119,],[24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,24,]),'Entero':([13,15,20,21,37,40,41,42,43,44,51,52,53,54,55,56,73,81,82,83,84,85,86,104,105,106,118,119,],[25,25,25,25,25,25,25,25,25,25,25,25,25,25,25,25,25,25,25,25,25,25,25,25,25,25,25,25,]),'Booleano':([13,15,20,21,37,40,41,42,43,44,51,52,53,54,55,56,73,81,82,83,84,85,86,104,105,106,118,119,],[26,26,26,26,26,26,26,26,26,26,26,26,26,26,26,26,26,26,26,26,26,26,26,26,26,26,26,26,]),'String':([13,15,20,21,29,37,40,41,42,43,44,51,52,53,54,55,56,73,81,82,83,84,85,86,104,105,106,118,119,],[27,27,27,27,49,27,27,27,27,27,27,27,27,27,27,27,27,27,27,27,27,27,27,27,27,27,27,27,27,]),'Char':([13,15,20,21,37,40,41,42,43,44,51,52,53,54,55,56,73,81,82,83,84,85,86,104,105,106,118,119,],[28,28,28,28,28,28,28,28,28,28,28,28,28,28,28,28,28,28,28,28,28,28,28,28,28,28,28,28,]),'StrA':([16,38,],[33,60,]),'Str':([16,38,],[34,61,]),'Bool':([16,38,],[35,62,]),'CharAux':([16,38,],[36,63,]),'ptComa':([18,19,24,25,26,27,28,30,45,57,64,65,66,67,68,69,72,74,75,76,77,78,79,98,99,100,101,102,103,107,122,123,],[-40,39,-35,-36,-37,-38,-39,50,-31,80,-26,-27,-28,-29,-30,-32,89,92,93,94,95,96,97,108,109,110,111,112,113,117,-33,-34,]),'mas':([18,19,24,25,26,27,28,30,45,46,57,64,65,66,67,68,69,74,75,76,77,78,79,91,98,99,100,101,102,103,114,115,116,120,121,122,123,],[-40,40,-35,-36,-37,-38,-39,40,-31,40,40,-26,-27,-28,-29,-30,-32,40,40,40,40,40,40,40,40,40,40,40,40,40,40,40,40,40,40,-33,-34,]),'por':([18,19,24,25,26,27,28,30,45,46,57,64,65,66,67,68,69,74,75,76,77,78,79,91,98,99,100,101,102,103,114,115,116,120,121,122,123,],[-40,42,-35,-36,-37,-38,-39,42,-31,42,42,42,42,-28,-29,-30,-32,42,42,42,42,42,42,42,42,42,42,42,42,42,42,42,42,42,42,-33,-34,]),'dividido':([18,19,24,25,26,27,28,30,45,46,57,64,65,66,67,68,69,74,75,76,77,78,79,91,98,99,100,101,102,103,114,115,116,120,121,122,123,],[-40,43,-35,-36,-37,-38,-39,43,-31,43,43,43,43,-28,-29,-30,-32,43,43,43,43,43,43,43,43,43,43,43,43,43,43,43,43,43,43,-33,-34,]),'modulo':([18,19,24,25,26,27,28,30,45,46,57,64,65,66,67,68,69,74,75,76,77,78,79,91,98,99,100,101,102,103,114,115,116,120,121,122,123,],[-40,44,-35,-36,-37,-38,-39,44,-31,44,44,44,44,-28,-29,-30,-32,44,44,44,44,44,44,44,44,44,44,44,44,44,44,44,44,44,44,-33,-34,]),'ParC':([18,24,25,26,27,28,45,46,49,64,65,66,67,68,69,90,91,116,120,121,122,123,],[-40,-35,-36,-37,-38,-39,-31,69,72,-26,-27,-28,-29,-30,-32,107,-25,-24,122,123,-33,-34,]),'Coma':([18,24,25,26,27,28,45,49,64,65,66,67,68,69,90,91,114,115,116,122,123,],[-40,-35,-36,-37,-38,-39,-31,73,-26,-27,-28,-29,-30,-32,106,-25,118,119,-24,-33,-34,]),'Powi':([70,],[87,]),'Powf':([71,],[88,]),}
 
 _lr_action = {}
 for _k, _v in _lr_action_items.items():
@@ -17,7 +17,7 @@ for _k, _v in _lr_action_items.items():
       _lr_action[_x][_k] = _y
 del _lr_action_items
 
-_lr_goto_items = {'init':([0,],[1,]),'INSTRUCCIONES':([0,],[2,]),'INSTRUCCION':([0,2,],[3,8,]),'DECLARACION':([0,2,],[4,4,]),'ASIGNACION':([0,2,],[5,5,]),'EXPRESION':([11,12,28,32,33,34,35,36,37,52,53,54,55,56,57,],[15,21,38,45,46,47,48,49,50,64,65,66,67,68,69,]),}
+_lr_goto_items = {'init':([0,],[1,]),'INSTRUCCIONES':([0,],[2,]),'INSTRUCCION':([0,2,],[3,10,]),'DECLARACION':([0,2,],[4,4,]),'ASIGNACION':([0,2,],[5,5,]),'IMPRIMIR':([0,2,],[6,6,]),'EXPRESION':([13,15,20,21,37,40,41,42,43,44,51,52,53,54,55,56,73,81,82,83,84,85,86,104,105,106,118,119,],[19,30,45,46,57,64,65,66,67,68,74,75,76,77,78,79,91,98,99,100,101,102,103,114,115,116,120,121,]),'COMASEX':([73,],[90,]),}
 
 _lr_goto = {}
 for _k, _v in _lr_goto_items.items():
@@ -27,29 +27,44 @@ for _k, _v in _lr_goto_items.items():
 del _lr_goto_items
 _lr_productions = [
   ("S' -> init","S'",1,None,None,None),
-  ('init -> INSTRUCCIONES','init',1,'p_init','gramatica.py',137),
-  ('INSTRUCCIONES -> INSTRUCCIONES INSTRUCCION','INSTRUCCIONES',2,'p_listaInstrucciones','gramatica.py',141),
-  ('INSTRUCCIONES -> INSTRUCCION','INSTRUCCIONES',1,'p_listaInstrucciones_Instruccion','gramatica.py',146),
-  ('INSTRUCCION -> DECLARACION','INSTRUCCION',1,'p_Instruccion_Declaracion','gramatica.py',152),
-  ('DECLARACION -> Let Id igual EXPRESION ptComa','DECLARACION',5,'p_Declaracion_Normal','gramatica.py',156),
-  ('DECLARACION -> Let Id dosPuntos I64 igual EXPRESION ptComa','DECLARACION',7,'p_Declaracion_Normal_Tipo_I64','gramatica.py',160),
-  ('DECLARACION -> Let Id dosPuntos F64 igual EXPRESION ptComa','DECLARACION',7,'p_Declaracion_Normal_Tipo_F64','gramatica.py',164),
-  ('DECLARACION -> Let Id dosPuntos Str igual EXPRESION ptComa','DECLARACION',7,'p_Declaracion_Normal_Tipo_String','gramatica.py',168),
-  ('DECLARACION -> Let Id dosPuntos StrA igual EXPRESION ptComa','DECLARACION',7,'p_Declaracion_Normal_Tipo_String','gramatica.py',169),
-  ('DECLARACION -> Let Id dosPuntos Bool igual EXPRESION ptComa','DECLARACION',7,'p_Declaracion_Normal_Tipo_Bool','gramatica.py',173),
-  ('DECLARACION -> Let Id dosPuntos CharAux igual EXPRESION ptComa','DECLARACION',7,'p_Declaracion_Normal_Tipo_Char','gramatica.py',177),
-  ('DECLARACION -> Let Mut Id igual EXPRESION ptComa','DECLARACION',6,'p_Declaracion_Mut','gramatica.py',181),
-  ('DECLARACION -> Let Mut Id dosPuntos I64 igual EXPRESION ptComa','DECLARACION',8,'p_Declaracion_Mut_Tipo_I64','gramatica.py',186),
-  ('DECLARACION -> Let Mut Id dosPuntos F64 igual EXPRESION ptComa','DECLARACION',8,'p_Declaracion_Mut_Tipo_F64','gramatica.py',190),
-  ('DECLARACION -> Let Mut Id dosPuntos Str igual EXPRESION ptComa','DECLARACION',8,'p_Declaracion_Mut_Tipo_String','gramatica.py',194),
-  ('DECLARACION -> Let Mut Id dosPuntos StrA igual EXPRESION ptComa','DECLARACION',8,'p_Declaracion_Mut_Tipo_String','gramatica.py',195),
-  ('DECLARACION -> Let Mut Id dosPuntos Bool igual EXPRESION ptComa','DECLARACION',8,'p_Declaracion_Mut_Tipo_Bool','gramatica.py',199),
-  ('DECLARACION -> Let Mut Id dosPuntos CharAux igual EXPRESION ptComa','DECLARACION',8,'p_Declaracion_Mut_Tipo_Char','gramatica.py',203),
-  ('INSTRUCCION -> ASIGNACION','INSTRUCCION',1,'p_Instruccion_Asignacion','gramatica.py',209),
-  ('ASIGNACION -> Id igual EXPRESION ptComa','ASIGNACION',4,'p_Asignacion','gramatica.py',213),
-  ('EXPRESION -> Float','EXPRESION',1,'p_Expresion_Float','gramatica.py',219),
-  ('EXPRESION -> Entero','EXPRESION',1,'p_Expresion_Entero','gramatica.py',223),
-  ('EXPRESION -> Booleano','EXPRESION',1,'p_Expresion_Booleano','gramatica.py',227),
-  ('EXPRESION -> String','EXPRESION',1,'p_Expresion_String','gramatica.py',231),
-  ('EXPRESION -> Char','EXPRESION',1,'p_Expresion_Char','gramatica.py',235),
+  ('init -> INSTRUCCIONES','init',1,'p_init','gramatica.py',171),
+  ('INSTRUCCIONES -> INSTRUCCIONES INSTRUCCION','INSTRUCCIONES',2,'p_listaInstrucciones','gramatica.py',175),
+  ('INSTRUCCIONES -> INSTRUCCION','INSTRUCCIONES',1,'p_listaInstrucciones_Instruccion','gramatica.py',180),
+  ('INSTRUCCION -> DECLARACION','INSTRUCCION',1,'p_Instruccion_Declaracion','gramatica.py',186),
+  ('DECLARACION -> Let Id igual EXPRESION ptComa','DECLARACION',5,'p_Declaracion_Normal','gramatica.py',190),
+  ('DECLARACION -> Let Id dosPuntos I64 igual EXPRESION ptComa','DECLARACION',7,'p_Declaracion_Normal_Tipo_I64','gramatica.py',194),
+  ('DECLARACION -> Let Id dosPuntos F64 igual EXPRESION ptComa','DECLARACION',7,'p_Declaracion_Normal_Tipo_F64','gramatica.py',198),
+  ('DECLARACION -> Let Id dosPuntos StrA igual EXPRESION ptComa','DECLARACION',7,'p_Declaracion_Normal_Tipo_String','gramatica.py',202),
+  ('DECLARACION -> Let Id dosPuntos Str igual EXPRESION ptComa','DECLARACION',7,'p_Declaracion_Normal_Tipo_Str','gramatica.py',206),
+  ('DECLARACION -> Let Id dosPuntos Bool igual EXPRESION ptComa','DECLARACION',7,'p_Declaracion_Normal_Tipo_Bool','gramatica.py',210),
+  ('DECLARACION -> Let Id dosPuntos CharAux igual EXPRESION ptComa','DECLARACION',7,'p_Declaracion_Normal_Tipo_Char','gramatica.py',214),
+  ('DECLARACION -> Let Mut Id igual EXPRESION ptComa','DECLARACION',6,'p_Declaracion_Mut','gramatica.py',218),
+  ('DECLARACION -> Let Mut Id dosPuntos I64 igual EXPRESION ptComa','DECLARACION',8,'p_Declaracion_Mut_Tipo_I64','gramatica.py',222),
+  ('DECLARACION -> Let Mut Id dosPuntos F64 igual EXPRESION ptComa','DECLARACION',8,'p_Declaracion_Mut_Tipo_F64','gramatica.py',226),
+  ('DECLARACION -> Let Mut Id dosPuntos StrA igual EXPRESION ptComa','DECLARACION',8,'p_Declaracion_Mut_Tipo_String','gramatica.py',230),
+  ('DECLARACION -> Let Mut Id dosPuntos Str igual EXPRESION ptComa','DECLARACION',8,'p_Declaracion_Mut_Tipo_Str','gramatica.py',234),
+  ('DECLARACION -> Let Mut Id dosPuntos Bool igual EXPRESION ptComa','DECLARACION',8,'p_Declaracion_Mut_Tipo_Bool','gramatica.py',238),
+  ('DECLARACION -> Let Mut Id dosPuntos CharAux igual EXPRESION ptComa','DECLARACION',8,'p_Declaracion_Mut_Tipo_Char','gramatica.py',242),
+  ('INSTRUCCION -> ASIGNACION','INSTRUCCION',1,'p_Instruccion_Asignacion','gramatica.py',248),
+  ('ASIGNACION -> Id igual EXPRESION ptComa','ASIGNACION',4,'p_Asignacion','gramatica.py',252),
+  ('INSTRUCCION -> IMPRIMIR','INSTRUCCION',1,'p_Instruccion_Imprimir','gramatica.py',258),
+  ('IMPRIMIR -> PrintLn not ParA String ParC ptComa','IMPRIMIR',6,'p_Imprimir_String','gramatica.py',262),
+  ('IMPRIMIR -> PrintLn not ParA String Coma COMASEX ParC ptComa','IMPRIMIR',8,'p_Imprimir_String_Comas','gramatica.py',267),
+  ('COMASEX -> COMASEX Coma EXPRESION','COMASEX',3,'p_Comas_Expresion','gramatica.py',271),
+  ('COMASEX -> EXPRESION','COMASEX',1,'p_Comas_Expre','gramatica.py',276),
+  ('EXPRESION -> EXPRESION mas EXPRESION','EXPRESION',3,'p_Expresion_Suma','gramatica.py',284),
+  ('EXPRESION -> EXPRESION menos EXPRESION','EXPRESION',3,'p_Expresion_Resta','gramatica.py',288),
+  ('EXPRESION -> EXPRESION por EXPRESION','EXPRESION',3,'p_Expresion_Multiplicacion','gramatica.py',292),
+  ('EXPRESION -> EXPRESION dividido EXPRESION','EXPRESION',3,'p_Expresion_Division','gramatica.py',296),
+  ('EXPRESION -> EXPRESION modulo EXPRESION','EXPRESION',3,'p_Expresion_Modulo','gramatica.py',300),
+  ('EXPRESION -> menos EXPRESION','EXPRESION',2,'p_Expresion_Negado','gramatica.py',304),
+  ('EXPRESION -> ParA EXPRESION ParC','EXPRESION',3,'p_Expresion_Par','gramatica.py',308),
+  ('EXPRESION -> I64 dosPuntos dosPuntos Powi ParA EXPRESION Coma EXPRESION ParC','EXPRESION',9,'p_Expresion_PowI','gramatica.py',312),
+  ('EXPRESION -> F64 dosPuntos dosPuntos Powf ParA EXPRESION Coma EXPRESION ParC','EXPRESION',9,'p_Expresion_Powf','gramatica.py',316),
+  ('EXPRESION -> Float','EXPRESION',1,'p_Expresion_Float','gramatica.py',320),
+  ('EXPRESION -> Entero','EXPRESION',1,'p_Expresion_Entero','gramatica.py',324),
+  ('EXPRESION -> Booleano','EXPRESION',1,'p_Expresion_Booleano','gramatica.py',328),
+  ('EXPRESION -> String','EXPRESION',1,'p_Expresion_String','gramatica.py',332),
+  ('EXPRESION -> Char','EXPRESION',1,'p_Expresion_Char','gramatica.py',336),
+  ('EXPRESION -> Id','EXPRESION',1,'p_Expresion_Id','gramatica.py',340),
 ]
