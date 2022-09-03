@@ -1,5 +1,3 @@
-from re import I
-from unittest import result
 from Analizador.Expresiones.Expresion import *
 from Analizador.Entorno.Tipo import *
 from Analizador.Singleton.Singleton import *

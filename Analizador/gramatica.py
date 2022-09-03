@@ -5,6 +5,7 @@ from Analizador.Entorno.Error import Error
 from Analizador.Expresiones.Acceso import Acceso
 from Analizador.Expresiones.Aritmeticas import Aritmeticas
 from Analizador.Expresiones.Literal import Literal
+from Analizador.Expresiones.Relacionales import Relacionales
 from Analizador.Instrucciones.Asignacion import Asignacion
 from Analizador.Instrucciones.Declaracion import Declaracion
 from Analizador.Instrucciones.Println import Println
@@ -315,6 +316,32 @@ def p_Expresion_PowI(t):
 def p_Expresion_Powf(t):
     '''EXPRESION : F64 dosPuntos dosPuntos Powf ParA EXPRESION Coma EXPRESION ParC'''
     t[0] = Aritmeticas(t[6], t[8], TipoAritmetica.powf, t.lineno(1), obtener_columna_p(t.lexer.lexdata, t))
+
+#-------------RELACIONALES--------------
+
+def p_Expresion_Menor(t):
+    '''EXPRESION : EXPRESION menorQue EXPRESION'''
+    t[0] = Relacionales(t[1], t[3], TipoRelacionales.menor, t.lineno(1), obtener_columna_p(t.lexer.lexdata, t))
+
+def p_Expresion_Mayor(t):
+    '''EXPRESION : EXPRESION mayorQue EXPRESION'''
+    t[0] = Relacionales(t[1], t[3], TipoRelacionales.mayor, t.lineno(1), obtener_columna_p(t.lexer.lexdata, t))
+
+def p_Expresion_MenorIgual(t):
+    '''EXPRESION : EXPRESION menorIgual EXPRESION'''
+    t[0] = Relacionales(t[1], t[3], TipoRelacionales.menorIgual, t.lineno(1), obtener_columna_p(t.lexer.lexdata, t))
+
+def p_Expresion_MayorIgual(t):
+    '''EXPRESION : EXPRESION mayorIgual EXPRESION'''
+    t[0] = Relacionales(t[1], t[3], TipoRelacionales.mayorIgual, t.lineno(1), obtener_columna_p(t.lexer.lexdata, t))
+
+def p_Expresion_Igualacion(t):
+    '''EXPRESION : EXPRESION dobleIgual EXPRESION'''
+    t[0] = Relacionales(t[1], t[3], TipoRelacionales.igualacion, t.lineno(1), obtener_columna_p(t.lexer.lexdata, t))
+
+def p_Expresion_DiferenteDe(t):
+    '''EXPRESION : EXPRESION diferenteQue EXPRESION'''
+    t[0] = Relacionales(t[1], t[3], TipoRelacionales.diferente, t.lineno(1), obtener_columna_p(t.lexer.lexdata, t))
 
 def p_Expresion_Float(t):
     '''EXPRESION : Float'''

@@ -161,7 +161,7 @@ if __name__ == '__main__':
     let mut y : String = "true";
     let mut z : &str = "hola";
     z = "prueba";
-    println!("{}", (-(5+3)*4)+3);
+    println!("{}", "hola");
     """
     analizar_entrada(entrada)
     """#----------------------CREACION VENTANA----------------------

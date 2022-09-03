@@ -30,6 +30,14 @@ class TipoAritmetica(enum.Enum):
     modulo = 6
     negado = 7
 
+class TipoRelacionales(enum.Enum):
+    mayor = 0
+    menor = 1
+    mayorIgual = 2
+    menorIgual = 3
+    igualacion = 4
+    diferente = 5
+
 
 global validator
 
