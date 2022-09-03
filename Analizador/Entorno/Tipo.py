@@ -38,6 +38,10 @@ class TipoRelacionales(enum.Enum):
     igualacion = 4
     diferente = 5
 
+class TipoLogicas(enum.Enum):
+    OR = 0
+    AND = 1
+    NOT = 2
 
 global validator
 

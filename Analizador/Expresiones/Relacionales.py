@@ -1,4 +1,3 @@
-from unittest import result
 from Analizador.Expresiones.Expresion import *
 from Analizador.Entorno.Tipo import *
 from Analizador.Singleton.Singleton import *
@@ -137,7 +136,7 @@ class Relacionales(Expresion):
                 error = Error("No se pudo realizar la operación relacional.", "Semántico", self.linea, self.columna)
                 singleton.addError(error)
                 print(error.descripcion)
-                
+
         return resultado
 
     def ast(self):

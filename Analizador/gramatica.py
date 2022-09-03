@@ -1,10 +1,10 @@
-from xml.sax.handler import LexicalHandler
 from Analizador.Entorno.Entorno import Entorno
 from Analizador.Entorno.Tipo import *
 from Analizador.Entorno.Error import Error
 from Analizador.Expresiones.Acceso import Acceso
 from Analizador.Expresiones.Aritmeticas import Aritmeticas
 from Analizador.Expresiones.Literal import Literal
+from Analizador.Expresiones.Logicas import Logicas
 from Analizador.Expresiones.Relacionales import Relacionales
 from Analizador.Instrucciones.Asignacion import Asignacion
 from Analizador.Instrucciones.Declaracion import Declaracion
@@ -342,6 +342,23 @@ def p_Expresion_Igualacion(t):
 def p_Expresion_DiferenteDe(t):
     '''EXPRESION : EXPRESION diferenteQue EXPRESION'''
     t[0] = Relacionales(t[1], t[3], TipoRelacionales.diferente, t.lineno(1), obtener_columna_p(t.lexer.lexdata, t))
+
+#-------------LOGICAS--------------
+
+def p_Expresion_And(t):
+    '''EXPRESION : EXPRESION And EXPRESION'''
+    print("AND")
+    t[0] = Logicas(t[1], t[3], TipoLogicas.AND, t.lineno(1), obtener_columna_p(t.lexer.lexdata, t))
+
+def p_Expresion_Or(t):
+    '''EXPRESION : EXPRESION Or EXPRESION'''
+    t[0] = Logicas(t[1], t[3], TipoLogicas.OR, t.lineno(1), obtener_columna_p(t.lexer.lexdata, t))
+
+def p_Expresion_Not(t):
+    '''EXPRESION : not EXPRESION'''
+    t[0] = Logicas(t[2], None, TipoLogicas.NOT, t.lineno(1), obtener_columna_p(t.lexer.lexdata, t))
+
+#-------------LITERALES------------
 
 def p_Expresion_Float(t):
     '''EXPRESION : Float'''

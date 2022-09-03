@@ -2,10 +2,8 @@ Created by PLY version 3.11 (http://www.dabeaz.com/ply)
 
 Unused terminals:
 
-    And
     Comentario
     False
-    Or
     True
     llaveA
     llaveC
@@ -53,31 +51,34 @@ Rule 37    EXPRESION -> EXPRESION menorIgual EXPRESION
 Rule 38    EXPRESION -> EXPRESION mayorIgual EXPRESION
 Rule 39    EXPRESION -> EXPRESION dobleIgual EXPRESION
 Rule 40    EXPRESION -> EXPRESION diferenteQue EXPRESION
-Rule 41    EXPRESION -> Float
-Rule 42    EXPRESION -> Entero
-Rule 43    EXPRESION -> Booleano
-Rule 44    EXPRESION -> String
-Rule 45    EXPRESION -> Char
-Rule 46    EXPRESION -> Id
+Rule 41    EXPRESION -> EXPRESION And EXPRESION
+Rule 42    EXPRESION -> EXPRESION Or EXPRESION
+Rule 43    EXPRESION -> not EXPRESION
+Rule 44    EXPRESION -> Float
+Rule 45    EXPRESION -> Entero
+Rule 46    EXPRESION -> Booleano
+Rule 47    EXPRESION -> String
+Rule 48    EXPRESION -> Char
+Rule 49    EXPRESION -> Id
 
 Terminals, with rules where they appear
 
-And                  : 
+And                  : 41
 Bool                 : 10 17
-Booleano             : 43
-Char                 : 45
+Booleano             : 46
+Char                 : 48
 CharAux              : 11 18
 Coma                 : 23 24 33 34
 Comentario           : 
-Entero               : 42
+Entero               : 45
 F64                  : 7 14 34
 False                : 
-Float                : 41
+Float                : 44
 I64                  : 6 13 33
-Id                   : 5 6 7 8 9 10 11 12 13 14 15 16 17 18 20 46
+Id                   : 5 6 7 8 9 10 11 12 13 14 15 16 17 18 20 49
 Let                  : 5 6 7 8 9 10 11 12 13 14 15 16 17 18
 Mut                  : 12 13 14 15 16 17 18
-Or                   : 
+Or                   : 42
 ParA                 : 22 23 32 33 34
 ParC                 : 22 23 32 33 34
 Powf                 : 34
@@ -85,7 +86,7 @@ Powi                 : 33
 PrintLn              : 22 23
 Str                  : 9 16
 StrA                 : 8 15
-String               : 22 23 44
+String               : 22 23 47
 True                 : 
 diferenteQue         : 40
 dividido             : 29
@@ -102,7 +103,7 @@ menorIgual           : 37
 menorQue             : 35
 menos                : 27 31
 modulo               : 30
-not                  : 22 23
+not                  : 22 23 43
 por                  : 28
 ptComa               : 5 6 7 8 9 10 11 12 13 14 15 16 17 18 20 22 23
 
@@ -111,7 +112,7 @@ Nonterminals, with rules where they appear
 ASIGNACION           : 19
 COMASEX              : 23 24
 DECLARACION          : 4
-EXPRESION            : 5 6 7 8 9 10 11 12 13 14 15 16 17 18 20 24 25 26 26 27 27 28 28 29 29 30 30 31 32 33 33 34 34 35 35 36 36 37 37 38 38 39 39 40 40
+EXPRESION            : 5 6 7 8 9 10 11 12 13 14 15 16 17 18 20 24 25 26 26 27 27 28 28 29 29 30 30 31 32 33 33 34 34 35 35 36 36 37 37 38 38 39 39 40 40 41 41 42 42 43
 IMPRIMIR             : 21
 INSTRUCCION          : 2 3
 INSTRUCCIONES        : 1 2
@@ -329,22 +330,26 @@ state 13
     (38) EXPRESION -> . EXPRESION mayorIgual EXPRESION
     (39) EXPRESION -> . EXPRESION dobleIgual EXPRESION
     (40) EXPRESION -> . EXPRESION diferenteQue EXPRESION
-    (41) EXPRESION -> . Float
-    (42) EXPRESION -> . Entero
-    (43) EXPRESION -> . Booleano
-    (44) EXPRESION -> . String
-    (45) EXPRESION -> . Char
-    (46) EXPRESION -> . Id
+    (41) EXPRESION -> . EXPRESION And EXPRESION
+    (42) EXPRESION -> . EXPRESION Or EXPRESION
+    (43) EXPRESION -> . not EXPRESION
+    (44) EXPRESION -> . Float
+    (45) EXPRESION -> . Entero
+    (46) EXPRESION -> . Booleano
+    (47) EXPRESION -> . String
+    (48) EXPRESION -> . Char
+    (49) EXPRESION -> . Id
 
     menos           shift and go to state 20
     ParA            shift and go to state 21
     I64             shift and go to state 22
     F64             shift and go to state 23
-    Float           shift and go to state 24
-    Entero          shift and go to state 25
-    Booleano        shift and go to state 26
-    String          shift and go to state 27
-    Char            shift and go to state 28
+    not             shift and go to state 24
+    Float           shift and go to state 25
+    Entero          shift and go to state 26
+    Booleano        shift and go to state 27
+    String          shift and go to state 28
+    Char            shift and go to state 29
     Id              shift and go to state 18
 
     EXPRESION                      shift and go to state 19
@@ -354,7 +359,7 @@ state 14
     (22) IMPRIMIR -> PrintLn not . ParA String ParC ptComa
     (23) IMPRIMIR -> PrintLn not . ParA String Coma COMASEX ParC ptComa
 
-    ParA            shift and go to state 29
+    ParA            shift and go to state 30
 
 
 state 15
@@ -375,25 +380,29 @@ state 15
     (38) EXPRESION -> . EXPRESION mayorIgual EXPRESION
     (39) EXPRESION -> . EXPRESION dobleIgual EXPRESION
     (40) EXPRESION -> . EXPRESION diferenteQue EXPRESION
-    (41) EXPRESION -> . Float
-    (42) EXPRESION -> . Entero
-    (43) EXPRESION -> . Booleano
-    (44) EXPRESION -> . String
-    (45) EXPRESION -> . Char
-    (46) EXPRESION -> . Id
+    (41) EXPRESION -> . EXPRESION And EXPRESION
+    (42) EXPRESION -> . EXPRESION Or EXPRESION
+    (43) EXPRESION -> . not EXPRESION
+    (44) EXPRESION -> . Float
+    (45) EXPRESION -> . Entero
+    (46) EXPRESION -> . Booleano
+    (47) EXPRESION -> . String
+    (48) EXPRESION -> . Char
+    (49) EXPRESION -> . Id
 
     menos           shift and go to state 20
     ParA            shift and go to state 21
     I64             shift and go to state 22
     F64             shift and go to state 23
-    Float           shift and go to state 24
-    Entero          shift and go to state 25
-    Booleano        shift and go to state 26
-    String          shift and go to state 27
-    Char            shift and go to state 28
+    not             shift and go to state 24
+    Float           shift and go to state 25
+    Entero          shift and go to state 26
+    Booleano        shift and go to state 27
+    String          shift and go to state 28
+    Char            shift and go to state 29
     Id              shift and go to state 18
 
-    EXPRESION                      shift and go to state 30
+    EXPRESION                      shift and go to state 31
 
 state 16
 
@@ -404,12 +413,12 @@ state 16
     (10) DECLARACION -> Let Id dosPuntos . Bool igual EXPRESION ptComa
     (11) DECLARACION -> Let Id dosPuntos . CharAux igual EXPRESION ptComa
 
-    I64             shift and go to state 31
-    F64             shift and go to state 32
-    StrA            shift and go to state 33
-    Str             shift and go to state 34
-    Bool            shift and go to state 35
-    CharAux         shift and go to state 36
+    I64             shift and go to state 32
+    F64             shift and go to state 33
+    StrA            shift and go to state 34
+    Str             shift and go to state 35
+    Bool            shift and go to state 36
+    CharAux         shift and go to state 37
 
 
 state 17
@@ -422,28 +431,30 @@ state 17
     (17) DECLARACION -> Let Mut Id . dosPuntos Bool igual EXPRESION ptComa
     (18) DECLARACION -> Let Mut Id . dosPuntos CharAux igual EXPRESION ptComa
 
-    igual           shift and go to state 37
-    dosPuntos       shift and go to state 38
+    igual           shift and go to state 38
+    dosPuntos       shift and go to state 39
 
 
 state 18
 
-    (46) EXPRESION -> Id .
+    (49) EXPRESION -> Id .
 
-    ptComa          reduce using rule 46 (EXPRESION -> Id .)
-    mas             reduce using rule 46 (EXPRESION -> Id .)
-    menos           reduce using rule 46 (EXPRESION -> Id .)
-    por             reduce using rule 46 (EXPRESION -> Id .)
-    dividido        reduce using rule 46 (EXPRESION -> Id .)
-    modulo          reduce using rule 46 (EXPRESION -> Id .)
-    menorQue        reduce using rule 46 (EXPRESION -> Id .)
-    mayorQue        reduce using rule 46 (EXPRESION -> Id .)
-    menorIgual      reduce using rule 46 (EXPRESION -> Id .)
-    mayorIgual      reduce using rule 46 (EXPRESION -> Id .)
-    dobleIgual      reduce using rule 46 (EXPRESION -> Id .)
-    diferenteQue    reduce using rule 46 (EXPRESION -> Id .)
-    ParC            reduce using rule 46 (EXPRESION -> Id .)
-    Coma            reduce using rule 46 (EXPRESION -> Id .)
+    ptComa          reduce using rule 49 (EXPRESION -> Id .)
+    mas             reduce using rule 49 (EXPRESION -> Id .)
+    menos           reduce using rule 49 (EXPRESION -> Id .)
+    por             reduce using rule 49 (EXPRESION -> Id .)
+    dividido        reduce using rule 49 (EXPRESION -> Id .)
+    modulo          reduce using rule 49 (EXPRESION -> Id .)
+    menorQue        reduce using rule 49 (EXPRESION -> Id .)
+    mayorQue        reduce using rule 49 (EXPRESION -> Id .)
+    menorIgual      reduce using rule 49 (EXPRESION -> Id .)
+    mayorIgual      reduce using rule 49 (EXPRESION -> Id .)
+    dobleIgual      reduce using rule 49 (EXPRESION -> Id .)
+    diferenteQue    reduce using rule 49 (EXPRESION -> Id .)
+    And             reduce using rule 49 (EXPRESION -> Id .)
+    Or              reduce using rule 49 (EXPRESION -> Id .)
+    ParC            reduce using rule 49 (EXPRESION -> Id .)
+    Coma            reduce using rule 49 (EXPRESION -> Id .)
 
 
 state 19
@@ -460,19 +471,23 @@ state 19
     (38) EXPRESION -> EXPRESION . mayorIgual EXPRESION
     (39) EXPRESION -> EXPRESION . dobleIgual EXPRESION
     (40) EXPRESION -> EXPRESION . diferenteQue EXPRESION
+    (41) EXPRESION -> EXPRESION . And EXPRESION
+    (42) EXPRESION -> EXPRESION . Or EXPRESION
 
-    ptComa          shift and go to state 39
-    mas             shift and go to state 40
-    menos           shift and go to state 41
-    por             shift and go to state 42
-    dividido        shift and go to state 43
-    modulo          shift and go to state 44
-    menorQue        shift and go to state 45
-    mayorQue        shift and go to state 46
-    menorIgual      shift and go to state 47
-    mayorIgual      shift and go to state 48
-    dobleIgual      shift and go to state 49
-    diferenteQue    shift and go to state 50
+    ptComa          shift and go to state 40
+    mas             shift and go to state 41
+    menos           shift and go to state 42
+    por             shift and go to state 43
+    dividido        shift and go to state 44
+    modulo          shift and go to state 45
+    menorQue        shift and go to state 46
+    mayorQue        shift and go to state 47
+    menorIgual      shift and go to state 48
+    mayorIgual      shift and go to state 49
+    dobleIgual      shift and go to state 50
+    diferenteQue    shift and go to state 51
+    And             shift and go to state 52
+    Or              shift and go to state 53
 
 
 state 20
@@ -493,25 +508,29 @@ state 20
     (38) EXPRESION -> . EXPRESION mayorIgual EXPRESION
     (39) EXPRESION -> . EXPRESION dobleIgual EXPRESION
     (40) EXPRESION -> . EXPRESION diferenteQue EXPRESION
-    (41) EXPRESION -> . Float
-    (42) EXPRESION -> . Entero
-    (43) EXPRESION -> . Booleano
-    (44) EXPRESION -> . String
-    (45) EXPRESION -> . Char
-    (46) EXPRESION -> . Id
+    (41) EXPRESION -> . EXPRESION And EXPRESION
+    (42) EXPRESION -> . EXPRESION Or EXPRESION
+    (43) EXPRESION -> . not EXPRESION
+    (44) EXPRESION -> . Float
+    (45) EXPRESION -> . Entero
+    (46) EXPRESION -> . Booleano
+    (47) EXPRESION -> . String
+    (48) EXPRESION -> . Char
+    (49) EXPRESION -> . Id
 
     menos           shift and go to state 20
     ParA            shift and go to state 21
     I64             shift and go to state 22
     F64             shift and go to state 23
-    Float           shift and go to state 24
-    Entero          shift and go to state 25
-    Booleano        shift and go to state 26
-    String          shift and go to state 27
-    Char            shift and go to state 28
+    not             shift and go to state 24
+    Float           shift and go to state 25
+    Entero          shift and go to state 26
+    Booleano        shift and go to state 27
+    String          shift and go to state 28
+    Char            shift and go to state 29
     Id              shift and go to state 18
 
-    EXPRESION                      shift and go to state 51
+    EXPRESION                      shift and go to state 54
 
 state 21
 
@@ -531,149 +550,205 @@ state 21
     (38) EXPRESION -> . EXPRESION mayorIgual EXPRESION
     (39) EXPRESION -> . EXPRESION dobleIgual EXPRESION
     (40) EXPRESION -> . EXPRESION diferenteQue EXPRESION
-    (41) EXPRESION -> . Float
-    (42) EXPRESION -> . Entero
-    (43) EXPRESION -> . Booleano
-    (44) EXPRESION -> . String
-    (45) EXPRESION -> . Char
-    (46) EXPRESION -> . Id
+    (41) EXPRESION -> . EXPRESION And EXPRESION
+    (42) EXPRESION -> . EXPRESION Or EXPRESION
+    (43) EXPRESION -> . not EXPRESION
+    (44) EXPRESION -> . Float
+    (45) EXPRESION -> . Entero
+    (46) EXPRESION -> . Booleano
+    (47) EXPRESION -> . String
+    (48) EXPRESION -> . Char
+    (49) EXPRESION -> . Id
 
     menos           shift and go to state 20
     ParA            shift and go to state 21
     I64             shift and go to state 22
     F64             shift and go to state 23
-    Float           shift and go to state 24
-    Entero          shift and go to state 25
-    Booleano        shift and go to state 26
-    String          shift and go to state 27
-    Char            shift and go to state 28
+    not             shift and go to state 24
+    Float           shift and go to state 25
+    Entero          shift and go to state 26
+    Booleano        shift and go to state 27
+    String          shift and go to state 28
+    Char            shift and go to state 29
     Id              shift and go to state 18
 
-    EXPRESION                      shift and go to state 52
+    EXPRESION                      shift and go to state 55
 
 state 22
 
     (33) EXPRESION -> I64 . dosPuntos dosPuntos Powi ParA EXPRESION Coma EXPRESION ParC
 
-    dosPuntos       shift and go to state 53
+    dosPuntos       shift and go to state 56
 
 
 state 23
 
     (34) EXPRESION -> F64 . dosPuntos dosPuntos Powf ParA EXPRESION Coma EXPRESION ParC
 
-    dosPuntos       shift and go to state 54
+    dosPuntos       shift and go to state 57
 
 
 state 24
 
-    (41) EXPRESION -> Float .
+    (43) EXPRESION -> not . EXPRESION
+    (26) EXPRESION -> . EXPRESION mas EXPRESION
+    (27) EXPRESION -> . EXPRESION menos EXPRESION
+    (28) EXPRESION -> . EXPRESION por EXPRESION
+    (29) EXPRESION -> . EXPRESION dividido EXPRESION
+    (30) EXPRESION -> . EXPRESION modulo EXPRESION
+    (31) EXPRESION -> . menos EXPRESION
+    (32) EXPRESION -> . ParA EXPRESION ParC
+    (33) EXPRESION -> . I64 dosPuntos dosPuntos Powi ParA EXPRESION Coma EXPRESION ParC
+    (34) EXPRESION -> . F64 dosPuntos dosPuntos Powf ParA EXPRESION Coma EXPRESION ParC
+    (35) EXPRESION -> . EXPRESION menorQue EXPRESION
+    (36) EXPRESION -> . EXPRESION mayorQue EXPRESION
+    (37) EXPRESION -> . EXPRESION menorIgual EXPRESION
+    (38) EXPRESION -> . EXPRESION mayorIgual EXPRESION
+    (39) EXPRESION -> . EXPRESION dobleIgual EXPRESION
+    (40) EXPRESION -> . EXPRESION diferenteQue EXPRESION
+    (41) EXPRESION -> . EXPRESION And EXPRESION
+    (42) EXPRESION -> . EXPRESION Or EXPRESION
+    (43) EXPRESION -> . not EXPRESION
+    (44) EXPRESION -> . Float
+    (45) EXPRESION -> . Entero
+    (46) EXPRESION -> . Booleano
+    (47) EXPRESION -> . String
+    (48) EXPRESION -> . Char
+    (49) EXPRESION -> . Id
 
-    ptComa          reduce using rule 41 (EXPRESION -> Float .)
-    mas             reduce using rule 41 (EXPRESION -> Float .)
-    menos           reduce using rule 41 (EXPRESION -> Float .)
-    por             reduce using rule 41 (EXPRESION -> Float .)
-    dividido        reduce using rule 41 (EXPRESION -> Float .)
-    modulo          reduce using rule 41 (EXPRESION -> Float .)
-    menorQue        reduce using rule 41 (EXPRESION -> Float .)
-    mayorQue        reduce using rule 41 (EXPRESION -> Float .)
-    menorIgual      reduce using rule 41 (EXPRESION -> Float .)
-    mayorIgual      reduce using rule 41 (EXPRESION -> Float .)
-    dobleIgual      reduce using rule 41 (EXPRESION -> Float .)
-    diferenteQue    reduce using rule 41 (EXPRESION -> Float .)
-    ParC            reduce using rule 41 (EXPRESION -> Float .)
-    Coma            reduce using rule 41 (EXPRESION -> Float .)
+    menos           shift and go to state 20
+    ParA            shift and go to state 21
+    I64             shift and go to state 22
+    F64             shift and go to state 23
+    not             shift and go to state 24
+    Float           shift and go to state 25
+    Entero          shift and go to state 26
+    Booleano        shift and go to state 27
+    String          shift and go to state 28
+    Char            shift and go to state 29
+    Id              shift and go to state 18
 
+    EXPRESION                      shift and go to state 58
 
 state 25
 
-    (42) EXPRESION -> Entero .
+    (44) EXPRESION -> Float .
 
-    ptComa          reduce using rule 42 (EXPRESION -> Entero .)
-    mas             reduce using rule 42 (EXPRESION -> Entero .)
-    menos           reduce using rule 42 (EXPRESION -> Entero .)
-    por             reduce using rule 42 (EXPRESION -> Entero .)
-    dividido        reduce using rule 42 (EXPRESION -> Entero .)
-    modulo          reduce using rule 42 (EXPRESION -> Entero .)
-    menorQue        reduce using rule 42 (EXPRESION -> Entero .)
-    mayorQue        reduce using rule 42 (EXPRESION -> Entero .)
-    menorIgual      reduce using rule 42 (EXPRESION -> Entero .)
-    mayorIgual      reduce using rule 42 (EXPRESION -> Entero .)
-    dobleIgual      reduce using rule 42 (EXPRESION -> Entero .)
-    diferenteQue    reduce using rule 42 (EXPRESION -> Entero .)
-    ParC            reduce using rule 42 (EXPRESION -> Entero .)
-    Coma            reduce using rule 42 (EXPRESION -> Entero .)
+    ptComa          reduce using rule 44 (EXPRESION -> Float .)
+    mas             reduce using rule 44 (EXPRESION -> Float .)
+    menos           reduce using rule 44 (EXPRESION -> Float .)
+    por             reduce using rule 44 (EXPRESION -> Float .)
+    dividido        reduce using rule 44 (EXPRESION -> Float .)
+    modulo          reduce using rule 44 (EXPRESION -> Float .)
+    menorQue        reduce using rule 44 (EXPRESION -> Float .)
+    mayorQue        reduce using rule 44 (EXPRESION -> Float .)
+    menorIgual      reduce using rule 44 (EXPRESION -> Float .)
+    mayorIgual      reduce using rule 44 (EXPRESION -> Float .)
+    dobleIgual      reduce using rule 44 (EXPRESION -> Float .)
+    diferenteQue    reduce using rule 44 (EXPRESION -> Float .)
+    And             reduce using rule 44 (EXPRESION -> Float .)
+    Or              reduce using rule 44 (EXPRESION -> Float .)
+    ParC            reduce using rule 44 (EXPRESION -> Float .)
+    Coma            reduce using rule 44 (EXPRESION -> Float .)
 
 
 state 26
 
-    (43) EXPRESION -> Booleano .
+    (45) EXPRESION -> Entero .
 
-    ptComa          reduce using rule 43 (EXPRESION -> Booleano .)
-    mas             reduce using rule 43 (EXPRESION -> Booleano .)
-    menos           reduce using rule 43 (EXPRESION -> Booleano .)
-    por             reduce using rule 43 (EXPRESION -> Booleano .)
-    dividido        reduce using rule 43 (EXPRESION -> Booleano .)
-    modulo          reduce using rule 43 (EXPRESION -> Booleano .)
-    menorQue        reduce using rule 43 (EXPRESION -> Booleano .)
-    mayorQue        reduce using rule 43 (EXPRESION -> Booleano .)
-    menorIgual      reduce using rule 43 (EXPRESION -> Booleano .)
-    mayorIgual      reduce using rule 43 (EXPRESION -> Booleano .)
-    dobleIgual      reduce using rule 43 (EXPRESION -> Booleano .)
-    diferenteQue    reduce using rule 43 (EXPRESION -> Booleano .)
-    ParC            reduce using rule 43 (EXPRESION -> Booleano .)
-    Coma            reduce using rule 43 (EXPRESION -> Booleano .)
+    ptComa          reduce using rule 45 (EXPRESION -> Entero .)
+    mas             reduce using rule 45 (EXPRESION -> Entero .)
+    menos           reduce using rule 45 (EXPRESION -> Entero .)
+    por             reduce using rule 45 (EXPRESION -> Entero .)
+    dividido        reduce using rule 45 (EXPRESION -> Entero .)
+    modulo          reduce using rule 45 (EXPRESION -> Entero .)
+    menorQue        reduce using rule 45 (EXPRESION -> Entero .)
+    mayorQue        reduce using rule 45 (EXPRESION -> Entero .)
+    menorIgual      reduce using rule 45 (EXPRESION -> Entero .)
+    mayorIgual      reduce using rule 45 (EXPRESION -> Entero .)
+    dobleIgual      reduce using rule 45 (EXPRESION -> Entero .)
+    diferenteQue    reduce using rule 45 (EXPRESION -> Entero .)
+    And             reduce using rule 45 (EXPRESION -> Entero .)
+    Or              reduce using rule 45 (EXPRESION -> Entero .)
+    ParC            reduce using rule 45 (EXPRESION -> Entero .)
+    Coma            reduce using rule 45 (EXPRESION -> Entero .)
 
 
 state 27
 
-    (44) EXPRESION -> String .
+    (46) EXPRESION -> Booleano .
 
-    ptComa          reduce using rule 44 (EXPRESION -> String .)
-    mas             reduce using rule 44 (EXPRESION -> String .)
-    menos           reduce using rule 44 (EXPRESION -> String .)
-    por             reduce using rule 44 (EXPRESION -> String .)
-    dividido        reduce using rule 44 (EXPRESION -> String .)
-    modulo          reduce using rule 44 (EXPRESION -> String .)
-    menorQue        reduce using rule 44 (EXPRESION -> String .)
-    mayorQue        reduce using rule 44 (EXPRESION -> String .)
-    menorIgual      reduce using rule 44 (EXPRESION -> String .)
-    mayorIgual      reduce using rule 44 (EXPRESION -> String .)
-    dobleIgual      reduce using rule 44 (EXPRESION -> String .)
-    diferenteQue    reduce using rule 44 (EXPRESION -> String .)
-    ParC            reduce using rule 44 (EXPRESION -> String .)
-    Coma            reduce using rule 44 (EXPRESION -> String .)
+    ptComa          reduce using rule 46 (EXPRESION -> Booleano .)
+    mas             reduce using rule 46 (EXPRESION -> Booleano .)
+    menos           reduce using rule 46 (EXPRESION -> Booleano .)
+    por             reduce using rule 46 (EXPRESION -> Booleano .)
+    dividido        reduce using rule 46 (EXPRESION -> Booleano .)
+    modulo          reduce using rule 46 (EXPRESION -> Booleano .)
+    menorQue        reduce using rule 46 (EXPRESION -> Booleano .)
+    mayorQue        reduce using rule 46 (EXPRESION -> Booleano .)
+    menorIgual      reduce using rule 46 (EXPRESION -> Booleano .)
+    mayorIgual      reduce using rule 46 (EXPRESION -> Booleano .)
+    dobleIgual      reduce using rule 46 (EXPRESION -> Booleano .)
+    diferenteQue    reduce using rule 46 (EXPRESION -> Booleano .)
+    And             reduce using rule 46 (EXPRESION -> Booleano .)
+    Or              reduce using rule 46 (EXPRESION -> Booleano .)
+    ParC            reduce using rule 46 (EXPRESION -> Booleano .)
+    Coma            reduce using rule 46 (EXPRESION -> Booleano .)
 
 
 state 28
 
-    (45) EXPRESION -> Char .
+    (47) EXPRESION -> String .
 
-    ptComa          reduce using rule 45 (EXPRESION -> Char .)
-    mas             reduce using rule 45 (EXPRESION -> Char .)
-    menos           reduce using rule 45 (EXPRESION -> Char .)
-    por             reduce using rule 45 (EXPRESION -> Char .)
-    dividido        reduce using rule 45 (EXPRESION -> Char .)
-    modulo          reduce using rule 45 (EXPRESION -> Char .)
-    menorQue        reduce using rule 45 (EXPRESION -> Char .)
-    mayorQue        reduce using rule 45 (EXPRESION -> Char .)
-    menorIgual      reduce using rule 45 (EXPRESION -> Char .)
-    mayorIgual      reduce using rule 45 (EXPRESION -> Char .)
-    dobleIgual      reduce using rule 45 (EXPRESION -> Char .)
-    diferenteQue    reduce using rule 45 (EXPRESION -> Char .)
-    ParC            reduce using rule 45 (EXPRESION -> Char .)
-    Coma            reduce using rule 45 (EXPRESION -> Char .)
+    ptComa          reduce using rule 47 (EXPRESION -> String .)
+    mas             reduce using rule 47 (EXPRESION -> String .)
+    menos           reduce using rule 47 (EXPRESION -> String .)
+    por             reduce using rule 47 (EXPRESION -> String .)
+    dividido        reduce using rule 47 (EXPRESION -> String .)
+    modulo          reduce using rule 47 (EXPRESION -> String .)
+    menorQue        reduce using rule 47 (EXPRESION -> String .)
+    mayorQue        reduce using rule 47 (EXPRESION -> String .)
+    menorIgual      reduce using rule 47 (EXPRESION -> String .)
+    mayorIgual      reduce using rule 47 (EXPRESION -> String .)
+    dobleIgual      reduce using rule 47 (EXPRESION -> String .)
+    diferenteQue    reduce using rule 47 (EXPRESION -> String .)
+    And             reduce using rule 47 (EXPRESION -> String .)
+    Or              reduce using rule 47 (EXPRESION -> String .)
+    ParC            reduce using rule 47 (EXPRESION -> String .)
+    Coma            reduce using rule 47 (EXPRESION -> String .)
 
 
 state 29
 
-    (22) IMPRIMIR -> PrintLn not ParA . String ParC ptComa
-    (23) IMPRIMIR -> PrintLn not ParA . String Coma COMASEX ParC ptComa
+    (48) EXPRESION -> Char .
 
-    String          shift and go to state 55
+    ptComa          reduce using rule 48 (EXPRESION -> Char .)
+    mas             reduce using rule 48 (EXPRESION -> Char .)
+    menos           reduce using rule 48 (EXPRESION -> Char .)
+    por             reduce using rule 48 (EXPRESION -> Char .)
+    dividido        reduce using rule 48 (EXPRESION -> Char .)
+    modulo          reduce using rule 48 (EXPRESION -> Char .)
+    menorQue        reduce using rule 48 (EXPRESION -> Char .)
+    mayorQue        reduce using rule 48 (EXPRESION -> Char .)
+    menorIgual      reduce using rule 48 (EXPRESION -> Char .)
+    mayorIgual      reduce using rule 48 (EXPRESION -> Char .)
+    dobleIgual      reduce using rule 48 (EXPRESION -> Char .)
+    diferenteQue    reduce using rule 48 (EXPRESION -> Char .)
+    And             reduce using rule 48 (EXPRESION -> Char .)
+    Or              reduce using rule 48 (EXPRESION -> Char .)
+    ParC            reduce using rule 48 (EXPRESION -> Char .)
+    Coma            reduce using rule 48 (EXPRESION -> Char .)
 
 
 state 30
+
+    (22) IMPRIMIR -> PrintLn not ParA . String ParC ptComa
+    (23) IMPRIMIR -> PrintLn not ParA . String Coma COMASEX ParC ptComa
+
+    String          shift and go to state 59
+
+
+state 31
 
     (5) DECLARACION -> Let Id igual EXPRESION . ptComa
     (26) EXPRESION -> EXPRESION . mas EXPRESION
@@ -687,64 +762,68 @@ state 30
     (38) EXPRESION -> EXPRESION . mayorIgual EXPRESION
     (39) EXPRESION -> EXPRESION . dobleIgual EXPRESION
     (40) EXPRESION -> EXPRESION . diferenteQue EXPRESION
+    (41) EXPRESION -> EXPRESION . And EXPRESION
+    (42) EXPRESION -> EXPRESION . Or EXPRESION
 
-    ptComa          shift and go to state 56
-    mas             shift and go to state 40
-    menos           shift and go to state 41
-    por             shift and go to state 42
-    dividido        shift and go to state 43
-    modulo          shift and go to state 44
-    menorQue        shift and go to state 45
-    mayorQue        shift and go to state 46
-    menorIgual      shift and go to state 47
-    mayorIgual      shift and go to state 48
-    dobleIgual      shift and go to state 49
-    diferenteQue    shift and go to state 50
-
-
-state 31
-
-    (6) DECLARACION -> Let Id dosPuntos I64 . igual EXPRESION ptComa
-
-    igual           shift and go to state 57
+    ptComa          shift and go to state 60
+    mas             shift and go to state 41
+    menos           shift and go to state 42
+    por             shift and go to state 43
+    dividido        shift and go to state 44
+    modulo          shift and go to state 45
+    menorQue        shift and go to state 46
+    mayorQue        shift and go to state 47
+    menorIgual      shift and go to state 48
+    mayorIgual      shift and go to state 49
+    dobleIgual      shift and go to state 50
+    diferenteQue    shift and go to state 51
+    And             shift and go to state 52
+    Or              shift and go to state 53
 
 
 state 32
 
-    (7) DECLARACION -> Let Id dosPuntos F64 . igual EXPRESION ptComa
-
-    igual           shift and go to state 58
-
-
-state 33
-
-    (8) DECLARACION -> Let Id dosPuntos StrA . igual EXPRESION ptComa
-
-    igual           shift and go to state 59
-
-
-state 34
-
-    (9) DECLARACION -> Let Id dosPuntos Str . igual EXPRESION ptComa
-
-    igual           shift and go to state 60
-
-
-state 35
-
-    (10) DECLARACION -> Let Id dosPuntos Bool . igual EXPRESION ptComa
+    (6) DECLARACION -> Let Id dosPuntos I64 . igual EXPRESION ptComa
 
     igual           shift and go to state 61
 
 
-state 36
+state 33
 
-    (11) DECLARACION -> Let Id dosPuntos CharAux . igual EXPRESION ptComa
+    (7) DECLARACION -> Let Id dosPuntos F64 . igual EXPRESION ptComa
 
     igual           shift and go to state 62
 
 
+state 34
+
+    (8) DECLARACION -> Let Id dosPuntos StrA . igual EXPRESION ptComa
+
+    igual           shift and go to state 63
+
+
+state 35
+
+    (9) DECLARACION -> Let Id dosPuntos Str . igual EXPRESION ptComa
+
+    igual           shift and go to state 64
+
+
+state 36
+
+    (10) DECLARACION -> Let Id dosPuntos Bool . igual EXPRESION ptComa
+
+    igual           shift and go to state 65
+
+
 state 37
+
+    (11) DECLARACION -> Let Id dosPuntos CharAux . igual EXPRESION ptComa
+
+    igual           shift and go to state 66
+
+
+state 38
 
     (12) DECLARACION -> Let Mut Id igual . EXPRESION ptComa
     (26) EXPRESION -> . EXPRESION mas EXPRESION
@@ -762,27 +841,31 @@ state 37
     (38) EXPRESION -> . EXPRESION mayorIgual EXPRESION
     (39) EXPRESION -> . EXPRESION dobleIgual EXPRESION
     (40) EXPRESION -> . EXPRESION diferenteQue EXPRESION
-    (41) EXPRESION -> . Float
-    (42) EXPRESION -> . Entero
-    (43) EXPRESION -> . Booleano
-    (44) EXPRESION -> . String
-    (45) EXPRESION -> . Char
-    (46) EXPRESION -> . Id
+    (41) EXPRESION -> . EXPRESION And EXPRESION
+    (42) EXPRESION -> . EXPRESION Or EXPRESION
+    (43) EXPRESION -> . not EXPRESION
+    (44) EXPRESION -> . Float
+    (45) EXPRESION -> . Entero
+    (46) EXPRESION -> . Booleano
+    (47) EXPRESION -> . String
+    (48) EXPRESION -> . Char
+    (49) EXPRESION -> . Id
 
     menos           shift and go to state 20
     ParA            shift and go to state 21
     I64             shift and go to state 22
     F64             shift and go to state 23
-    Float           shift and go to state 24
-    Entero          shift and go to state 25
-    Booleano        shift and go to state 26
-    String          shift and go to state 27
-    Char            shift and go to state 28
+    not             shift and go to state 24
+    Float           shift and go to state 25
+    Entero          shift and go to state 26
+    Booleano        shift and go to state 27
+    String          shift and go to state 28
+    Char            shift and go to state 29
     Id              shift and go to state 18
 
-    EXPRESION                      shift and go to state 63
+    EXPRESION                      shift and go to state 67
 
-state 38
+state 39
 
     (13) DECLARACION -> Let Mut Id dosPuntos . I64 igual EXPRESION ptComa
     (14) DECLARACION -> Let Mut Id dosPuntos . F64 igual EXPRESION ptComa
@@ -791,15 +874,15 @@ state 38
     (17) DECLARACION -> Let Mut Id dosPuntos . Bool igual EXPRESION ptComa
     (18) DECLARACION -> Let Mut Id dosPuntos . CharAux igual EXPRESION ptComa
 
-    I64             shift and go to state 64
-    F64             shift and go to state 65
-    StrA            shift and go to state 66
-    Str             shift and go to state 67
-    Bool            shift and go to state 68
-    CharAux         shift and go to state 69
+    I64             shift and go to state 68
+    F64             shift and go to state 69
+    StrA            shift and go to state 70
+    Str             shift and go to state 71
+    Bool            shift and go to state 72
+    CharAux         shift and go to state 73
 
 
-state 39
+state 40
 
     (20) ASIGNACION -> Id igual EXPRESION ptComa .
 
@@ -809,7 +892,7 @@ state 39
     $end            reduce using rule 20 (ASIGNACION -> Id igual EXPRESION ptComa .)
 
 
-state 40
+state 41
 
     (26) EXPRESION -> EXPRESION mas . EXPRESION
     (26) EXPRESION -> . EXPRESION mas EXPRESION
@@ -827,27 +910,31 @@ state 40
     (38) EXPRESION -> . EXPRESION mayorIgual EXPRESION
     (39) EXPRESION -> . EXPRESION dobleIgual EXPRESION
     (40) EXPRESION -> . EXPRESION diferenteQue EXPRESION
-    (41) EXPRESION -> . Float
-    (42) EXPRESION -> . Entero
-    (43) EXPRESION -> . Booleano
-    (44) EXPRESION -> . String
-    (45) EXPRESION -> . Char
-    (46) EXPRESION -> . Id
+    (41) EXPRESION -> . EXPRESION And EXPRESION
+    (42) EXPRESION -> . EXPRESION Or EXPRESION
+    (43) EXPRESION -> . not EXPRESION
+    (44) EXPRESION -> . Float
+    (45) EXPRESION -> . Entero
+    (46) EXPRESION -> . Booleano
+    (47) EXPRESION -> . String
+    (48) EXPRESION -> . Char
+    (49) EXPRESION -> . Id
 
     menos           shift and go to state 20
     ParA            shift and go to state 21
     I64             shift and go to state 22
     F64             shift and go to state 23
-    Float           shift and go to state 24
-    Entero          shift and go to state 25
-    Booleano        shift and go to state 26
-    String          shift and go to state 27
-    Char            shift and go to state 28
+    not             shift and go to state 24
+    Float           shift and go to state 25
+    Entero          shift and go to state 26
+    Booleano        shift and go to state 27
+    String          shift and go to state 28
+    Char            shift and go to state 29
     Id              shift and go to state 18
 
-    EXPRESION                      shift and go to state 70
+    EXPRESION                      shift and go to state 74
 
-state 41
+state 42
 
     (27) EXPRESION -> EXPRESION menos . EXPRESION
     (26) EXPRESION -> . EXPRESION mas EXPRESION
@@ -865,27 +952,31 @@ state 41
     (38) EXPRESION -> . EXPRESION mayorIgual EXPRESION
     (39) EXPRESION -> . EXPRESION dobleIgual EXPRESION
     (40) EXPRESION -> . EXPRESION diferenteQue EXPRESION
-    (41) EXPRESION -> . Float
-    (42) EXPRESION -> . Entero
-    (43) EXPRESION -> . Booleano
-    (44) EXPRESION -> . String
-    (45) EXPRESION -> . Char
-    (46) EXPRESION -> . Id
+    (41) EXPRESION -> . EXPRESION And EXPRESION
+    (42) EXPRESION -> . EXPRESION Or EXPRESION
+    (43) EXPRESION -> . not EXPRESION
+    (44) EXPRESION -> . Float
+    (45) EXPRESION -> . Entero
+    (46) EXPRESION -> . Booleano
+    (47) EXPRESION -> . String
+    (48) EXPRESION -> . Char
+    (49) EXPRESION -> . Id
 
     menos           shift and go to state 20
     ParA            shift and go to state 21
     I64             shift and go to state 22
     F64             shift and go to state 23
-    Float           shift and go to state 24
-    Entero          shift and go to state 25
-    Booleano        shift and go to state 26
-    String          shift and go to state 27
-    Char            shift and go to state 28
+    not             shift and go to state 24
+    Float           shift and go to state 25
+    Entero          shift and go to state 26
+    Booleano        shift and go to state 27
+    String          shift and go to state 28
+    Char            shift and go to state 29
     Id              shift and go to state 18
 
-    EXPRESION                      shift and go to state 71
+    EXPRESION                      shift and go to state 75
 
-state 42
+state 43
 
     (28) EXPRESION -> EXPRESION por . EXPRESION
     (26) EXPRESION -> . EXPRESION mas EXPRESION
@@ -903,27 +994,31 @@ state 42
     (38) EXPRESION -> . EXPRESION mayorIgual EXPRESION
     (39) EXPRESION -> . EXPRESION dobleIgual EXPRESION
     (40) EXPRESION -> . EXPRESION diferenteQue EXPRESION
-    (41) EXPRESION -> . Float
-    (42) EXPRESION -> . Entero
-    (43) EXPRESION -> . Booleano
-    (44) EXPRESION -> . String
-    (45) EXPRESION -> . Char
-    (46) EXPRESION -> . Id
+    (41) EXPRESION -> . EXPRESION And EXPRESION
+    (42) EXPRESION -> . EXPRESION Or EXPRESION
+    (43) EXPRESION -> . not EXPRESION
+    (44) EXPRESION -> . Float
+    (45) EXPRESION -> . Entero
+    (46) EXPRESION -> . Booleano
+    (47) EXPRESION -> . String
+    (48) EXPRESION -> . Char
+    (49) EXPRESION -> . Id
 
     menos           shift and go to state 20
     ParA            shift and go to state 21
     I64             shift and go to state 22
     F64             shift and go to state 23
-    Float           shift and go to state 24
-    Entero          shift and go to state 25
-    Booleano        shift and go to state 26
-    String          shift and go to state 27
-    Char            shift and go to state 28
+    not             shift and go to state 24
+    Float           shift and go to state 25
+    Entero          shift and go to state 26
+    Booleano        shift and go to state 27
+    String          shift and go to state 28
+    Char            shift and go to state 29
     Id              shift and go to state 18
 
-    EXPRESION                      shift and go to state 72
+    EXPRESION                      shift and go to state 76
 
-state 43
+state 44
 
     (29) EXPRESION -> EXPRESION dividido . EXPRESION
     (26) EXPRESION -> . EXPRESION mas EXPRESION
@@ -941,27 +1036,31 @@ state 43
     (38) EXPRESION -> . EXPRESION mayorIgual EXPRESION
     (39) EXPRESION -> . EXPRESION dobleIgual EXPRESION
     (40) EXPRESION -> . EXPRESION diferenteQue EXPRESION
-    (41) EXPRESION -> . Float
-    (42) EXPRESION -> . Entero
-    (43) EXPRESION -> . Booleano
-    (44) EXPRESION -> . String
-    (45) EXPRESION -> . Char
-    (46) EXPRESION -> . Id
+    (41) EXPRESION -> . EXPRESION And EXPRESION
+    (42) EXPRESION -> . EXPRESION Or EXPRESION
+    (43) EXPRESION -> . not EXPRESION
+    (44) EXPRESION -> . Float
+    (45) EXPRESION -> . Entero
+    (46) EXPRESION -> . Booleano
+    (47) EXPRESION -> . String
+    (48) EXPRESION -> . Char
+    (49) EXPRESION -> . Id
 
     menos           shift and go to state 20
     ParA            shift and go to state 21
     I64             shift and go to state 22
     F64             shift and go to state 23
-    Float           shift and go to state 24
-    Entero          shift and go to state 25
-    Booleano        shift and go to state 26
-    String          shift and go to state 27
-    Char            shift and go to state 28
+    not             shift and go to state 24
+    Float           shift and go to state 25
+    Entero          shift and go to state 26
+    Booleano        shift and go to state 27
+    String          shift and go to state 28
+    Char            shift and go to state 29
     Id              shift and go to state 18
 
-    EXPRESION                      shift and go to state 73
+    EXPRESION                      shift and go to state 77
 
-state 44
+state 45
 
     (30) EXPRESION -> EXPRESION modulo . EXPRESION
     (26) EXPRESION -> . EXPRESION mas EXPRESION
@@ -979,27 +1078,31 @@ state 44
     (38) EXPRESION -> . EXPRESION mayorIgual EXPRESION
     (39) EXPRESION -> . EXPRESION dobleIgual EXPRESION
     (40) EXPRESION -> . EXPRESION diferenteQue EXPRESION
-    (41) EXPRESION -> . Float
-    (42) EXPRESION -> . Entero
-    (43) EXPRESION -> . Booleano
-    (44) EXPRESION -> . String
-    (45) EXPRESION -> . Char
-    (46) EXPRESION -> . Id
+    (41) EXPRESION -> . EXPRESION And EXPRESION
+    (42) EXPRESION -> . EXPRESION Or EXPRESION
+    (43) EXPRESION -> . not EXPRESION
+    (44) EXPRESION -> . Float
+    (45) EXPRESION -> . Entero
+    (46) EXPRESION -> . Booleano
+    (47) EXPRESION -> . String
+    (48) EXPRESION -> . Char
+    (49) EXPRESION -> . Id
 
     menos           shift and go to state 20
     ParA            shift and go to state 21
     I64             shift and go to state 22
     F64             shift and go to state 23
-    Float           shift and go to state 24
-    Entero          shift and go to state 25
-    Booleano        shift and go to state 26
-    String          shift and go to state 27
-    Char            shift and go to state 28
+    not             shift and go to state 24
+    Float           shift and go to state 25
+    Entero          shift and go to state 26
+    Booleano        shift and go to state 27
+    String          shift and go to state 28
+    Char            shift and go to state 29
     Id              shift and go to state 18
 
-    EXPRESION                      shift and go to state 74
+    EXPRESION                      shift and go to state 78
 
-state 45
+state 46
 
     (35) EXPRESION -> EXPRESION menorQue . EXPRESION
     (26) EXPRESION -> . EXPRESION mas EXPRESION
@@ -1017,27 +1120,31 @@ state 45
     (38) EXPRESION -> . EXPRESION mayorIgual EXPRESION
     (39) EXPRESION -> . EXPRESION dobleIgual EXPRESION
     (40) EXPRESION -> . EXPRESION diferenteQue EXPRESION
-    (41) EXPRESION -> . Float
-    (42) EXPRESION -> . Entero
-    (43) EXPRESION -> . Booleano
-    (44) EXPRESION -> . String
-    (45) EXPRESION -> . Char
-    (46) EXPRESION -> . Id
+    (41) EXPRESION -> . EXPRESION And EXPRESION
+    (42) EXPRESION -> . EXPRESION Or EXPRESION
+    (43) EXPRESION -> . not EXPRESION
+    (44) EXPRESION -> . Float
+    (45) EXPRESION -> . Entero
+    (46) EXPRESION -> . Booleano
+    (47) EXPRESION -> . String
+    (48) EXPRESION -> . Char
+    (49) EXPRESION -> . Id
 
     menos           shift and go to state 20
     ParA            shift and go to state 21
     I64             shift and go to state 22
     F64             shift and go to state 23
-    Float           shift and go to state 24
-    Entero          shift and go to state 25
-    Booleano        shift and go to state 26
-    String          shift and go to state 27
-    Char            shift and go to state 28
+    not             shift and go to state 24
+    Float           shift and go to state 25
+    Entero          shift and go to state 26
+    Booleano        shift and go to state 27
+    String          shift and go to state 28
+    Char            shift and go to state 29
     Id              shift and go to state 18
 
-    EXPRESION                      shift and go to state 75
+    EXPRESION                      shift and go to state 79
 
-state 46
+state 47
 
     (36) EXPRESION -> EXPRESION mayorQue . EXPRESION
     (26) EXPRESION -> . EXPRESION mas EXPRESION
@@ -1055,27 +1162,31 @@ state 46
     (38) EXPRESION -> . EXPRESION mayorIgual EXPRESION
     (39) EXPRESION -> . EXPRESION dobleIgual EXPRESION
     (40) EXPRESION -> . EXPRESION diferenteQue EXPRESION
-    (41) EXPRESION -> . Float
-    (42) EXPRESION -> . Entero
-    (43) EXPRESION -> . Booleano
-    (44) EXPRESION -> . String
-    (45) EXPRESION -> . Char
-    (46) EXPRESION -> . Id
+    (41) EXPRESION -> . EXPRESION And EXPRESION
+    (42) EXPRESION -> . EXPRESION Or EXPRESION
+    (43) EXPRESION -> . not EXPRESION
+    (44) EXPRESION -> . Float
+    (45) EXPRESION -> . Entero
+    (46) EXPRESION -> . Booleano
+    (47) EXPRESION -> . String
+    (48) EXPRESION -> . Char
+    (49) EXPRESION -> . Id
 
     menos           shift and go to state 20
     ParA            shift and go to state 21
     I64             shift and go to state 22
     F64             shift and go to state 23
-    Float           shift and go to state 24
-    Entero          shift and go to state 25
-    Booleano        shift and go to state 26
-    String          shift and go to state 27
-    Char            shift and go to state 28
+    not             shift and go to state 24
+    Float           shift and go to state 25
+    Entero          shift and go to state 26
+    Booleano        shift and go to state 27
+    String          shift and go to state 28
+    Char            shift and go to state 29
     Id              shift and go to state 18
 
-    EXPRESION                      shift and go to state 76
+    EXPRESION                      shift and go to state 80
 
-state 47
+state 48
 
     (37) EXPRESION -> EXPRESION menorIgual . EXPRESION
     (26) EXPRESION -> . EXPRESION mas EXPRESION
@@ -1093,27 +1204,31 @@ state 47
     (38) EXPRESION -> . EXPRESION mayorIgual EXPRESION
     (39) EXPRESION -> . EXPRESION dobleIgual EXPRESION
     (40) EXPRESION -> . EXPRESION diferenteQue EXPRESION
-    (41) EXPRESION -> . Float
-    (42) EXPRESION -> . Entero
-    (43) EXPRESION -> . Booleano
-    (44) EXPRESION -> . String
-    (45) EXPRESION -> . Char
-    (46) EXPRESION -> . Id
+    (41) EXPRESION -> . EXPRESION And EXPRESION
+    (42) EXPRESION -> . EXPRESION Or EXPRESION
+    (43) EXPRESION -> . not EXPRESION
+    (44) EXPRESION -> . Float
+    (45) EXPRESION -> . Entero
+    (46) EXPRESION -> . Booleano
+    (47) EXPRESION -> . String
+    (48) EXPRESION -> . Char
+    (49) EXPRESION -> . Id
 
     menos           shift and go to state 20
     ParA            shift and go to state 21
     I64             shift and go to state 22
     F64             shift and go to state 23
-    Float           shift and go to state 24
-    Entero          shift and go to state 25
-    Booleano        shift and go to state 26
-    String          shift and go to state 27
-    Char            shift and go to state 28
+    not             shift and go to state 24
+    Float           shift and go to state 25
+    Entero          shift and go to state 26
+    Booleano        shift and go to state 27
+    String          shift and go to state 28
+    Char            shift and go to state 29
     Id              shift and go to state 18
 
-    EXPRESION                      shift and go to state 77
+    EXPRESION                      shift and go to state 81
 
-state 48
+state 49
 
     (38) EXPRESION -> EXPRESION mayorIgual . EXPRESION
     (26) EXPRESION -> . EXPRESION mas EXPRESION
@@ -1131,27 +1246,31 @@ state 48
     (38) EXPRESION -> . EXPRESION mayorIgual EXPRESION
     (39) EXPRESION -> . EXPRESION dobleIgual EXPRESION
     (40) EXPRESION -> . EXPRESION diferenteQue EXPRESION
-    (41) EXPRESION -> . Float
-    (42) EXPRESION -> . Entero
-    (43) EXPRESION -> . Booleano
-    (44) EXPRESION -> . String
-    (45) EXPRESION -> . Char
-    (46) EXPRESION -> . Id
+    (41) EXPRESION -> . EXPRESION And EXPRESION
+    (42) EXPRESION -> . EXPRESION Or EXPRESION
+    (43) EXPRESION -> . not EXPRESION
+    (44) EXPRESION -> . Float
+    (45) EXPRESION -> . Entero
+    (46) EXPRESION -> . Booleano
+    (47) EXPRESION -> . String
+    (48) EXPRESION -> . Char
+    (49) EXPRESION -> . Id
 
     menos           shift and go to state 20
     ParA            shift and go to state 21
     I64             shift and go to state 22
     F64             shift and go to state 23
-    Float           shift and go to state 24
-    Entero          shift and go to state 25
-    Booleano        shift and go to state 26
-    String          shift and go to state 27
-    Char            shift and go to state 28
+    not             shift and go to state 24
+    Float           shift and go to state 25
+    Entero          shift and go to state 26
+    Booleano        shift and go to state 27
+    String          shift and go to state 28
+    Char            shift and go to state 29
     Id              shift and go to state 18
 
-    EXPRESION                      shift and go to state 78
+    EXPRESION                      shift and go to state 82
 
-state 49
+state 50
 
     (39) EXPRESION -> EXPRESION dobleIgual . EXPRESION
     (26) EXPRESION -> . EXPRESION mas EXPRESION
@@ -1169,27 +1288,31 @@ state 49
     (38) EXPRESION -> . EXPRESION mayorIgual EXPRESION
     (39) EXPRESION -> . EXPRESION dobleIgual EXPRESION
     (40) EXPRESION -> . EXPRESION diferenteQue EXPRESION
-    (41) EXPRESION -> . Float
-    (42) EXPRESION -> . Entero
-    (43) EXPRESION -> . Booleano
-    (44) EXPRESION -> . String
-    (45) EXPRESION -> . Char
-    (46) EXPRESION -> . Id
+    (41) EXPRESION -> . EXPRESION And EXPRESION
+    (42) EXPRESION -> . EXPRESION Or EXPRESION
+    (43) EXPRESION -> . not EXPRESION
+    (44) EXPRESION -> . Float
+    (45) EXPRESION -> . Entero
+    (46) EXPRESION -> . Booleano
+    (47) EXPRESION -> . String
+    (48) EXPRESION -> . Char
+    (49) EXPRESION -> . Id
 
     menos           shift and go to state 20
     ParA            shift and go to state 21
     I64             shift and go to state 22
     F64             shift and go to state 23
-    Float           shift and go to state 24
-    Entero          shift and go to state 25
-    Booleano        shift and go to state 26
-    String          shift and go to state 27
-    Char            shift and go to state 28
+    not             shift and go to state 24
+    Float           shift and go to state 25
+    Entero          shift and go to state 26
+    Booleano        shift and go to state 27
+    String          shift and go to state 28
+    Char            shift and go to state 29
     Id              shift and go to state 18
 
-    EXPRESION                      shift and go to state 79
+    EXPRESION                      shift and go to state 83
 
-state 50
+state 51
 
     (40) EXPRESION -> EXPRESION diferenteQue . EXPRESION
     (26) EXPRESION -> . EXPRESION mas EXPRESION
@@ -1207,27 +1330,115 @@ state 50
     (38) EXPRESION -> . EXPRESION mayorIgual EXPRESION
     (39) EXPRESION -> . EXPRESION dobleIgual EXPRESION
     (40) EXPRESION -> . EXPRESION diferenteQue EXPRESION
-    (41) EXPRESION -> . Float
-    (42) EXPRESION -> . Entero
-    (43) EXPRESION -> . Booleano
-    (44) EXPRESION -> . String
-    (45) EXPRESION -> . Char
-    (46) EXPRESION -> . Id
+    (41) EXPRESION -> . EXPRESION And EXPRESION
+    (42) EXPRESION -> . EXPRESION Or EXPRESION
+    (43) EXPRESION -> . not EXPRESION
+    (44) EXPRESION -> . Float
+    (45) EXPRESION -> . Entero
+    (46) EXPRESION -> . Booleano
+    (47) EXPRESION -> . String
+    (48) EXPRESION -> . Char
+    (49) EXPRESION -> . Id
 
     menos           shift and go to state 20
     ParA            shift and go to state 21
     I64             shift and go to state 22
     F64             shift and go to state 23
-    Float           shift and go to state 24
-    Entero          shift and go to state 25
-    Booleano        shift and go to state 26
-    String          shift and go to state 27
-    Char            shift and go to state 28
+    not             shift and go to state 24
+    Float           shift and go to state 25
+    Entero          shift and go to state 26
+    Booleano        shift and go to state 27
+    String          shift and go to state 28
+    Char            shift and go to state 29
     Id              shift and go to state 18
 
-    EXPRESION                      shift and go to state 80
+    EXPRESION                      shift and go to state 84
 
-state 51
+state 52
+
+    (41) EXPRESION -> EXPRESION And . EXPRESION
+    (26) EXPRESION -> . EXPRESION mas EXPRESION
+    (27) EXPRESION -> . EXPRESION menos EXPRESION
+    (28) EXPRESION -> . EXPRESION por EXPRESION
+    (29) EXPRESION -> . EXPRESION dividido EXPRESION
+    (30) EXPRESION -> . EXPRESION modulo EXPRESION
+    (31) EXPRESION -> . menos EXPRESION
+    (32) EXPRESION -> . ParA EXPRESION ParC
+    (33) EXPRESION -> . I64 dosPuntos dosPuntos Powi ParA EXPRESION Coma EXPRESION ParC
+    (34) EXPRESION -> . F64 dosPuntos dosPuntos Powf ParA EXPRESION Coma EXPRESION ParC
+    (35) EXPRESION -> . EXPRESION menorQue EXPRESION
+    (36) EXPRESION -> . EXPRESION mayorQue EXPRESION
+    (37) EXPRESION -> . EXPRESION menorIgual EXPRESION
+    (38) EXPRESION -> . EXPRESION mayorIgual EXPRESION
+    (39) EXPRESION -> . EXPRESION dobleIgual EXPRESION
+    (40) EXPRESION -> . EXPRESION diferenteQue EXPRESION
+    (41) EXPRESION -> . EXPRESION And EXPRESION
+    (42) EXPRESION -> . EXPRESION Or EXPRESION
+    (43) EXPRESION -> . not EXPRESION
+    (44) EXPRESION -> . Float
+    (45) EXPRESION -> . Entero
+    (46) EXPRESION -> . Booleano
+    (47) EXPRESION -> . String
+    (48) EXPRESION -> . Char
+    (49) EXPRESION -> . Id
+
+    menos           shift and go to state 20
+    ParA            shift and go to state 21
+    I64             shift and go to state 22
+    F64             shift and go to state 23
+    not             shift and go to state 24
+    Float           shift and go to state 25
+    Entero          shift and go to state 26
+    Booleano        shift and go to state 27
+    String          shift and go to state 28
+    Char            shift and go to state 29
+    Id              shift and go to state 18
+
+    EXPRESION                      shift and go to state 85
+
+state 53
+
+    (42) EXPRESION -> EXPRESION Or . EXPRESION
+    (26) EXPRESION -> . EXPRESION mas EXPRESION
+    (27) EXPRESION -> . EXPRESION menos EXPRESION
+    (28) EXPRESION -> . EXPRESION por EXPRESION
+    (29) EXPRESION -> . EXPRESION dividido EXPRESION
+    (30) EXPRESION -> . EXPRESION modulo EXPRESION
+    (31) EXPRESION -> . menos EXPRESION
+    (32) EXPRESION -> . ParA EXPRESION ParC
+    (33) EXPRESION -> . I64 dosPuntos dosPuntos Powi ParA EXPRESION Coma EXPRESION ParC
+    (34) EXPRESION -> . F64 dosPuntos dosPuntos Powf ParA EXPRESION Coma EXPRESION ParC
+    (35) EXPRESION -> . EXPRESION menorQue EXPRESION
+    (36) EXPRESION -> . EXPRESION mayorQue EXPRESION
+    (37) EXPRESION -> . EXPRESION menorIgual EXPRESION
+    (38) EXPRESION -> . EXPRESION mayorIgual EXPRESION
+    (39) EXPRESION -> . EXPRESION dobleIgual EXPRESION
+    (40) EXPRESION -> . EXPRESION diferenteQue EXPRESION
+    (41) EXPRESION -> . EXPRESION And EXPRESION
+    (42) EXPRESION -> . EXPRESION Or EXPRESION
+    (43) EXPRESION -> . not EXPRESION
+    (44) EXPRESION -> . Float
+    (45) EXPRESION -> . Entero
+    (46) EXPRESION -> . Booleano
+    (47) EXPRESION -> . String
+    (48) EXPRESION -> . Char
+    (49) EXPRESION -> . Id
+
+    menos           shift and go to state 20
+    ParA            shift and go to state 21
+    I64             shift and go to state 22
+    F64             shift and go to state 23
+    not             shift and go to state 24
+    Float           shift and go to state 25
+    Entero          shift and go to state 26
+    Booleano        shift and go to state 27
+    String          shift and go to state 28
+    Char            shift and go to state 29
+    Id              shift and go to state 18
+
+    EXPRESION                      shift and go to state 86
+
+state 54
 
     (31) EXPRESION -> menos EXPRESION .
     (26) EXPRESION -> EXPRESION . mas EXPRESION
@@ -1241,6 +1452,8 @@ state 51
     (38) EXPRESION -> EXPRESION . mayorIgual EXPRESION
     (39) EXPRESION -> EXPRESION . dobleIgual EXPRESION
     (40) EXPRESION -> EXPRESION . diferenteQue EXPRESION
+    (41) EXPRESION -> EXPRESION . And EXPRESION
+    (42) EXPRESION -> EXPRESION . Or EXPRESION
 
     ptComa          reduce using rule 31 (EXPRESION -> menos EXPRESION .)
     mas             reduce using rule 31 (EXPRESION -> menos EXPRESION .)
@@ -1254,23 +1467,27 @@ state 51
     mayorIgual      reduce using rule 31 (EXPRESION -> menos EXPRESION .)
     dobleIgual      reduce using rule 31 (EXPRESION -> menos EXPRESION .)
     diferenteQue    reduce using rule 31 (EXPRESION -> menos EXPRESION .)
+    And             reduce using rule 31 (EXPRESION -> menos EXPRESION .)
+    Or              reduce using rule 31 (EXPRESION -> menos EXPRESION .)
     ParC            reduce using rule 31 (EXPRESION -> menos EXPRESION .)
     Coma            reduce using rule 31 (EXPRESION -> menos EXPRESION .)
 
-  ! mas             [ shift and go to state 40 ]
-  ! menos           [ shift and go to state 41 ]
-  ! por             [ shift and go to state 42 ]
-  ! dividido        [ shift and go to state 43 ]
-  ! modulo          [ shift and go to state 44 ]
-  ! menorQue        [ shift and go to state 45 ]
-  ! mayorQue        [ shift and go to state 46 ]
-  ! menorIgual      [ shift and go to state 47 ]
-  ! mayorIgual      [ shift and go to state 48 ]
-  ! dobleIgual      [ shift and go to state 49 ]
-  ! diferenteQue    [ shift and go to state 50 ]
+  ! mas             [ shift and go to state 41 ]
+  ! menos           [ shift and go to state 42 ]
+  ! por             [ shift and go to state 43 ]
+  ! dividido        [ shift and go to state 44 ]
+  ! modulo          [ shift and go to state 45 ]
+  ! menorQue        [ shift and go to state 46 ]
+  ! mayorQue        [ shift and go to state 47 ]
+  ! menorIgual      [ shift and go to state 48 ]
+  ! mayorIgual      [ shift and go to state 49 ]
+  ! dobleIgual      [ shift and go to state 50 ]
+  ! diferenteQue    [ shift and go to state 51 ]
+  ! And             [ shift and go to state 52 ]
+  ! Or              [ shift and go to state 53 ]
 
 
-state 52
+state 55
 
     (32) EXPRESION -> ParA EXPRESION . ParC
     (26) EXPRESION -> EXPRESION . mas EXPRESION
@@ -1284,45 +1501,98 @@ state 52
     (38) EXPRESION -> EXPRESION . mayorIgual EXPRESION
     (39) EXPRESION -> EXPRESION . dobleIgual EXPRESION
     (40) EXPRESION -> EXPRESION . diferenteQue EXPRESION
+    (41) EXPRESION -> EXPRESION . And EXPRESION
+    (42) EXPRESION -> EXPRESION . Or EXPRESION
 
-    ParC            shift and go to state 81
-    mas             shift and go to state 40
-    menos           shift and go to state 41
-    por             shift and go to state 42
-    dividido        shift and go to state 43
-    modulo          shift and go to state 44
-    menorQue        shift and go to state 45
-    mayorQue        shift and go to state 46
-    menorIgual      shift and go to state 47
-    mayorIgual      shift and go to state 48
-    dobleIgual      shift and go to state 49
-    diferenteQue    shift and go to state 50
+    ParC            shift and go to state 87
+    mas             shift and go to state 41
+    menos           shift and go to state 42
+    por             shift and go to state 43
+    dividido        shift and go to state 44
+    modulo          shift and go to state 45
+    menorQue        shift and go to state 46
+    mayorQue        shift and go to state 47
+    menorIgual      shift and go to state 48
+    mayorIgual      shift and go to state 49
+    dobleIgual      shift and go to state 50
+    diferenteQue    shift and go to state 51
+    And             shift and go to state 52
+    Or              shift and go to state 53
 
 
-state 53
+state 56
 
     (33) EXPRESION -> I64 dosPuntos . dosPuntos Powi ParA EXPRESION Coma EXPRESION ParC
 
-    dosPuntos       shift and go to state 82
+    dosPuntos       shift and go to state 88
 
 
-state 54
+state 57
 
     (34) EXPRESION -> F64 dosPuntos . dosPuntos Powf ParA EXPRESION Coma EXPRESION ParC
 
-    dosPuntos       shift and go to state 83
+    dosPuntos       shift and go to state 89
 
 
-state 55
+state 58
+
+    (43) EXPRESION -> not EXPRESION .
+    (26) EXPRESION -> EXPRESION . mas EXPRESION
+    (27) EXPRESION -> EXPRESION . menos EXPRESION
+    (28) EXPRESION -> EXPRESION . por EXPRESION
+    (29) EXPRESION -> EXPRESION . dividido EXPRESION
+    (30) EXPRESION -> EXPRESION . modulo EXPRESION
+    (35) EXPRESION -> EXPRESION . menorQue EXPRESION
+    (36) EXPRESION -> EXPRESION . mayorQue EXPRESION
+    (37) EXPRESION -> EXPRESION . menorIgual EXPRESION
+    (38) EXPRESION -> EXPRESION . mayorIgual EXPRESION
+    (39) EXPRESION -> EXPRESION . dobleIgual EXPRESION
+    (40) EXPRESION -> EXPRESION . diferenteQue EXPRESION
+    (41) EXPRESION -> EXPRESION . And EXPRESION
+    (42) EXPRESION -> EXPRESION . Or EXPRESION
+
+    ptComa          reduce using rule 43 (EXPRESION -> not EXPRESION .)
+    mas             reduce using rule 43 (EXPRESION -> not EXPRESION .)
+    menos           reduce using rule 43 (EXPRESION -> not EXPRESION .)
+    por             reduce using rule 43 (EXPRESION -> not EXPRESION .)
+    dividido        reduce using rule 43 (EXPRESION -> not EXPRESION .)
+    modulo          reduce using rule 43 (EXPRESION -> not EXPRESION .)
+    menorQue        reduce using rule 43 (EXPRESION -> not EXPRESION .)
+    mayorQue        reduce using rule 43 (EXPRESION -> not EXPRESION .)
+    menorIgual      reduce using rule 43 (EXPRESION -> not EXPRESION .)
+    mayorIgual      reduce using rule 43 (EXPRESION -> not EXPRESION .)
+    dobleIgual      reduce using rule 43 (EXPRESION -> not EXPRESION .)
+    diferenteQue    reduce using rule 43 (EXPRESION -> not EXPRESION .)
+    And             reduce using rule 43 (EXPRESION -> not EXPRESION .)
+    Or              reduce using rule 43 (EXPRESION -> not EXPRESION .)
+    ParC            reduce using rule 43 (EXPRESION -> not EXPRESION .)
+    Coma            reduce using rule 43 (EXPRESION -> not EXPRESION .)
+
+  ! mas             [ shift and go to state 41 ]
+  ! menos           [ shift and go to state 42 ]
+  ! por             [ shift and go to state 43 ]
+  ! dividido        [ shift and go to state 44 ]
+  ! modulo          [ shift and go to state 45 ]
+  ! menorQue        [ shift and go to state 46 ]
+  ! mayorQue        [ shift and go to state 47 ]
+  ! menorIgual      [ shift and go to state 48 ]
+  ! mayorIgual      [ shift and go to state 49 ]
+  ! dobleIgual      [ shift and go to state 50 ]
+  ! diferenteQue    [ shift and go to state 51 ]
+  ! And             [ shift and go to state 52 ]
+  ! Or              [ shift and go to state 53 ]
+
+
+state 59
 
     (22) IMPRIMIR -> PrintLn not ParA String . ParC ptComa
     (23) IMPRIMIR -> PrintLn not ParA String . Coma COMASEX ParC ptComa
 
-    ParC            shift and go to state 84
-    Coma            shift and go to state 85
+    ParC            shift and go to state 90
+    Coma            shift and go to state 91
 
 
-state 56
+state 60
 
     (5) DECLARACION -> Let Id igual EXPRESION ptComa .
 
@@ -1332,7 +1602,7 @@ state 56
     $end            reduce using rule 5 (DECLARACION -> Let Id igual EXPRESION ptComa .)
 
 
-state 57
+state 61
 
     (6) DECLARACION -> Let Id dosPuntos I64 igual . EXPRESION ptComa
     (26) EXPRESION -> . EXPRESION mas EXPRESION
@@ -1350,27 +1620,31 @@ state 57
     (38) EXPRESION -> . EXPRESION mayorIgual EXPRESION
     (39) EXPRESION -> . EXPRESION dobleIgual EXPRESION
     (40) EXPRESION -> . EXPRESION diferenteQue EXPRESION
-    (41) EXPRESION -> . Float
-    (42) EXPRESION -> . Entero
-    (43) EXPRESION -> . Booleano
-    (44) EXPRESION -> . String
-    (45) EXPRESION -> . Char
-    (46) EXPRESION -> . Id
+    (41) EXPRESION -> . EXPRESION And EXPRESION
+    (42) EXPRESION -> . EXPRESION Or EXPRESION
+    (43) EXPRESION -> . not EXPRESION
+    (44) EXPRESION -> . Float
+    (45) EXPRESION -> . Entero
+    (46) EXPRESION -> . Booleano
+    (47) EXPRESION -> . String
+    (48) EXPRESION -> . Char
+    (49) EXPRESION -> . Id
 
     menos           shift and go to state 20
     ParA            shift and go to state 21
     I64             shift and go to state 22
     F64             shift and go to state 23
-    Float           shift and go to state 24
-    Entero          shift and go to state 25
-    Booleano        shift and go to state 26
-    String          shift and go to state 27
-    Char            shift and go to state 28
+    not             shift and go to state 24
+    Float           shift and go to state 25
+    Entero          shift and go to state 26
+    Booleano        shift and go to state 27
+    String          shift and go to state 28
+    Char            shift and go to state 29
     Id              shift and go to state 18
 
-    EXPRESION                      shift and go to state 86
+    EXPRESION                      shift and go to state 92
 
-state 58
+state 62
 
     (7) DECLARACION -> Let Id dosPuntos F64 igual . EXPRESION ptComa
     (26) EXPRESION -> . EXPRESION mas EXPRESION
@@ -1388,27 +1662,31 @@ state 58
     (38) EXPRESION -> . EXPRESION mayorIgual EXPRESION
     (39) EXPRESION -> . EXPRESION dobleIgual EXPRESION
     (40) EXPRESION -> . EXPRESION diferenteQue EXPRESION
-    (41) EXPRESION -> . Float
-    (42) EXPRESION -> . Entero
-    (43) EXPRESION -> . Booleano
-    (44) EXPRESION -> . String
-    (45) EXPRESION -> . Char
-    (46) EXPRESION -> . Id
+    (41) EXPRESION -> . EXPRESION And EXPRESION
+    (42) EXPRESION -> . EXPRESION Or EXPRESION
+    (43) EXPRESION -> . not EXPRESION
+    (44) EXPRESION -> . Float
+    (45) EXPRESION -> . Entero
+    (46) EXPRESION -> . Booleano
+    (47) EXPRESION -> . String
+    (48) EXPRESION -> . Char
+    (49) EXPRESION -> . Id
 
     menos           shift and go to state 20
     ParA            shift and go to state 21
     I64             shift and go to state 22
     F64             shift and go to state 23
-    Float           shift and go to state 24
-    Entero          shift and go to state 25
-    Booleano        shift and go to state 26
-    String          shift and go to state 27
-    Char            shift and go to state 28
+    not             shift and go to state 24
+    Float           shift and go to state 25
+    Entero          shift and go to state 26
+    Booleano        shift and go to state 27
+    String          shift and go to state 28
+    Char            shift and go to state 29
     Id              shift and go to state 18
 
-    EXPRESION                      shift and go to state 87
+    EXPRESION                      shift and go to state 93
 
-state 59
+state 63
 
     (8) DECLARACION -> Let Id dosPuntos StrA igual . EXPRESION ptComa
     (26) EXPRESION -> . EXPRESION mas EXPRESION
@@ -1426,27 +1704,31 @@ state 59
     (38) EXPRESION -> . EXPRESION mayorIgual EXPRESION
     (39) EXPRESION -> . EXPRESION dobleIgual EXPRESION
     (40) EXPRESION -> . EXPRESION diferenteQue EXPRESION
-    (41) EXPRESION -> . Float
-    (42) EXPRESION -> . Entero
-    (43) EXPRESION -> . Booleano
-    (44) EXPRESION -> . String
-    (45) EXPRESION -> . Char
-    (46) EXPRESION -> . Id
+    (41) EXPRESION -> . EXPRESION And EXPRESION
+    (42) EXPRESION -> . EXPRESION Or EXPRESION
+    (43) EXPRESION -> . not EXPRESION
+    (44) EXPRESION -> . Float
+    (45) EXPRESION -> . Entero
+    (46) EXPRESION -> . Booleano
+    (47) EXPRESION -> . String
+    (48) EXPRESION -> . Char
+    (49) EXPRESION -> . Id
 
     menos           shift and go to state 20
     ParA            shift and go to state 21
     I64             shift and go to state 22
     F64             shift and go to state 23
-    Float           shift and go to state 24
-    Entero          shift and go to state 25
-    Booleano        shift and go to state 26
-    String          shift and go to state 27
-    Char            shift and go to state 28
+    not             shift and go to state 24
+    Float           shift and go to state 25
+    Entero          shift and go to state 26
+    Booleano        shift and go to state 27
+    String          shift and go to state 28
+    Char            shift and go to state 29
     Id              shift and go to state 18
 
-    EXPRESION                      shift and go to state 88
+    EXPRESION                      shift and go to state 94
 
-state 60
+state 64
 
     (9) DECLARACION -> Let Id dosPuntos Str igual . EXPRESION ptComa
     (26) EXPRESION -> . EXPRESION mas EXPRESION
@@ -1464,27 +1746,31 @@ state 60
     (38) EXPRESION -> . EXPRESION mayorIgual EXPRESION
     (39) EXPRESION -> . EXPRESION dobleIgual EXPRESION
     (40) EXPRESION -> . EXPRESION diferenteQue EXPRESION
-    (41) EXPRESION -> . Float
-    (42) EXPRESION -> . Entero
-    (43) EXPRESION -> . Booleano
-    (44) EXPRESION -> . String
-    (45) EXPRESION -> . Char
-    (46) EXPRESION -> . Id
+    (41) EXPRESION -> . EXPRESION And EXPRESION
+    (42) EXPRESION -> . EXPRESION Or EXPRESION
+    (43) EXPRESION -> . not EXPRESION
+    (44) EXPRESION -> . Float
+    (45) EXPRESION -> . Entero
+    (46) EXPRESION -> . Booleano
+    (47) EXPRESION -> . String
+    (48) EXPRESION -> . Char
+    (49) EXPRESION -> . Id
 
     menos           shift and go to state 20
     ParA            shift and go to state 21
     I64             shift and go to state 22
     F64             shift and go to state 23
-    Float           shift and go to state 24
-    Entero          shift and go to state 25
-    Booleano        shift and go to state 26
-    String          shift and go to state 27
-    Char            shift and go to state 28
+    not             shift and go to state 24
+    Float           shift and go to state 25
+    Entero          shift and go to state 26
+    Booleano        shift and go to state 27
+    String          shift and go to state 28
+    Char            shift and go to state 29
     Id              shift and go to state 18
 
-    EXPRESION                      shift and go to state 89
+    EXPRESION                      shift and go to state 95
 
-state 61
+state 65
 
     (10) DECLARACION -> Let Id dosPuntos Bool igual . EXPRESION ptComa
     (26) EXPRESION -> . EXPRESION mas EXPRESION
@@ -1502,27 +1788,31 @@ state 61
     (38) EXPRESION -> . EXPRESION mayorIgual EXPRESION
     (39) EXPRESION -> . EXPRESION dobleIgual EXPRESION
     (40) EXPRESION -> . EXPRESION diferenteQue EXPRESION
-    (41) EXPRESION -> . Float
-    (42) EXPRESION -> . Entero
-    (43) EXPRESION -> . Booleano
-    (44) EXPRESION -> . String
-    (45) EXPRESION -> . Char
-    (46) EXPRESION -> . Id
+    (41) EXPRESION -> . EXPRESION And EXPRESION
+    (42) EXPRESION -> . EXPRESION Or EXPRESION
+    (43) EXPRESION -> . not EXPRESION
+    (44) EXPRESION -> . Float
+    (45) EXPRESION -> . Entero
+    (46) EXPRESION -> . Booleano
+    (47) EXPRESION -> . String
+    (48) EXPRESION -> . Char
+    (49) EXPRESION -> . Id
 
     menos           shift and go to state 20
     ParA            shift and go to state 21
     I64             shift and go to state 22
     F64             shift and go to state 23
-    Float           shift and go to state 24
-    Entero          shift and go to state 25
-    Booleano        shift and go to state 26
-    String          shift and go to state 27
-    Char            shift and go to state 28
+    not             shift and go to state 24
+    Float           shift and go to state 25
+    Entero          shift and go to state 26
+    Booleano        shift and go to state 27
+    String          shift and go to state 28
+    Char            shift and go to state 29
     Id              shift and go to state 18
 
-    EXPRESION                      shift and go to state 90
+    EXPRESION                      shift and go to state 96
 
-state 62
+state 66
 
     (11) DECLARACION -> Let Id dosPuntos CharAux igual . EXPRESION ptComa
     (26) EXPRESION -> . EXPRESION mas EXPRESION
@@ -1540,27 +1830,31 @@ state 62
     (38) EXPRESION -> . EXPRESION mayorIgual EXPRESION
     (39) EXPRESION -> . EXPRESION dobleIgual EXPRESION
     (40) EXPRESION -> . EXPRESION diferenteQue EXPRESION
-    (41) EXPRESION -> . Float
-    (42) EXPRESION -> . Entero
-    (43) EXPRESION -> . Booleano
-    (44) EXPRESION -> . String
-    (45) EXPRESION -> . Char
-    (46) EXPRESION -> . Id
+    (41) EXPRESION -> . EXPRESION And EXPRESION
+    (42) EXPRESION -> . EXPRESION Or EXPRESION
+    (43) EXPRESION -> . not EXPRESION
+    (44) EXPRESION -> . Float
+    (45) EXPRESION -> . Entero
+    (46) EXPRESION -> . Booleano
+    (47) EXPRESION -> . String
+    (48) EXPRESION -> . Char
+    (49) EXPRESION -> . Id
 
     menos           shift and go to state 20
     ParA            shift and go to state 21
     I64             shift and go to state 22
     F64             shift and go to state 23
-    Float           shift and go to state 24
-    Entero          shift and go to state 25
-    Booleano        shift and go to state 26
-    String          shift and go to state 27
-    Char            shift and go to state 28
+    not             shift and go to state 24
+    Float           shift and go to state 25
+    Entero          shift and go to state 26
+    Booleano        shift and go to state 27
+    String          shift and go to state 28
+    Char            shift and go to state 29
     Id              shift and go to state 18
 
-    EXPRESION                      shift and go to state 91
+    EXPRESION                      shift and go to state 97
 
-state 63
+state 67
 
     (12) DECLARACION -> Let Mut Id igual EXPRESION . ptComa
     (26) EXPRESION -> EXPRESION . mas EXPRESION
@@ -1574,64 +1868,68 @@ state 63
     (38) EXPRESION -> EXPRESION . mayorIgual EXPRESION
     (39) EXPRESION -> EXPRESION . dobleIgual EXPRESION
     (40) EXPRESION -> EXPRESION . diferenteQue EXPRESION
+    (41) EXPRESION -> EXPRESION . And EXPRESION
+    (42) EXPRESION -> EXPRESION . Or EXPRESION
 
-    ptComa          shift and go to state 92
-    mas             shift and go to state 40
-    menos           shift and go to state 41
-    por             shift and go to state 42
-    dividido        shift and go to state 43
-    modulo          shift and go to state 44
-    menorQue        shift and go to state 45
-    mayorQue        shift and go to state 46
-    menorIgual      shift and go to state 47
-    mayorIgual      shift and go to state 48
-    dobleIgual      shift and go to state 49
-    diferenteQue    shift and go to state 50
-
-
-state 64
-
-    (13) DECLARACION -> Let Mut Id dosPuntos I64 . igual EXPRESION ptComa
-
-    igual           shift and go to state 93
-
-
-state 65
-
-    (14) DECLARACION -> Let Mut Id dosPuntos F64 . igual EXPRESION ptComa
-
-    igual           shift and go to state 94
-
-
-state 66
-
-    (15) DECLARACION -> Let Mut Id dosPuntos StrA . igual EXPRESION ptComa
-
-    igual           shift and go to state 95
-
-
-state 67
-
-    (16) DECLARACION -> Let Mut Id dosPuntos Str . igual EXPRESION ptComa
-
-    igual           shift and go to state 96
+    ptComa          shift and go to state 98
+    mas             shift and go to state 41
+    menos           shift and go to state 42
+    por             shift and go to state 43
+    dividido        shift and go to state 44
+    modulo          shift and go to state 45
+    menorQue        shift and go to state 46
+    mayorQue        shift and go to state 47
+    menorIgual      shift and go to state 48
+    mayorIgual      shift and go to state 49
+    dobleIgual      shift and go to state 50
+    diferenteQue    shift and go to state 51
+    And             shift and go to state 52
+    Or              shift and go to state 53
 
 
 state 68
 
-    (17) DECLARACION -> Let Mut Id dosPuntos Bool . igual EXPRESION ptComa
+    (13) DECLARACION -> Let Mut Id dosPuntos I64 . igual EXPRESION ptComa
 
-    igual           shift and go to state 97
+    igual           shift and go to state 99
 
 
 state 69
 
-    (18) DECLARACION -> Let Mut Id dosPuntos CharAux . igual EXPRESION ptComa
+    (14) DECLARACION -> Let Mut Id dosPuntos F64 . igual EXPRESION ptComa
 
-    igual           shift and go to state 98
+    igual           shift and go to state 100
 
 
 state 70
+
+    (15) DECLARACION -> Let Mut Id dosPuntos StrA . igual EXPRESION ptComa
+
+    igual           shift and go to state 101
+
+
+state 71
+
+    (16) DECLARACION -> Let Mut Id dosPuntos Str . igual EXPRESION ptComa
+
+    igual           shift and go to state 102
+
+
+state 72
+
+    (17) DECLARACION -> Let Mut Id dosPuntos Bool . igual EXPRESION ptComa
+
+    igual           shift and go to state 103
+
+
+state 73
+
+    (18) DECLARACION -> Let Mut Id dosPuntos CharAux . igual EXPRESION ptComa
+
+    igual           shift and go to state 104
+
+
+state 74
 
     (26) EXPRESION -> EXPRESION mas EXPRESION .
     (26) EXPRESION -> EXPRESION . mas EXPRESION
@@ -1645,21 +1943,25 @@ state 70
     (38) EXPRESION -> EXPRESION . mayorIgual EXPRESION
     (39) EXPRESION -> EXPRESION . dobleIgual EXPRESION
     (40) EXPRESION -> EXPRESION . diferenteQue EXPRESION
+    (41) EXPRESION -> EXPRESION . And EXPRESION
+    (42) EXPRESION -> EXPRESION . Or EXPRESION
 
     ptComa          reduce using rule 26 (EXPRESION -> EXPRESION mas EXPRESION .)
     mas             reduce using rule 26 (EXPRESION -> EXPRESION mas EXPRESION .)
     menos           reduce using rule 26 (EXPRESION -> EXPRESION mas EXPRESION .)
+    And             reduce using rule 26 (EXPRESION -> EXPRESION mas EXPRESION .)
+    Or              reduce using rule 26 (EXPRESION -> EXPRESION mas EXPRESION .)
     ParC            reduce using rule 26 (EXPRESION -> EXPRESION mas EXPRESION .)
     Coma            reduce using rule 26 (EXPRESION -> EXPRESION mas EXPRESION .)
-    por             shift and go to state 42
-    dividido        shift and go to state 43
-    modulo          shift and go to state 44
-    menorQue        shift and go to state 45
-    mayorQue        shift and go to state 46
-    menorIgual      shift and go to state 47
-    mayorIgual      shift and go to state 48
-    dobleIgual      shift and go to state 49
-    diferenteQue    shift and go to state 50
+    por             shift and go to state 43
+    dividido        shift and go to state 44
+    modulo          shift and go to state 45
+    menorQue        shift and go to state 46
+    mayorQue        shift and go to state 47
+    menorIgual      shift and go to state 48
+    mayorIgual      shift and go to state 49
+    dobleIgual      shift and go to state 50
+    diferenteQue    shift and go to state 51
 
   ! por             [ reduce using rule 26 (EXPRESION -> EXPRESION mas EXPRESION .) ]
   ! dividido        [ reduce using rule 26 (EXPRESION -> EXPRESION mas EXPRESION .) ]
@@ -1670,11 +1972,13 @@ state 70
   ! mayorIgual      [ reduce using rule 26 (EXPRESION -> EXPRESION mas EXPRESION .) ]
   ! dobleIgual      [ reduce using rule 26 (EXPRESION -> EXPRESION mas EXPRESION .) ]
   ! diferenteQue    [ reduce using rule 26 (EXPRESION -> EXPRESION mas EXPRESION .) ]
-  ! mas             [ shift and go to state 40 ]
-  ! menos           [ shift and go to state 41 ]
+  ! mas             [ shift and go to state 41 ]
+  ! menos           [ shift and go to state 42 ]
+  ! And             [ shift and go to state 52 ]
+  ! Or              [ shift and go to state 53 ]
 
 
-state 71
+state 75
 
     (27) EXPRESION -> EXPRESION menos EXPRESION .
     (26) EXPRESION -> EXPRESION . mas EXPRESION
@@ -1688,21 +1992,25 @@ state 71
     (38) EXPRESION -> EXPRESION . mayorIgual EXPRESION
     (39) EXPRESION -> EXPRESION . dobleIgual EXPRESION
     (40) EXPRESION -> EXPRESION . diferenteQue EXPRESION
+    (41) EXPRESION -> EXPRESION . And EXPRESION
+    (42) EXPRESION -> EXPRESION . Or EXPRESION
 
     ptComa          reduce using rule 27 (EXPRESION -> EXPRESION menos EXPRESION .)
     mas             reduce using rule 27 (EXPRESION -> EXPRESION menos EXPRESION .)
     menos           reduce using rule 27 (EXPRESION -> EXPRESION menos EXPRESION .)
+    And             reduce using rule 27 (EXPRESION -> EXPRESION menos EXPRESION .)
+    Or              reduce using rule 27 (EXPRESION -> EXPRESION menos EXPRESION .)
     ParC            reduce using rule 27 (EXPRESION -> EXPRESION menos EXPRESION .)
     Coma            reduce using rule 27 (EXPRESION -> EXPRESION menos EXPRESION .)
-    por             shift and go to state 42
-    dividido        shift and go to state 43
-    modulo          shift and go to state 44
-    menorQue        shift and go to state 45
-    mayorQue        shift and go to state 46
-    menorIgual      shift and go to state 47
-    mayorIgual      shift and go to state 48
-    dobleIgual      shift and go to state 49
-    diferenteQue    shift and go to state 50
+    por             shift and go to state 43
+    dividido        shift and go to state 44
+    modulo          shift and go to state 45
+    menorQue        shift and go to state 46
+    mayorQue        shift and go to state 47
+    menorIgual      shift and go to state 48
+    mayorIgual      shift and go to state 49
+    dobleIgual      shift and go to state 50
+    diferenteQue    shift and go to state 51
 
   ! por             [ reduce using rule 27 (EXPRESION -> EXPRESION menos EXPRESION .) ]
   ! dividido        [ reduce using rule 27 (EXPRESION -> EXPRESION menos EXPRESION .) ]
@@ -1713,11 +2021,13 @@ state 71
   ! mayorIgual      [ reduce using rule 27 (EXPRESION -> EXPRESION menos EXPRESION .) ]
   ! dobleIgual      [ reduce using rule 27 (EXPRESION -> EXPRESION menos EXPRESION .) ]
   ! diferenteQue    [ reduce using rule 27 (EXPRESION -> EXPRESION menos EXPRESION .) ]
-  ! mas             [ shift and go to state 40 ]
-  ! menos           [ shift and go to state 41 ]
+  ! mas             [ shift and go to state 41 ]
+  ! menos           [ shift and go to state 42 ]
+  ! And             [ shift and go to state 52 ]
+  ! Or              [ shift and go to state 53 ]
 
 
-state 72
+state 76
 
     (28) EXPRESION -> EXPRESION por EXPRESION .
     (26) EXPRESION -> EXPRESION . mas EXPRESION
@@ -1731,6 +2041,8 @@ state 72
     (38) EXPRESION -> EXPRESION . mayorIgual EXPRESION
     (39) EXPRESION -> EXPRESION . dobleIgual EXPRESION
     (40) EXPRESION -> EXPRESION . diferenteQue EXPRESION
+    (41) EXPRESION -> EXPRESION . And EXPRESION
+    (42) EXPRESION -> EXPRESION . Or EXPRESION
 
     ptComa          reduce using rule 28 (EXPRESION -> EXPRESION por EXPRESION .)
     mas             reduce using rule 28 (EXPRESION -> EXPRESION por EXPRESION .)
@@ -1744,23 +2056,27 @@ state 72
     mayorIgual      reduce using rule 28 (EXPRESION -> EXPRESION por EXPRESION .)
     dobleIgual      reduce using rule 28 (EXPRESION -> EXPRESION por EXPRESION .)
     diferenteQue    reduce using rule 28 (EXPRESION -> EXPRESION por EXPRESION .)
+    And             reduce using rule 28 (EXPRESION -> EXPRESION por EXPRESION .)
+    Or              reduce using rule 28 (EXPRESION -> EXPRESION por EXPRESION .)
     ParC            reduce using rule 28 (EXPRESION -> EXPRESION por EXPRESION .)
     Coma            reduce using rule 28 (EXPRESION -> EXPRESION por EXPRESION .)
 
-  ! mas             [ shift and go to state 40 ]
-  ! menos           [ shift and go to state 41 ]
-  ! por             [ shift and go to state 42 ]
-  ! dividido        [ shift and go to state 43 ]
-  ! modulo          [ shift and go to state 44 ]
-  ! menorQue        [ shift and go to state 45 ]
-  ! mayorQue        [ shift and go to state 46 ]
-  ! menorIgual      [ shift and go to state 47 ]
-  ! mayorIgual      [ shift and go to state 48 ]
-  ! dobleIgual      [ shift and go to state 49 ]
-  ! diferenteQue    [ shift and go to state 50 ]
+  ! mas             [ shift and go to state 41 ]
+  ! menos           [ shift and go to state 42 ]
+  ! por             [ shift and go to state 43 ]
+  ! dividido        [ shift and go to state 44 ]
+  ! modulo          [ shift and go to state 45 ]
+  ! menorQue        [ shift and go to state 46 ]
+  ! mayorQue        [ shift and go to state 47 ]
+  ! menorIgual      [ shift and go to state 48 ]
+  ! mayorIgual      [ shift and go to state 49 ]
+  ! dobleIgual      [ shift and go to state 50 ]
+  ! diferenteQue    [ shift and go to state 51 ]
+  ! And             [ shift and go to state 52 ]
+  ! Or              [ shift and go to state 53 ]
 
 
-state 73
+state 77
 
     (29) EXPRESION -> EXPRESION dividido EXPRESION .
     (26) EXPRESION -> EXPRESION . mas EXPRESION
@@ -1774,6 +2090,8 @@ state 73
     (38) EXPRESION -> EXPRESION . mayorIgual EXPRESION
     (39) EXPRESION -> EXPRESION . dobleIgual EXPRESION
     (40) EXPRESION -> EXPRESION . diferenteQue EXPRESION
+    (41) EXPRESION -> EXPRESION . And EXPRESION
+    (42) EXPRESION -> EXPRESION . Or EXPRESION
 
     ptComa          reduce using rule 29 (EXPRESION -> EXPRESION dividido EXPRESION .)
     mas             reduce using rule 29 (EXPRESION -> EXPRESION dividido EXPRESION .)
@@ -1787,23 +2105,27 @@ state 73
     mayorIgual      reduce using rule 29 (EXPRESION -> EXPRESION dividido EXPRESION .)
     dobleIgual      reduce using rule 29 (EXPRESION -> EXPRESION dividido EXPRESION .)
     diferenteQue    reduce using rule 29 (EXPRESION -> EXPRESION dividido EXPRESION .)
+    And             reduce using rule 29 (EXPRESION -> EXPRESION dividido EXPRESION .)
+    Or              reduce using rule 29 (EXPRESION -> EXPRESION dividido EXPRESION .)
     ParC            reduce using rule 29 (EXPRESION -> EXPRESION dividido EXPRESION .)
     Coma            reduce using rule 29 (EXPRESION -> EXPRESION dividido EXPRESION .)
 
-  ! mas             [ shift and go to state 40 ]
-  ! menos           [ shift and go to state 41 ]
-  ! por             [ shift and go to state 42 ]
-  ! dividido        [ shift and go to state 43 ]
-  ! modulo          [ shift and go to state 44 ]
-  ! menorQue        [ shift and go to state 45 ]
-  ! mayorQue        [ shift and go to state 46 ]
-  ! menorIgual      [ shift and go to state 47 ]
-  ! mayorIgual      [ shift and go to state 48 ]
-  ! dobleIgual      [ shift and go to state 49 ]
-  ! diferenteQue    [ shift and go to state 50 ]
+  ! mas             [ shift and go to state 41 ]
+  ! menos           [ shift and go to state 42 ]
+  ! por             [ shift and go to state 43 ]
+  ! dividido        [ shift and go to state 44 ]
+  ! modulo          [ shift and go to state 45 ]
+  ! menorQue        [ shift and go to state 46 ]
+  ! mayorQue        [ shift and go to state 47 ]
+  ! menorIgual      [ shift and go to state 48 ]
+  ! mayorIgual      [ shift and go to state 49 ]
+  ! dobleIgual      [ shift and go to state 50 ]
+  ! diferenteQue    [ shift and go to state 51 ]
+  ! And             [ shift and go to state 52 ]
+  ! Or              [ shift and go to state 53 ]
 
 
-state 74
+state 78
 
     (30) EXPRESION -> EXPRESION modulo EXPRESION .
     (26) EXPRESION -> EXPRESION . mas EXPRESION
@@ -1817,6 +2139,8 @@ state 74
     (38) EXPRESION -> EXPRESION . mayorIgual EXPRESION
     (39) EXPRESION -> EXPRESION . dobleIgual EXPRESION
     (40) EXPRESION -> EXPRESION . diferenteQue EXPRESION
+    (41) EXPRESION -> EXPRESION . And EXPRESION
+    (42) EXPRESION -> EXPRESION . Or EXPRESION
 
     ptComa          reduce using rule 30 (EXPRESION -> EXPRESION modulo EXPRESION .)
     mas             reduce using rule 30 (EXPRESION -> EXPRESION modulo EXPRESION .)
@@ -1830,23 +2154,27 @@ state 74
     mayorIgual      reduce using rule 30 (EXPRESION -> EXPRESION modulo EXPRESION .)
     dobleIgual      reduce using rule 30 (EXPRESION -> EXPRESION modulo EXPRESION .)
     diferenteQue    reduce using rule 30 (EXPRESION -> EXPRESION modulo EXPRESION .)
+    And             reduce using rule 30 (EXPRESION -> EXPRESION modulo EXPRESION .)
+    Or              reduce using rule 30 (EXPRESION -> EXPRESION modulo EXPRESION .)
     ParC            reduce using rule 30 (EXPRESION -> EXPRESION modulo EXPRESION .)
     Coma            reduce using rule 30 (EXPRESION -> EXPRESION modulo EXPRESION .)
 
-  ! mas             [ shift and go to state 40 ]
-  ! menos           [ shift and go to state 41 ]
-  ! por             [ shift and go to state 42 ]
-  ! dividido        [ shift and go to state 43 ]
-  ! modulo          [ shift and go to state 44 ]
-  ! menorQue        [ shift and go to state 45 ]
-  ! mayorQue        [ shift and go to state 46 ]
-  ! menorIgual      [ shift and go to state 47 ]
-  ! mayorIgual      [ shift and go to state 48 ]
-  ! dobleIgual      [ shift and go to state 49 ]
-  ! diferenteQue    [ shift and go to state 50 ]
+  ! mas             [ shift and go to state 41 ]
+  ! menos           [ shift and go to state 42 ]
+  ! por             [ shift and go to state 43 ]
+  ! dividido        [ shift and go to state 44 ]
+  ! modulo          [ shift and go to state 45 ]
+  ! menorQue        [ shift and go to state 46 ]
+  ! mayorQue        [ shift and go to state 47 ]
+  ! menorIgual      [ shift and go to state 48 ]
+  ! mayorIgual      [ shift and go to state 49 ]
+  ! dobleIgual      [ shift and go to state 50 ]
+  ! diferenteQue    [ shift and go to state 51 ]
+  ! And             [ shift and go to state 52 ]
+  ! Or              [ shift and go to state 53 ]
 
 
-state 75
+state 79
 
     (35) EXPRESION -> EXPRESION menorQue EXPRESION .
     (26) EXPRESION -> EXPRESION . mas EXPRESION
@@ -1860,6 +2188,8 @@ state 75
     (38) EXPRESION -> EXPRESION . mayorIgual EXPRESION
     (39) EXPRESION -> EXPRESION . dobleIgual EXPRESION
     (40) EXPRESION -> EXPRESION . diferenteQue EXPRESION
+    (41) EXPRESION -> EXPRESION . And EXPRESION
+    (42) EXPRESION -> EXPRESION . Or EXPRESION
 
     ptComa          reduce using rule 35 (EXPRESION -> EXPRESION menorQue EXPRESION .)
     mas             reduce using rule 35 (EXPRESION -> EXPRESION menorQue EXPRESION .)
@@ -1870,26 +2200,30 @@ state 75
     mayorIgual      reduce using rule 35 (EXPRESION -> EXPRESION menorQue EXPRESION .)
     dobleIgual      reduce using rule 35 (EXPRESION -> EXPRESION menorQue EXPRESION .)
     diferenteQue    reduce using rule 35 (EXPRESION -> EXPRESION menorQue EXPRESION .)
+    And             reduce using rule 35 (EXPRESION -> EXPRESION menorQue EXPRESION .)
+    Or              reduce using rule 35 (EXPRESION -> EXPRESION menorQue EXPRESION .)
     ParC            reduce using rule 35 (EXPRESION -> EXPRESION menorQue EXPRESION .)
     Coma            reduce using rule 35 (EXPRESION -> EXPRESION menorQue EXPRESION .)
-    por             shift and go to state 42
-    dividido        shift and go to state 43
-    modulo          shift and go to state 44
+    por             shift and go to state 43
+    dividido        shift and go to state 44
+    modulo          shift and go to state 45
 
   ! por             [ reduce using rule 35 (EXPRESION -> EXPRESION menorQue EXPRESION .) ]
   ! dividido        [ reduce using rule 35 (EXPRESION -> EXPRESION menorQue EXPRESION .) ]
   ! modulo          [ reduce using rule 35 (EXPRESION -> EXPRESION menorQue EXPRESION .) ]
-  ! mas             [ shift and go to state 40 ]
-  ! menos           [ shift and go to state 41 ]
-  ! menorQue        [ shift and go to state 45 ]
-  ! mayorQue        [ shift and go to state 46 ]
-  ! menorIgual      [ shift and go to state 47 ]
-  ! mayorIgual      [ shift and go to state 48 ]
-  ! dobleIgual      [ shift and go to state 49 ]
-  ! diferenteQue    [ shift and go to state 50 ]
+  ! mas             [ shift and go to state 41 ]
+  ! menos           [ shift and go to state 42 ]
+  ! menorQue        [ shift and go to state 46 ]
+  ! mayorQue        [ shift and go to state 47 ]
+  ! menorIgual      [ shift and go to state 48 ]
+  ! mayorIgual      [ shift and go to state 49 ]
+  ! dobleIgual      [ shift and go to state 50 ]
+  ! diferenteQue    [ shift and go to state 51 ]
+  ! And             [ shift and go to state 52 ]
+  ! Or              [ shift and go to state 53 ]
 
 
-state 76
+state 80
 
     (36) EXPRESION -> EXPRESION mayorQue EXPRESION .
     (26) EXPRESION -> EXPRESION . mas EXPRESION
@@ -1903,6 +2237,8 @@ state 76
     (38) EXPRESION -> EXPRESION . mayorIgual EXPRESION
     (39) EXPRESION -> EXPRESION . dobleIgual EXPRESION
     (40) EXPRESION -> EXPRESION . diferenteQue EXPRESION
+    (41) EXPRESION -> EXPRESION . And EXPRESION
+    (42) EXPRESION -> EXPRESION . Or EXPRESION
 
     ptComa          reduce using rule 36 (EXPRESION -> EXPRESION mayorQue EXPRESION .)
     mas             reduce using rule 36 (EXPRESION -> EXPRESION mayorQue EXPRESION .)
@@ -1913,26 +2249,30 @@ state 76
     mayorIgual      reduce using rule 36 (EXPRESION -> EXPRESION mayorQue EXPRESION .)
     dobleIgual      reduce using rule 36 (EXPRESION -> EXPRESION mayorQue EXPRESION .)
     diferenteQue    reduce using rule 36 (EXPRESION -> EXPRESION mayorQue EXPRESION .)
+    And             reduce using rule 36 (EXPRESION -> EXPRESION mayorQue EXPRESION .)
+    Or              reduce using rule 36 (EXPRESION -> EXPRESION mayorQue EXPRESION .)
     ParC            reduce using rule 36 (EXPRESION -> EXPRESION mayorQue EXPRESION .)
     Coma            reduce using rule 36 (EXPRESION -> EXPRESION mayorQue EXPRESION .)
-    por             shift and go to state 42
-    dividido        shift and go to state 43
-    modulo          shift and go to state 44
+    por             shift and go to state 43
+    dividido        shift and go to state 44
+    modulo          shift and go to state 45
 
   ! por             [ reduce using rule 36 (EXPRESION -> EXPRESION mayorQue EXPRESION .) ]
   ! dividido        [ reduce using rule 36 (EXPRESION -> EXPRESION mayorQue EXPRESION .) ]
   ! modulo          [ reduce using rule 36 (EXPRESION -> EXPRESION mayorQue EXPRESION .) ]
-  ! mas             [ shift and go to state 40 ]
-  ! menos           [ shift and go to state 41 ]
-  ! menorQue        [ shift and go to state 45 ]
-  ! mayorQue        [ shift and go to state 46 ]
-  ! menorIgual      [ shift and go to state 47 ]
-  ! mayorIgual      [ shift and go to state 48 ]
-  ! dobleIgual      [ shift and go to state 49 ]
-  ! diferenteQue    [ shift and go to state 50 ]
+  ! mas             [ shift and go to state 41 ]
+  ! menos           [ shift and go to state 42 ]
+  ! menorQue        [ shift and go to state 46 ]
+  ! mayorQue        [ shift and go to state 47 ]
+  ! menorIgual      [ shift and go to state 48 ]
+  ! mayorIgual      [ shift and go to state 49 ]
+  ! dobleIgual      [ shift and go to state 50 ]
+  ! diferenteQue    [ shift and go to state 51 ]
+  ! And             [ shift and go to state 52 ]
+  ! Or              [ shift and go to state 53 ]
 
 
-state 77
+state 81
 
     (37) EXPRESION -> EXPRESION menorIgual EXPRESION .
     (26) EXPRESION -> EXPRESION . mas EXPRESION
@@ -1946,6 +2286,8 @@ state 77
     (38) EXPRESION -> EXPRESION . mayorIgual EXPRESION
     (39) EXPRESION -> EXPRESION . dobleIgual EXPRESION
     (40) EXPRESION -> EXPRESION . diferenteQue EXPRESION
+    (41) EXPRESION -> EXPRESION . And EXPRESION
+    (42) EXPRESION -> EXPRESION . Or EXPRESION
 
     ptComa          reduce using rule 37 (EXPRESION -> EXPRESION menorIgual EXPRESION .)
     mas             reduce using rule 37 (EXPRESION -> EXPRESION menorIgual EXPRESION .)
@@ -1956,26 +2298,30 @@ state 77
     mayorIgual      reduce using rule 37 (EXPRESION -> EXPRESION menorIgual EXPRESION .)
     dobleIgual      reduce using rule 37 (EXPRESION -> EXPRESION menorIgual EXPRESION .)
     diferenteQue    reduce using rule 37 (EXPRESION -> EXPRESION menorIgual EXPRESION .)
+    And             reduce using rule 37 (EXPRESION -> EXPRESION menorIgual EXPRESION .)
+    Or              reduce using rule 37 (EXPRESION -> EXPRESION menorIgual EXPRESION .)
     ParC            reduce using rule 37 (EXPRESION -> EXPRESION menorIgual EXPRESION .)
     Coma            reduce using rule 37 (EXPRESION -> EXPRESION menorIgual EXPRESION .)
-    por             shift and go to state 42
-    dividido        shift and go to state 43
-    modulo          shift and go to state 44
+    por             shift and go to state 43
+    dividido        shift and go to state 44
+    modulo          shift and go to state 45
 
   ! por             [ reduce using rule 37 (EXPRESION -> EXPRESION menorIgual EXPRESION .) ]
   ! dividido        [ reduce using rule 37 (EXPRESION -> EXPRESION menorIgual EXPRESION .) ]
   ! modulo          [ reduce using rule 37 (EXPRESION -> EXPRESION menorIgual EXPRESION .) ]
-  ! mas             [ shift and go to state 40 ]
-  ! menos           [ shift and go to state 41 ]
-  ! menorQue        [ shift and go to state 45 ]
-  ! mayorQue        [ shift and go to state 46 ]
-  ! menorIgual      [ shift and go to state 47 ]
-  ! mayorIgual      [ shift and go to state 48 ]
-  ! dobleIgual      [ shift and go to state 49 ]
-  ! diferenteQue    [ shift and go to state 50 ]
+  ! mas             [ shift and go to state 41 ]
+  ! menos           [ shift and go to state 42 ]
+  ! menorQue        [ shift and go to state 46 ]
+  ! mayorQue        [ shift and go to state 47 ]
+  ! menorIgual      [ shift and go to state 48 ]
+  ! mayorIgual      [ shift and go to state 49 ]
+  ! dobleIgual      [ shift and go to state 50 ]
+  ! diferenteQue    [ shift and go to state 51 ]
+  ! And             [ shift and go to state 52 ]
+  ! Or              [ shift and go to state 53 ]
 
 
-state 78
+state 82
 
     (38) EXPRESION -> EXPRESION mayorIgual EXPRESION .
     (26) EXPRESION -> EXPRESION . mas EXPRESION
@@ -1989,6 +2335,8 @@ state 78
     (38) EXPRESION -> EXPRESION . mayorIgual EXPRESION
     (39) EXPRESION -> EXPRESION . dobleIgual EXPRESION
     (40) EXPRESION -> EXPRESION . diferenteQue EXPRESION
+    (41) EXPRESION -> EXPRESION . And EXPRESION
+    (42) EXPRESION -> EXPRESION . Or EXPRESION
 
     ptComa          reduce using rule 38 (EXPRESION -> EXPRESION mayorIgual EXPRESION .)
     mas             reduce using rule 38 (EXPRESION -> EXPRESION mayorIgual EXPRESION .)
@@ -1999,26 +2347,30 @@ state 78
     mayorIgual      reduce using rule 38 (EXPRESION -> EXPRESION mayorIgual EXPRESION .)
     dobleIgual      reduce using rule 38 (EXPRESION -> EXPRESION mayorIgual EXPRESION .)
     diferenteQue    reduce using rule 38 (EXPRESION -> EXPRESION mayorIgual EXPRESION .)
+    And             reduce using rule 38 (EXPRESION -> EXPRESION mayorIgual EXPRESION .)
+    Or              reduce using rule 38 (EXPRESION -> EXPRESION mayorIgual EXPRESION .)
     ParC            reduce using rule 38 (EXPRESION -> EXPRESION mayorIgual EXPRESION .)
     Coma            reduce using rule 38 (EXPRESION -> EXPRESION mayorIgual EXPRESION .)
-    por             shift and go to state 42
-    dividido        shift and go to state 43
-    modulo          shift and go to state 44
+    por             shift and go to state 43
+    dividido        shift and go to state 44
+    modulo          shift and go to state 45
 
   ! por             [ reduce using rule 38 (EXPRESION -> EXPRESION mayorIgual EXPRESION .) ]
   ! dividido        [ reduce using rule 38 (EXPRESION -> EXPRESION mayorIgual EXPRESION .) ]
   ! modulo          [ reduce using rule 38 (EXPRESION -> EXPRESION mayorIgual EXPRESION .) ]
-  ! mas             [ shift and go to state 40 ]
-  ! menos           [ shift and go to state 41 ]
-  ! menorQue        [ shift and go to state 45 ]
-  ! mayorQue        [ shift and go to state 46 ]
-  ! menorIgual      [ shift and go to state 47 ]
-  ! mayorIgual      [ shift and go to state 48 ]
-  ! dobleIgual      [ shift and go to state 49 ]
-  ! diferenteQue    [ shift and go to state 50 ]
+  ! mas             [ shift and go to state 41 ]
+  ! menos           [ shift and go to state 42 ]
+  ! menorQue        [ shift and go to state 46 ]
+  ! mayorQue        [ shift and go to state 47 ]
+  ! menorIgual      [ shift and go to state 48 ]
+  ! mayorIgual      [ shift and go to state 49 ]
+  ! dobleIgual      [ shift and go to state 50 ]
+  ! diferenteQue    [ shift and go to state 51 ]
+  ! And             [ shift and go to state 52 ]
+  ! Or              [ shift and go to state 53 ]
 
 
-state 79
+state 83
 
     (39) EXPRESION -> EXPRESION dobleIgual EXPRESION .
     (26) EXPRESION -> EXPRESION . mas EXPRESION
@@ -2032,6 +2384,8 @@ state 79
     (38) EXPRESION -> EXPRESION . mayorIgual EXPRESION
     (39) EXPRESION -> EXPRESION . dobleIgual EXPRESION
     (40) EXPRESION -> EXPRESION . diferenteQue EXPRESION
+    (41) EXPRESION -> EXPRESION . And EXPRESION
+    (42) EXPRESION -> EXPRESION . Or EXPRESION
 
     ptComa          reduce using rule 39 (EXPRESION -> EXPRESION dobleIgual EXPRESION .)
     mas             reduce using rule 39 (EXPRESION -> EXPRESION dobleIgual EXPRESION .)
@@ -2042,26 +2396,30 @@ state 79
     mayorIgual      reduce using rule 39 (EXPRESION -> EXPRESION dobleIgual EXPRESION .)
     dobleIgual      reduce using rule 39 (EXPRESION -> EXPRESION dobleIgual EXPRESION .)
     diferenteQue    reduce using rule 39 (EXPRESION -> EXPRESION dobleIgual EXPRESION .)
+    And             reduce using rule 39 (EXPRESION -> EXPRESION dobleIgual EXPRESION .)
+    Or              reduce using rule 39 (EXPRESION -> EXPRESION dobleIgual EXPRESION .)
     ParC            reduce using rule 39 (EXPRESION -> EXPRESION dobleIgual EXPRESION .)
     Coma            reduce using rule 39 (EXPRESION -> EXPRESION dobleIgual EXPRESION .)
-    por             shift and go to state 42
-    dividido        shift and go to state 43
-    modulo          shift and go to state 44
+    por             shift and go to state 43
+    dividido        shift and go to state 44
+    modulo          shift and go to state 45
 
   ! por             [ reduce using rule 39 (EXPRESION -> EXPRESION dobleIgual EXPRESION .) ]
   ! dividido        [ reduce using rule 39 (EXPRESION -> EXPRESION dobleIgual EXPRESION .) ]
   ! modulo          [ reduce using rule 39 (EXPRESION -> EXPRESION dobleIgual EXPRESION .) ]
-  ! mas             [ shift and go to state 40 ]
-  ! menos           [ shift and go to state 41 ]
-  ! menorQue        [ shift and go to state 45 ]
-  ! mayorQue        [ shift and go to state 46 ]
-  ! menorIgual      [ shift and go to state 47 ]
-  ! mayorIgual      [ shift and go to state 48 ]
-  ! dobleIgual      [ shift and go to state 49 ]
-  ! diferenteQue    [ shift and go to state 50 ]
+  ! mas             [ shift and go to state 41 ]
+  ! menos           [ shift and go to state 42 ]
+  ! menorQue        [ shift and go to state 46 ]
+  ! mayorQue        [ shift and go to state 47 ]
+  ! menorIgual      [ shift and go to state 48 ]
+  ! mayorIgual      [ shift and go to state 49 ]
+  ! dobleIgual      [ shift and go to state 50 ]
+  ! diferenteQue    [ shift and go to state 51 ]
+  ! And             [ shift and go to state 52 ]
+  ! Or              [ shift and go to state 53 ]
 
 
-state 80
+state 84
 
     (40) EXPRESION -> EXPRESION diferenteQue EXPRESION .
     (26) EXPRESION -> EXPRESION . mas EXPRESION
@@ -2075,6 +2433,8 @@ state 80
     (38) EXPRESION -> EXPRESION . mayorIgual EXPRESION
     (39) EXPRESION -> EXPRESION . dobleIgual EXPRESION
     (40) EXPRESION -> EXPRESION . diferenteQue EXPRESION
+    (41) EXPRESION -> EXPRESION . And EXPRESION
+    (42) EXPRESION -> EXPRESION . Or EXPRESION
 
     ptComa          reduce using rule 40 (EXPRESION -> EXPRESION diferenteQue EXPRESION .)
     mas             reduce using rule 40 (EXPRESION -> EXPRESION diferenteQue EXPRESION .)
@@ -2085,26 +2445,128 @@ state 80
     mayorIgual      reduce using rule 40 (EXPRESION -> EXPRESION diferenteQue EXPRESION .)
     dobleIgual      reduce using rule 40 (EXPRESION -> EXPRESION diferenteQue EXPRESION .)
     diferenteQue    reduce using rule 40 (EXPRESION -> EXPRESION diferenteQue EXPRESION .)
+    And             reduce using rule 40 (EXPRESION -> EXPRESION diferenteQue EXPRESION .)
+    Or              reduce using rule 40 (EXPRESION -> EXPRESION diferenteQue EXPRESION .)
     ParC            reduce using rule 40 (EXPRESION -> EXPRESION diferenteQue EXPRESION .)
     Coma            reduce using rule 40 (EXPRESION -> EXPRESION diferenteQue EXPRESION .)
-    por             shift and go to state 42
-    dividido        shift and go to state 43
-    modulo          shift and go to state 44
+    por             shift and go to state 43
+    dividido        shift and go to state 44
+    modulo          shift and go to state 45
 
   ! por             [ reduce using rule 40 (EXPRESION -> EXPRESION diferenteQue EXPRESION .) ]
   ! dividido        [ reduce using rule 40 (EXPRESION -> EXPRESION diferenteQue EXPRESION .) ]
   ! modulo          [ reduce using rule 40 (EXPRESION -> EXPRESION diferenteQue EXPRESION .) ]
-  ! mas             [ shift and go to state 40 ]
-  ! menos           [ shift and go to state 41 ]
-  ! menorQue        [ shift and go to state 45 ]
-  ! mayorQue        [ shift and go to state 46 ]
-  ! menorIgual      [ shift and go to state 47 ]
-  ! mayorIgual      [ shift and go to state 48 ]
-  ! dobleIgual      [ shift and go to state 49 ]
-  ! diferenteQue    [ shift and go to state 50 ]
+  ! mas             [ shift and go to state 41 ]
+  ! menos           [ shift and go to state 42 ]
+  ! menorQue        [ shift and go to state 46 ]
+  ! mayorQue        [ shift and go to state 47 ]
+  ! menorIgual      [ shift and go to state 48 ]
+  ! mayorIgual      [ shift and go to state 49 ]
+  ! dobleIgual      [ shift and go to state 50 ]
+  ! diferenteQue    [ shift and go to state 51 ]
+  ! And             [ shift and go to state 52 ]
+  ! Or              [ shift and go to state 53 ]
 
 
-state 81
+state 85
+
+    (41) EXPRESION -> EXPRESION And EXPRESION .
+    (26) EXPRESION -> EXPRESION . mas EXPRESION
+    (27) EXPRESION -> EXPRESION . menos EXPRESION
+    (28) EXPRESION -> EXPRESION . por EXPRESION
+    (29) EXPRESION -> EXPRESION . dividido EXPRESION
+    (30) EXPRESION -> EXPRESION . modulo EXPRESION
+    (35) EXPRESION -> EXPRESION . menorQue EXPRESION
+    (36) EXPRESION -> EXPRESION . mayorQue EXPRESION
+    (37) EXPRESION -> EXPRESION . menorIgual EXPRESION
+    (38) EXPRESION -> EXPRESION . mayorIgual EXPRESION
+    (39) EXPRESION -> EXPRESION . dobleIgual EXPRESION
+    (40) EXPRESION -> EXPRESION . diferenteQue EXPRESION
+    (41) EXPRESION -> EXPRESION . And EXPRESION
+    (42) EXPRESION -> EXPRESION . Or EXPRESION
+
+    ptComa          reduce using rule 41 (EXPRESION -> EXPRESION And EXPRESION .)
+    And             reduce using rule 41 (EXPRESION -> EXPRESION And EXPRESION .)
+    Or              reduce using rule 41 (EXPRESION -> EXPRESION And EXPRESION .)
+    ParC            reduce using rule 41 (EXPRESION -> EXPRESION And EXPRESION .)
+    Coma            reduce using rule 41 (EXPRESION -> EXPRESION And EXPRESION .)
+    mas             shift and go to state 41
+    menos           shift and go to state 42
+    por             shift and go to state 43
+    dividido        shift and go to state 44
+    modulo          shift and go to state 45
+    menorQue        shift and go to state 46
+    mayorQue        shift and go to state 47
+    menorIgual      shift and go to state 48
+    mayorIgual      shift and go to state 49
+    dobleIgual      shift and go to state 50
+    diferenteQue    shift and go to state 51
+
+  ! mas             [ reduce using rule 41 (EXPRESION -> EXPRESION And EXPRESION .) ]
+  ! menos           [ reduce using rule 41 (EXPRESION -> EXPRESION And EXPRESION .) ]
+  ! por             [ reduce using rule 41 (EXPRESION -> EXPRESION And EXPRESION .) ]
+  ! dividido        [ reduce using rule 41 (EXPRESION -> EXPRESION And EXPRESION .) ]
+  ! modulo          [ reduce using rule 41 (EXPRESION -> EXPRESION And EXPRESION .) ]
+  ! menorQue        [ reduce using rule 41 (EXPRESION -> EXPRESION And EXPRESION .) ]
+  ! mayorQue        [ reduce using rule 41 (EXPRESION -> EXPRESION And EXPRESION .) ]
+  ! menorIgual      [ reduce using rule 41 (EXPRESION -> EXPRESION And EXPRESION .) ]
+  ! mayorIgual      [ reduce using rule 41 (EXPRESION -> EXPRESION And EXPRESION .) ]
+  ! dobleIgual      [ reduce using rule 41 (EXPRESION -> EXPRESION And EXPRESION .) ]
+  ! diferenteQue    [ reduce using rule 41 (EXPRESION -> EXPRESION And EXPRESION .) ]
+  ! And             [ shift and go to state 52 ]
+  ! Or              [ shift and go to state 53 ]
+
+
+state 86
+
+    (42) EXPRESION -> EXPRESION Or EXPRESION .
+    (26) EXPRESION -> EXPRESION . mas EXPRESION
+    (27) EXPRESION -> EXPRESION . menos EXPRESION
+    (28) EXPRESION -> EXPRESION . por EXPRESION
+    (29) EXPRESION -> EXPRESION . dividido EXPRESION
+    (30) EXPRESION -> EXPRESION . modulo EXPRESION
+    (35) EXPRESION -> EXPRESION . menorQue EXPRESION
+    (36) EXPRESION -> EXPRESION . mayorQue EXPRESION
+    (37) EXPRESION -> EXPRESION . menorIgual EXPRESION
+    (38) EXPRESION -> EXPRESION . mayorIgual EXPRESION
+    (39) EXPRESION -> EXPRESION . dobleIgual EXPRESION
+    (40) EXPRESION -> EXPRESION . diferenteQue EXPRESION
+    (41) EXPRESION -> EXPRESION . And EXPRESION
+    (42) EXPRESION -> EXPRESION . Or EXPRESION
+
+    ptComa          reduce using rule 42 (EXPRESION -> EXPRESION Or EXPRESION .)
+    Or              reduce using rule 42 (EXPRESION -> EXPRESION Or EXPRESION .)
+    ParC            reduce using rule 42 (EXPRESION -> EXPRESION Or EXPRESION .)
+    Coma            reduce using rule 42 (EXPRESION -> EXPRESION Or EXPRESION .)
+    mas             shift and go to state 41
+    menos           shift and go to state 42
+    por             shift and go to state 43
+    dividido        shift and go to state 44
+    modulo          shift and go to state 45
+    menorQue        shift and go to state 46
+    mayorQue        shift and go to state 47
+    menorIgual      shift and go to state 48
+    mayorIgual      shift and go to state 49
+    dobleIgual      shift and go to state 50
+    diferenteQue    shift and go to state 51
+    And             shift and go to state 52
+
+  ! mas             [ reduce using rule 42 (EXPRESION -> EXPRESION Or EXPRESION .) ]
+  ! menos           [ reduce using rule 42 (EXPRESION -> EXPRESION Or EXPRESION .) ]
+  ! por             [ reduce using rule 42 (EXPRESION -> EXPRESION Or EXPRESION .) ]
+  ! dividido        [ reduce using rule 42 (EXPRESION -> EXPRESION Or EXPRESION .) ]
+  ! modulo          [ reduce using rule 42 (EXPRESION -> EXPRESION Or EXPRESION .) ]
+  ! menorQue        [ reduce using rule 42 (EXPRESION -> EXPRESION Or EXPRESION .) ]
+  ! mayorQue        [ reduce using rule 42 (EXPRESION -> EXPRESION Or EXPRESION .) ]
+  ! menorIgual      [ reduce using rule 42 (EXPRESION -> EXPRESION Or EXPRESION .) ]
+  ! mayorIgual      [ reduce using rule 42 (EXPRESION -> EXPRESION Or EXPRESION .) ]
+  ! dobleIgual      [ reduce using rule 42 (EXPRESION -> EXPRESION Or EXPRESION .) ]
+  ! diferenteQue    [ reduce using rule 42 (EXPRESION -> EXPRESION Or EXPRESION .) ]
+  ! And             [ reduce using rule 42 (EXPRESION -> EXPRESION Or EXPRESION .) ]
+  ! Or              [ shift and go to state 53 ]
+
+
+state 87
 
     (32) EXPRESION -> ParA EXPRESION ParC .
 
@@ -2120,32 +2582,34 @@ state 81
     mayorIgual      reduce using rule 32 (EXPRESION -> ParA EXPRESION ParC .)
     dobleIgual      reduce using rule 32 (EXPRESION -> ParA EXPRESION ParC .)
     diferenteQue    reduce using rule 32 (EXPRESION -> ParA EXPRESION ParC .)
+    And             reduce using rule 32 (EXPRESION -> ParA EXPRESION ParC .)
+    Or              reduce using rule 32 (EXPRESION -> ParA EXPRESION ParC .)
     ParC            reduce using rule 32 (EXPRESION -> ParA EXPRESION ParC .)
     Coma            reduce using rule 32 (EXPRESION -> ParA EXPRESION ParC .)
 
 
-state 82
+state 88
 
     (33) EXPRESION -> I64 dosPuntos dosPuntos . Powi ParA EXPRESION Coma EXPRESION ParC
 
-    Powi            shift and go to state 99
+    Powi            shift and go to state 105
 
 
-state 83
+state 89
 
     (34) EXPRESION -> F64 dosPuntos dosPuntos . Powf ParA EXPRESION Coma EXPRESION ParC
 
-    Powf            shift and go to state 100
+    Powf            shift and go to state 106
 
 
-state 84
+state 90
 
     (22) IMPRIMIR -> PrintLn not ParA String ParC . ptComa
 
-    ptComa          shift and go to state 101
+    ptComa          shift and go to state 107
 
 
-state 85
+state 91
 
     (23) IMPRIMIR -> PrintLn not ParA String Coma . COMASEX ParC ptComa
     (24) COMASEX -> . COMASEX Coma EXPRESION
@@ -2165,28 +2629,32 @@ state 85
     (38) EXPRESION -> . EXPRESION mayorIgual EXPRESION
     (39) EXPRESION -> . EXPRESION dobleIgual EXPRESION
     (40) EXPRESION -> . EXPRESION diferenteQue EXPRESION
-    (41) EXPRESION -> . Float
-    (42) EXPRESION -> . Entero
-    (43) EXPRESION -> . Booleano
-    (44) EXPRESION -> . String
-    (45) EXPRESION -> . Char
-    (46) EXPRESION -> . Id
+    (41) EXPRESION -> . EXPRESION And EXPRESION
+    (42) EXPRESION -> . EXPRESION Or EXPRESION
+    (43) EXPRESION -> . not EXPRESION
+    (44) EXPRESION -> . Float
+    (45) EXPRESION -> . Entero
+    (46) EXPRESION -> . Booleano
+    (47) EXPRESION -> . String
+    (48) EXPRESION -> . Char
+    (49) EXPRESION -> . Id
 
     menos           shift and go to state 20
     ParA            shift and go to state 21
     I64             shift and go to state 22
     F64             shift and go to state 23
-    Float           shift and go to state 24
-    Entero          shift and go to state 25
-    Booleano        shift and go to state 26
-    String          shift and go to state 27
-    Char            shift and go to state 28
+    not             shift and go to state 24
+    Float           shift and go to state 25
+    Entero          shift and go to state 26
+    Booleano        shift and go to state 27
+    String          shift and go to state 28
+    Char            shift and go to state 29
     Id              shift and go to state 18
 
-    COMASEX                        shift and go to state 102
-    EXPRESION                      shift and go to state 103
+    COMASEX                        shift and go to state 108
+    EXPRESION                      shift and go to state 109
 
-state 86
+state 92
 
     (6) DECLARACION -> Let Id dosPuntos I64 igual EXPRESION . ptComa
     (26) EXPRESION -> EXPRESION . mas EXPRESION
@@ -2200,22 +2668,26 @@ state 86
     (38) EXPRESION -> EXPRESION . mayorIgual EXPRESION
     (39) EXPRESION -> EXPRESION . dobleIgual EXPRESION
     (40) EXPRESION -> EXPRESION . diferenteQue EXPRESION
+    (41) EXPRESION -> EXPRESION . And EXPRESION
+    (42) EXPRESION -> EXPRESION . Or EXPRESION
 
-    ptComa          shift and go to state 104
-    mas             shift and go to state 40
-    menos           shift and go to state 41
-    por             shift and go to state 42
-    dividido        shift and go to state 43
-    modulo          shift and go to state 44
-    menorQue        shift and go to state 45
-    mayorQue        shift and go to state 46
-    menorIgual      shift and go to state 47
-    mayorIgual      shift and go to state 48
-    dobleIgual      shift and go to state 49
-    diferenteQue    shift and go to state 50
+    ptComa          shift and go to state 110
+    mas             shift and go to state 41
+    menos           shift and go to state 42
+    por             shift and go to state 43
+    dividido        shift and go to state 44
+    modulo          shift and go to state 45
+    menorQue        shift and go to state 46
+    mayorQue        shift and go to state 47
+    menorIgual      shift and go to state 48
+    mayorIgual      shift and go to state 49
+    dobleIgual      shift and go to state 50
+    diferenteQue    shift and go to state 51
+    And             shift and go to state 52
+    Or              shift and go to state 53
 
 
-state 87
+state 93
 
     (7) DECLARACION -> Let Id dosPuntos F64 igual EXPRESION . ptComa
     (26) EXPRESION -> EXPRESION . mas EXPRESION
@@ -2229,22 +2701,26 @@ state 87
     (38) EXPRESION -> EXPRESION . mayorIgual EXPRESION
     (39) EXPRESION -> EXPRESION . dobleIgual EXPRESION
     (40) EXPRESION -> EXPRESION . diferenteQue EXPRESION
+    (41) EXPRESION -> EXPRESION . And EXPRESION
+    (42) EXPRESION -> EXPRESION . Or EXPRESION
 
-    ptComa          shift and go to state 105
-    mas             shift and go to state 40
-    menos           shift and go to state 41
-    por             shift and go to state 42
-    dividido        shift and go to state 43
-    modulo          shift and go to state 44
-    menorQue        shift and go to state 45
-    mayorQue        shift and go to state 46
-    menorIgual      shift and go to state 47
-    mayorIgual      shift and go to state 48
-    dobleIgual      shift and go to state 49
-    diferenteQue    shift and go to state 50
+    ptComa          shift and go to state 111
+    mas             shift and go to state 41
+    menos           shift and go to state 42
+    por             shift and go to state 43
+    dividido        shift and go to state 44
+    modulo          shift and go to state 45
+    menorQue        shift and go to state 46
+    mayorQue        shift and go to state 47
+    menorIgual      shift and go to state 48
+    mayorIgual      shift and go to state 49
+    dobleIgual      shift and go to state 50
+    diferenteQue    shift and go to state 51
+    And             shift and go to state 52
+    Or              shift and go to state 53
 
 
-state 88
+state 94
 
     (8) DECLARACION -> Let Id dosPuntos StrA igual EXPRESION . ptComa
     (26) EXPRESION -> EXPRESION . mas EXPRESION
@@ -2258,22 +2734,26 @@ state 88
     (38) EXPRESION -> EXPRESION . mayorIgual EXPRESION
     (39) EXPRESION -> EXPRESION . dobleIgual EXPRESION
     (40) EXPRESION -> EXPRESION . diferenteQue EXPRESION
+    (41) EXPRESION -> EXPRESION . And EXPRESION
+    (42) EXPRESION -> EXPRESION . Or EXPRESION
 
-    ptComa          shift and go to state 106
-    mas             shift and go to state 40
-    menos           shift and go to state 41
-    por             shift and go to state 42
-    dividido        shift and go to state 43
-    modulo          shift and go to state 44
-    menorQue        shift and go to state 45
-    mayorQue        shift and go to state 46
-    menorIgual      shift and go to state 47
-    mayorIgual      shift and go to state 48
-    dobleIgual      shift and go to state 49
-    diferenteQue    shift and go to state 50
+    ptComa          shift and go to state 112
+    mas             shift and go to state 41
+    menos           shift and go to state 42
+    por             shift and go to state 43
+    dividido        shift and go to state 44
+    modulo          shift and go to state 45
+    menorQue        shift and go to state 46
+    mayorQue        shift and go to state 47
+    menorIgual      shift and go to state 48
+    mayorIgual      shift and go to state 49
+    dobleIgual      shift and go to state 50
+    diferenteQue    shift and go to state 51
+    And             shift and go to state 52
+    Or              shift and go to state 53
 
 
-state 89
+state 95
 
     (9) DECLARACION -> Let Id dosPuntos Str igual EXPRESION . ptComa
     (26) EXPRESION -> EXPRESION . mas EXPRESION
@@ -2287,22 +2767,26 @@ state 89
     (38) EXPRESION -> EXPRESION . mayorIgual EXPRESION
     (39) EXPRESION -> EXPRESION . dobleIgual EXPRESION
     (40) EXPRESION -> EXPRESION . diferenteQue EXPRESION
+    (41) EXPRESION -> EXPRESION . And EXPRESION
+    (42) EXPRESION -> EXPRESION . Or EXPRESION
 
-    ptComa          shift and go to state 107
-    mas             shift and go to state 40
-    menos           shift and go to state 41
-    por             shift and go to state 42
-    dividido        shift and go to state 43
-    modulo          shift and go to state 44
-    menorQue        shift and go to state 45
-    mayorQue        shift and go to state 46
-    menorIgual      shift and go to state 47
-    mayorIgual      shift and go to state 48
-    dobleIgual      shift and go to state 49
-    diferenteQue    shift and go to state 50
+    ptComa          shift and go to state 113
+    mas             shift and go to state 41
+    menos           shift and go to state 42
+    por             shift and go to state 43
+    dividido        shift and go to state 44
+    modulo          shift and go to state 45
+    menorQue        shift and go to state 46
+    mayorQue        shift and go to state 47
+    menorIgual      shift and go to state 48
+    mayorIgual      shift and go to state 49
+    dobleIgual      shift and go to state 50
+    diferenteQue    shift and go to state 51
+    And             shift and go to state 52
+    Or              shift and go to state 53
 
 
-state 90
+state 96
 
     (10) DECLARACION -> Let Id dosPuntos Bool igual EXPRESION . ptComa
     (26) EXPRESION -> EXPRESION . mas EXPRESION
@@ -2316,22 +2800,26 @@ state 90
     (38) EXPRESION -> EXPRESION . mayorIgual EXPRESION
     (39) EXPRESION -> EXPRESION . dobleIgual EXPRESION
     (40) EXPRESION -> EXPRESION . diferenteQue EXPRESION
+    (41) EXPRESION -> EXPRESION . And EXPRESION
+    (42) EXPRESION -> EXPRESION . Or EXPRESION
 
-    ptComa          shift and go to state 108
-    mas             shift and go to state 40
-    menos           shift and go to state 41
-    por             shift and go to state 42
-    dividido        shift and go to state 43
-    modulo          shift and go to state 44
-    menorQue        shift and go to state 45
-    mayorQue        shift and go to state 46
-    menorIgual      shift and go to state 47
-    mayorIgual      shift and go to state 48
-    dobleIgual      shift and go to state 49
-    diferenteQue    shift and go to state 50
+    ptComa          shift and go to state 114
+    mas             shift and go to state 41
+    menos           shift and go to state 42
+    por             shift and go to state 43
+    dividido        shift and go to state 44
+    modulo          shift and go to state 45
+    menorQue        shift and go to state 46
+    mayorQue        shift and go to state 47
+    menorIgual      shift and go to state 48
+    mayorIgual      shift and go to state 49
+    dobleIgual      shift and go to state 50
+    diferenteQue    shift and go to state 51
+    And             shift and go to state 52
+    Or              shift and go to state 53
 
 
-state 91
+state 97
 
     (11) DECLARACION -> Let Id dosPuntos CharAux igual EXPRESION . ptComa
     (26) EXPRESION -> EXPRESION . mas EXPRESION
@@ -2345,22 +2833,26 @@ state 91
     (38) EXPRESION -> EXPRESION . mayorIgual EXPRESION
     (39) EXPRESION -> EXPRESION . dobleIgual EXPRESION
     (40) EXPRESION -> EXPRESION . diferenteQue EXPRESION
+    (41) EXPRESION -> EXPRESION . And EXPRESION
+    (42) EXPRESION -> EXPRESION . Or EXPRESION
 
-    ptComa          shift and go to state 109
-    mas             shift and go to state 40
-    menos           shift and go to state 41
-    por             shift and go to state 42
-    dividido        shift and go to state 43
-    modulo          shift and go to state 44
-    menorQue        shift and go to state 45
-    mayorQue        shift and go to state 46
-    menorIgual      shift and go to state 47
-    mayorIgual      shift and go to state 48
-    dobleIgual      shift and go to state 49
-    diferenteQue    shift and go to state 50
+    ptComa          shift and go to state 115
+    mas             shift and go to state 41
+    menos           shift and go to state 42
+    por             shift and go to state 43
+    dividido        shift and go to state 44
+    modulo          shift and go to state 45
+    menorQue        shift and go to state 46
+    mayorQue        shift and go to state 47
+    menorIgual      shift and go to state 48
+    mayorIgual      shift and go to state 49
+    dobleIgual      shift and go to state 50
+    diferenteQue    shift and go to state 51
+    And             shift and go to state 52
+    Or              shift and go to state 53
 
 
-state 92
+state 98
 
     (12) DECLARACION -> Let Mut Id igual EXPRESION ptComa .
 
@@ -2370,7 +2862,7 @@ state 92
     $end            reduce using rule 12 (DECLARACION -> Let Mut Id igual EXPRESION ptComa .)
 
 
-state 93
+state 99
 
     (13) DECLARACION -> Let Mut Id dosPuntos I64 igual . EXPRESION ptComa
     (26) EXPRESION -> . EXPRESION mas EXPRESION
@@ -2388,27 +2880,31 @@ state 93
     (38) EXPRESION -> . EXPRESION mayorIgual EXPRESION
     (39) EXPRESION -> . EXPRESION dobleIgual EXPRESION
     (40) EXPRESION -> . EXPRESION diferenteQue EXPRESION
-    (41) EXPRESION -> . Float
-    (42) EXPRESION -> . Entero
-    (43) EXPRESION -> . Booleano
-    (44) EXPRESION -> . String
-    (45) EXPRESION -> . Char
-    (46) EXPRESION -> . Id
+    (41) EXPRESION -> . EXPRESION And EXPRESION
+    (42) EXPRESION -> . EXPRESION Or EXPRESION
+    (43) EXPRESION -> . not EXPRESION
+    (44) EXPRESION -> . Float
+    (45) EXPRESION -> . Entero
+    (46) EXPRESION -> . Booleano
+    (47) EXPRESION -> . String
+    (48) EXPRESION -> . Char
+    (49) EXPRESION -> . Id
 
     menos           shift and go to state 20
     ParA            shift and go to state 21
     I64             shift and go to state 22
     F64             shift and go to state 23
-    Float           shift and go to state 24
-    Entero          shift and go to state 25
-    Booleano        shift and go to state 26
-    String          shift and go to state 27
-    Char            shift and go to state 28
+    not             shift and go to state 24
+    Float           shift and go to state 25
+    Entero          shift and go to state 26
+    Booleano        shift and go to state 27
+    String          shift and go to state 28
+    Char            shift and go to state 29
     Id              shift and go to state 18
 
-    EXPRESION                      shift and go to state 110
+    EXPRESION                      shift and go to state 116
 
-state 94
+state 100
 
     (14) DECLARACION -> Let Mut Id dosPuntos F64 igual . EXPRESION ptComa
     (26) EXPRESION -> . EXPRESION mas EXPRESION
@@ -2426,27 +2922,31 @@ state 94
     (38) EXPRESION -> . EXPRESION mayorIgual EXPRESION
     (39) EXPRESION -> . EXPRESION dobleIgual EXPRESION
     (40) EXPRESION -> . EXPRESION diferenteQue EXPRESION
-    (41) EXPRESION -> . Float
-    (42) EXPRESION -> . Entero
-    (43) EXPRESION -> . Booleano
-    (44) EXPRESION -> . String
-    (45) EXPRESION -> . Char
-    (46) EXPRESION -> . Id
+    (41) EXPRESION -> . EXPRESION And EXPRESION
+    (42) EXPRESION -> . EXPRESION Or EXPRESION
+    (43) EXPRESION -> . not EXPRESION
+    (44) EXPRESION -> . Float
+    (45) EXPRESION -> . Entero
+    (46) EXPRESION -> . Booleano
+    (47) EXPRESION -> . String
+    (48) EXPRESION -> . Char
+    (49) EXPRESION -> . Id
 
     menos           shift and go to state 20
     ParA            shift and go to state 21
     I64             shift and go to state 22
     F64             shift and go to state 23
-    Float           shift and go to state 24
-    Entero          shift and go to state 25
-    Booleano        shift and go to state 26
-    String          shift and go to state 27
-    Char            shift and go to state 28
+    not             shift and go to state 24
+    Float           shift and go to state 25
+    Entero          shift and go to state 26
+    Booleano        shift and go to state 27
+    String          shift and go to state 28
+    Char            shift and go to state 29
     Id              shift and go to state 18
 
-    EXPRESION                      shift and go to state 111
+    EXPRESION                      shift and go to state 117
 
-state 95
+state 101
 
     (15) DECLARACION -> Let Mut Id dosPuntos StrA igual . EXPRESION ptComa
     (26) EXPRESION -> . EXPRESION mas EXPRESION
@@ -2464,27 +2964,31 @@ state 95
     (38) EXPRESION -> . EXPRESION mayorIgual EXPRESION
     (39) EXPRESION -> . EXPRESION dobleIgual EXPRESION
     (40) EXPRESION -> . EXPRESION diferenteQue EXPRESION
-    (41) EXPRESION -> . Float
-    (42) EXPRESION -> . Entero
-    (43) EXPRESION -> . Booleano
-    (44) EXPRESION -> . String
-    (45) EXPRESION -> . Char
-    (46) EXPRESION -> . Id
+    (41) EXPRESION -> . EXPRESION And EXPRESION
+    (42) EXPRESION -> . EXPRESION Or EXPRESION
+    (43) EXPRESION -> . not EXPRESION
+    (44) EXPRESION -> . Float
+    (45) EXPRESION -> . Entero
+    (46) EXPRESION -> . Booleano
+    (47) EXPRESION -> . String
+    (48) EXPRESION -> . Char
+    (49) EXPRESION -> . Id
 
     menos           shift and go to state 20
     ParA            shift and go to state 21
     I64             shift and go to state 22
     F64             shift and go to state 23
-    Float           shift and go to state 24
-    Entero          shift and go to state 25
-    Booleano        shift and go to state 26
-    String          shift and go to state 27
-    Char            shift and go to state 28
+    not             shift and go to state 24
+    Float           shift and go to state 25
+    Entero          shift and go to state 26
+    Booleano        shift and go to state 27
+    String          shift and go to state 28
+    Char            shift and go to state 29
     Id              shift and go to state 18
 
-    EXPRESION                      shift and go to state 112
+    EXPRESION                      shift and go to state 118
 
-state 96
+state 102
 
     (16) DECLARACION -> Let Mut Id dosPuntos Str igual . EXPRESION ptComa
     (26) EXPRESION -> . EXPRESION mas EXPRESION
@@ -2502,27 +3006,31 @@ state 96
     (38) EXPRESION -> . EXPRESION mayorIgual EXPRESION
     (39) EXPRESION -> . EXPRESION dobleIgual EXPRESION
     (40) EXPRESION -> . EXPRESION diferenteQue EXPRESION
-    (41) EXPRESION -> . Float
-    (42) EXPRESION -> . Entero
-    (43) EXPRESION -> . Booleano
-    (44) EXPRESION -> . String
-    (45) EXPRESION -> . Char
-    (46) EXPRESION -> . Id
+    (41) EXPRESION -> . EXPRESION And EXPRESION
+    (42) EXPRESION -> . EXPRESION Or EXPRESION
+    (43) EXPRESION -> . not EXPRESION
+    (44) EXPRESION -> . Float
+    (45) EXPRESION -> . Entero
+    (46) EXPRESION -> . Booleano
+    (47) EXPRESION -> . String
+    (48) EXPRESION -> . Char
+    (49) EXPRESION -> . Id
 
     menos           shift and go to state 20
     ParA            shift and go to state 21
     I64             shift and go to state 22
     F64             shift and go to state 23
-    Float           shift and go to state 24
-    Entero          shift and go to state 25
-    Booleano        shift and go to state 26
-    String          shift and go to state 27
-    Char            shift and go to state 28
+    not             shift and go to state 24
+    Float           shift and go to state 25
+    Entero          shift and go to state 26
+    Booleano        shift and go to state 27
+    String          shift and go to state 28
+    Char            shift and go to state 29
     Id              shift and go to state 18
 
-    EXPRESION                      shift and go to state 113
+    EXPRESION                      shift and go to state 119
 
-state 97
+state 103
 
     (17) DECLARACION -> Let Mut Id dosPuntos Bool igual . EXPRESION ptComa
     (26) EXPRESION -> . EXPRESION mas EXPRESION
@@ -2540,27 +3048,31 @@ state 97
     (38) EXPRESION -> . EXPRESION mayorIgual EXPRESION
     (39) EXPRESION -> . EXPRESION dobleIgual EXPRESION
     (40) EXPRESION -> . EXPRESION diferenteQue EXPRESION
-    (41) EXPRESION -> . Float
-    (42) EXPRESION -> . Entero
-    (43) EXPRESION -> . Booleano
-    (44) EXPRESION -> . String
-    (45) EXPRESION -> . Char
-    (46) EXPRESION -> . Id
+    (41) EXPRESION -> . EXPRESION And EXPRESION
+    (42) EXPRESION -> . EXPRESION Or EXPRESION
+    (43) EXPRESION -> . not EXPRESION
+    (44) EXPRESION -> . Float
+    (45) EXPRESION -> . Entero
+    (46) EXPRESION -> . Booleano
+    (47) EXPRESION -> . String
+    (48) EXPRESION -> . Char
+    (49) EXPRESION -> . Id
 
     menos           shift and go to state 20
     ParA            shift and go to state 21
     I64             shift and go to state 22
     F64             shift and go to state 23
-    Float           shift and go to state 24
-    Entero          shift and go to state 25
-    Booleano        shift and go to state 26
-    String          shift and go to state 27
-    Char            shift and go to state 28
+    not             shift and go to state 24
+    Float           shift and go to state 25
+    Entero          shift and go to state 26
+    Booleano        shift and go to state 27
+    String          shift and go to state 28
+    Char            shift and go to state 29
     Id              shift and go to state 18
 
-    EXPRESION                      shift and go to state 114
+    EXPRESION                      shift and go to state 120
 
-state 98
+state 104
 
     (18) DECLARACION -> Let Mut Id dosPuntos CharAux igual . EXPRESION ptComa
     (26) EXPRESION -> . EXPRESION mas EXPRESION
@@ -2578,41 +3090,45 @@ state 98
     (38) EXPRESION -> . EXPRESION mayorIgual EXPRESION
     (39) EXPRESION -> . EXPRESION dobleIgual EXPRESION
     (40) EXPRESION -> . EXPRESION diferenteQue EXPRESION
-    (41) EXPRESION -> . Float
-    (42) EXPRESION -> . Entero
-    (43) EXPRESION -> . Booleano
-    (44) EXPRESION -> . String
-    (45) EXPRESION -> . Char
-    (46) EXPRESION -> . Id
+    (41) EXPRESION -> . EXPRESION And EXPRESION
+    (42) EXPRESION -> . EXPRESION Or EXPRESION
+    (43) EXPRESION -> . not EXPRESION
+    (44) EXPRESION -> . Float
+    (45) EXPRESION -> . Entero
+    (46) EXPRESION -> . Booleano
+    (47) EXPRESION -> . String
+    (48) EXPRESION -> . Char
+    (49) EXPRESION -> . Id
 
     menos           shift and go to state 20
     ParA            shift and go to state 21
     I64             shift and go to state 22
     F64             shift and go to state 23
-    Float           shift and go to state 24
-    Entero          shift and go to state 25
-    Booleano        shift and go to state 26
-    String          shift and go to state 27
-    Char            shift and go to state 28
+    not             shift and go to state 24
+    Float           shift and go to state 25
+    Entero          shift and go to state 26
+    Booleano        shift and go to state 27
+    String          shift and go to state 28
+    Char            shift and go to state 29
     Id              shift and go to state 18
 
-    EXPRESION                      shift and go to state 115
+    EXPRESION                      shift and go to state 121
 
-state 99
+state 105
 
     (33) EXPRESION -> I64 dosPuntos dosPuntos Powi . ParA EXPRESION Coma EXPRESION ParC
 
-    ParA            shift and go to state 116
+    ParA            shift and go to state 122
 
 
-state 100
+state 106
 
     (34) EXPRESION -> F64 dosPuntos dosPuntos Powf . ParA EXPRESION Coma EXPRESION ParC
 
-    ParA            shift and go to state 117
+    ParA            shift and go to state 123
 
 
-state 101
+state 107
 
     (22) IMPRIMIR -> PrintLn not ParA String ParC ptComa .
 
@@ -2622,16 +3138,16 @@ state 101
     $end            reduce using rule 22 (IMPRIMIR -> PrintLn not ParA String ParC ptComa .)
 
 
-state 102
+state 108
 
     (23) IMPRIMIR -> PrintLn not ParA String Coma COMASEX . ParC ptComa
     (24) COMASEX -> COMASEX . Coma EXPRESION
 
-    ParC            shift and go to state 119
-    Coma            shift and go to state 118
+    ParC            shift and go to state 125
+    Coma            shift and go to state 124
 
 
-state 103
+state 109
 
     (25) COMASEX -> EXPRESION .
     (26) EXPRESION -> EXPRESION . mas EXPRESION
@@ -2645,23 +3161,27 @@ state 103
     (38) EXPRESION -> EXPRESION . mayorIgual EXPRESION
     (39) EXPRESION -> EXPRESION . dobleIgual EXPRESION
     (40) EXPRESION -> EXPRESION . diferenteQue EXPRESION
+    (41) EXPRESION -> EXPRESION . And EXPRESION
+    (42) EXPRESION -> EXPRESION . Or EXPRESION
 
     ParC            reduce using rule 25 (COMASEX -> EXPRESION .)
     Coma            reduce using rule 25 (COMASEX -> EXPRESION .)
-    mas             shift and go to state 40
-    menos           shift and go to state 41
-    por             shift and go to state 42
-    dividido        shift and go to state 43
-    modulo          shift and go to state 44
-    menorQue        shift and go to state 45
-    mayorQue        shift and go to state 46
-    menorIgual      shift and go to state 47
-    mayorIgual      shift and go to state 48
-    dobleIgual      shift and go to state 49
-    diferenteQue    shift and go to state 50
+    mas             shift and go to state 41
+    menos           shift and go to state 42
+    por             shift and go to state 43
+    dividido        shift and go to state 44
+    modulo          shift and go to state 45
+    menorQue        shift and go to state 46
+    mayorQue        shift and go to state 47
+    menorIgual      shift and go to state 48
+    mayorIgual      shift and go to state 49
+    dobleIgual      shift and go to state 50
+    diferenteQue    shift and go to state 51
+    And             shift and go to state 52
+    Or              shift and go to state 53
 
 
-state 104
+state 110
 
     (6) DECLARACION -> Let Id dosPuntos I64 igual EXPRESION ptComa .
 
@@ -2671,7 +3191,7 @@ state 104
     $end            reduce using rule 6 (DECLARACION -> Let Id dosPuntos I64 igual EXPRESION ptComa .)
 
 
-state 105
+state 111
 
     (7) DECLARACION -> Let Id dosPuntos F64 igual EXPRESION ptComa .
 
@@ -2681,7 +3201,7 @@ state 105
     $end            reduce using rule 7 (DECLARACION -> Let Id dosPuntos F64 igual EXPRESION ptComa .)
 
 
-state 106
+state 112
 
     (8) DECLARACION -> Let Id dosPuntos StrA igual EXPRESION ptComa .
 
@@ -2691,7 +3211,7 @@ state 106
     $end            reduce using rule 8 (DECLARACION -> Let Id dosPuntos StrA igual EXPRESION ptComa .)
 
 
-state 107
+state 113
 
     (9) DECLARACION -> Let Id dosPuntos Str igual EXPRESION ptComa .
 
@@ -2701,7 +3221,7 @@ state 107
     $end            reduce using rule 9 (DECLARACION -> Let Id dosPuntos Str igual EXPRESION ptComa .)
 
 
-state 108
+state 114
 
     (10) DECLARACION -> Let Id dosPuntos Bool igual EXPRESION ptComa .
 
@@ -2711,7 +3231,7 @@ state 108
     $end            reduce using rule 10 (DECLARACION -> Let Id dosPuntos Bool igual EXPRESION ptComa .)
 
 
-state 109
+state 115
 
     (11) DECLARACION -> Let Id dosPuntos CharAux igual EXPRESION ptComa .
 
@@ -2721,7 +3241,7 @@ state 109
     $end            reduce using rule 11 (DECLARACION -> Let Id dosPuntos CharAux igual EXPRESION ptComa .)
 
 
-state 110
+state 116
 
     (13) DECLARACION -> Let Mut Id dosPuntos I64 igual EXPRESION . ptComa
     (26) EXPRESION -> EXPRESION . mas EXPRESION
@@ -2735,22 +3255,26 @@ state 110
     (38) EXPRESION -> EXPRESION . mayorIgual EXPRESION
     (39) EXPRESION -> EXPRESION . dobleIgual EXPRESION
     (40) EXPRESION -> EXPRESION . diferenteQue EXPRESION
+    (41) EXPRESION -> EXPRESION . And EXPRESION
+    (42) EXPRESION -> EXPRESION . Or EXPRESION
 
-    ptComa          shift and go to state 120
-    mas             shift and go to state 40
-    menos           shift and go to state 41
-    por             shift and go to state 42
-    dividido        shift and go to state 43
-    modulo          shift and go to state 44
-    menorQue        shift and go to state 45
-    mayorQue        shift and go to state 46
-    menorIgual      shift and go to state 47
-    mayorIgual      shift and go to state 48
-    dobleIgual      shift and go to state 49
-    diferenteQue    shift and go to state 50
+    ptComa          shift and go to state 126
+    mas             shift and go to state 41
+    menos           shift and go to state 42
+    por             shift and go to state 43
+    dividido        shift and go to state 44
+    modulo          shift and go to state 45
+    menorQue        shift and go to state 46
+    mayorQue        shift and go to state 47
+    menorIgual      shift and go to state 48
+    mayorIgual      shift and go to state 49
+    dobleIgual      shift and go to state 50
+    diferenteQue    shift and go to state 51
+    And             shift and go to state 52
+    Or              shift and go to state 53
 
 
-state 111
+state 117
 
     (14) DECLARACION -> Let Mut Id dosPuntos F64 igual EXPRESION . ptComa
     (26) EXPRESION -> EXPRESION . mas EXPRESION
@@ -2764,22 +3288,26 @@ state 111
     (38) EXPRESION -> EXPRESION . mayorIgual EXPRESION
     (39) EXPRESION -> EXPRESION . dobleIgual EXPRESION
     (40) EXPRESION -> EXPRESION . diferenteQue EXPRESION
+    (41) EXPRESION -> EXPRESION . And EXPRESION
+    (42) EXPRESION -> EXPRESION . Or EXPRESION
 
-    ptComa          shift and go to state 121
-    mas             shift and go to state 40
-    menos           shift and go to state 41
-    por             shift and go to state 42
-    dividido        shift and go to state 43
-    modulo          shift and go to state 44
-    menorQue        shift and go to state 45
-    mayorQue        shift and go to state 46
-    menorIgual      shift and go to state 47
-    mayorIgual      shift and go to state 48
-    dobleIgual      shift and go to state 49
-    diferenteQue    shift and go to state 50
+    ptComa          shift and go to state 127
+    mas             shift and go to state 41
+    menos           shift and go to state 42
+    por             shift and go to state 43
+    dividido        shift and go to state 44
+    modulo          shift and go to state 45
+    menorQue        shift and go to state 46
+    mayorQue        shift and go to state 47
+    menorIgual      shift and go to state 48
+    mayorIgual      shift and go to state 49
+    dobleIgual      shift and go to state 50
+    diferenteQue    shift and go to state 51
+    And             shift and go to state 52
+    Or              shift and go to state 53
 
 
-state 112
+state 118
 
     (15) DECLARACION -> Let Mut Id dosPuntos StrA igual EXPRESION . ptComa
     (26) EXPRESION -> EXPRESION . mas EXPRESION
@@ -2793,22 +3321,26 @@ state 112
     (38) EXPRESION -> EXPRESION . mayorIgual EXPRESION
     (39) EXPRESION -> EXPRESION . dobleIgual EXPRESION
     (40) EXPRESION -> EXPRESION . diferenteQue EXPRESION
+    (41) EXPRESION -> EXPRESION . And EXPRESION
+    (42) EXPRESION -> EXPRESION . Or EXPRESION
 
-    ptComa          shift and go to state 122
-    mas             shift and go to state 40
-    menos           shift and go to state 41
-    por             shift and go to state 42
-    dividido        shift and go to state 43
-    modulo          shift and go to state 44
-    menorQue        shift and go to state 45
-    mayorQue        shift and go to state 46
-    menorIgual      shift and go to state 47
-    mayorIgual      shift and go to state 48
-    dobleIgual      shift and go to state 49
-    diferenteQue    shift and go to state 50
+    ptComa          shift and go to state 128
+    mas             shift and go to state 41
+    menos           shift and go to state 42
+    por             shift and go to state 43
+    dividido        shift and go to state 44
+    modulo          shift and go to state 45
+    menorQue        shift and go to state 46
+    mayorQue        shift and go to state 47
+    menorIgual      shift and go to state 48
+    mayorIgual      shift and go to state 49
+    dobleIgual      shift and go to state 50
+    diferenteQue    shift and go to state 51
+    And             shift and go to state 52
+    Or              shift and go to state 53
 
 
-state 113
+state 119
 
     (16) DECLARACION -> Let Mut Id dosPuntos Str igual EXPRESION . ptComa
     (26) EXPRESION -> EXPRESION . mas EXPRESION
@@ -2822,22 +3354,26 @@ state 113
     (38) EXPRESION -> EXPRESION . mayorIgual EXPRESION
     (39) EXPRESION -> EXPRESION . dobleIgual EXPRESION
     (40) EXPRESION -> EXPRESION . diferenteQue EXPRESION
+    (41) EXPRESION -> EXPRESION . And EXPRESION
+    (42) EXPRESION -> EXPRESION . Or EXPRESION
 
-    ptComa          shift and go to state 123
-    mas             shift and go to state 40
-    menos           shift and go to state 41
-    por             shift and go to state 42
-    dividido        shift and go to state 43
-    modulo          shift and go to state 44
-    menorQue        shift and go to state 45
-    mayorQue        shift and go to state 46
-    menorIgual      shift and go to state 47
-    mayorIgual      shift and go to state 48
-    dobleIgual      shift and go to state 49
-    diferenteQue    shift and go to state 50
+    ptComa          shift and go to state 129
+    mas             shift and go to state 41
+    menos           shift and go to state 42
+    por             shift and go to state 43
+    dividido        shift and go to state 44
+    modulo          shift and go to state 45
+    menorQue        shift and go to state 46
+    mayorQue        shift and go to state 47
+    menorIgual      shift and go to state 48
+    mayorIgual      shift and go to state 49
+    dobleIgual      shift and go to state 50
+    diferenteQue    shift and go to state 51
+    And             shift and go to state 52
+    Or              shift and go to state 53
 
 
-state 114
+state 120
 
     (17) DECLARACION -> Let Mut Id dosPuntos Bool igual EXPRESION . ptComa
     (26) EXPRESION -> EXPRESION . mas EXPRESION
@@ -2851,22 +3387,26 @@ state 114
     (38) EXPRESION -> EXPRESION . mayorIgual EXPRESION
     (39) EXPRESION -> EXPRESION . dobleIgual EXPRESION
     (40) EXPRESION -> EXPRESION . diferenteQue EXPRESION
+    (41) EXPRESION -> EXPRESION . And EXPRESION
+    (42) EXPRESION -> EXPRESION . Or EXPRESION
 
-    ptComa          shift and go to state 124
-    mas             shift and go to state 40
-    menos           shift and go to state 41
-    por             shift and go to state 42
-    dividido        shift and go to state 43
-    modulo          shift and go to state 44
-    menorQue        shift and go to state 45
-    mayorQue        shift and go to state 46
-    menorIgual      shift and go to state 47
-    mayorIgual      shift and go to state 48
-    dobleIgual      shift and go to state 49
-    diferenteQue    shift and go to state 50
+    ptComa          shift and go to state 130
+    mas             shift and go to state 41
+    menos           shift and go to state 42
+    por             shift and go to state 43
+    dividido        shift and go to state 44
+    modulo          shift and go to state 45
+    menorQue        shift and go to state 46
+    mayorQue        shift and go to state 47
+    menorIgual      shift and go to state 48
+    mayorIgual      shift and go to state 49
+    dobleIgual      shift and go to state 50
+    diferenteQue    shift and go to state 51
+    And             shift and go to state 52
+    Or              shift and go to state 53
 
 
-state 115
+state 121
 
     (18) DECLARACION -> Let Mut Id dosPuntos CharAux igual EXPRESION . ptComa
     (26) EXPRESION -> EXPRESION . mas EXPRESION
@@ -2880,22 +3420,26 @@ state 115
     (38) EXPRESION -> EXPRESION . mayorIgual EXPRESION
     (39) EXPRESION -> EXPRESION . dobleIgual EXPRESION
     (40) EXPRESION -> EXPRESION . diferenteQue EXPRESION
+    (41) EXPRESION -> EXPRESION . And EXPRESION
+    (42) EXPRESION -> EXPRESION . Or EXPRESION
 
-    ptComa          shift and go to state 125
-    mas             shift and go to state 40
-    menos           shift and go to state 41
-    por             shift and go to state 42
-    dividido        shift and go to state 43
-    modulo          shift and go to state 44
-    menorQue        shift and go to state 45
-    mayorQue        shift and go to state 46
-    menorIgual      shift and go to state 47
-    mayorIgual      shift and go to state 48
-    dobleIgual      shift and go to state 49
-    diferenteQue    shift and go to state 50
+    ptComa          shift and go to state 131
+    mas             shift and go to state 41
+    menos           shift and go to state 42
+    por             shift and go to state 43
+    dividido        shift and go to state 44
+    modulo          shift and go to state 45
+    menorQue        shift and go to state 46
+    mayorQue        shift and go to state 47
+    menorIgual      shift and go to state 48
+    mayorIgual      shift and go to state 49
+    dobleIgual      shift and go to state 50
+    diferenteQue    shift and go to state 51
+    And             shift and go to state 52
+    Or              shift and go to state 53
 
 
-state 116
+state 122
 
     (33) EXPRESION -> I64 dosPuntos dosPuntos Powi ParA . EXPRESION Coma EXPRESION ParC
     (26) EXPRESION -> . EXPRESION mas EXPRESION
@@ -2913,27 +3457,31 @@ state 116
     (38) EXPRESION -> . EXPRESION mayorIgual EXPRESION
     (39) EXPRESION -> . EXPRESION dobleIgual EXPRESION
     (40) EXPRESION -> . EXPRESION diferenteQue EXPRESION
-    (41) EXPRESION -> . Float
-    (42) EXPRESION -> . Entero
-    (43) EXPRESION -> . Booleano
-    (44) EXPRESION -> . String
-    (45) EXPRESION -> . Char
-    (46) EXPRESION -> . Id
+    (41) EXPRESION -> . EXPRESION And EXPRESION
+    (42) EXPRESION -> . EXPRESION Or EXPRESION
+    (43) EXPRESION -> . not EXPRESION
+    (44) EXPRESION -> . Float
+    (45) EXPRESION -> . Entero
+    (46) EXPRESION -> . Booleano
+    (47) EXPRESION -> . String
+    (48) EXPRESION -> . Char
+    (49) EXPRESION -> . Id
 
     menos           shift and go to state 20
     ParA            shift and go to state 21
     I64             shift and go to state 22
     F64             shift and go to state 23
-    Float           shift and go to state 24
-    Entero          shift and go to state 25
-    Booleano        shift and go to state 26
-    String          shift and go to state 27
-    Char            shift and go to state 28
+    not             shift and go to state 24
+    Float           shift and go to state 25
+    Entero          shift and go to state 26
+    Booleano        shift and go to state 27
+    String          shift and go to state 28
+    Char            shift and go to state 29
     Id              shift and go to state 18
 
-    EXPRESION                      shift and go to state 126
+    EXPRESION                      shift and go to state 132
 
-state 117
+state 123
 
     (34) EXPRESION -> F64 dosPuntos dosPuntos Powf ParA . EXPRESION Coma EXPRESION ParC
     (26) EXPRESION -> . EXPRESION mas EXPRESION
@@ -2951,27 +3499,31 @@ state 117
     (38) EXPRESION -> . EXPRESION mayorIgual EXPRESION
     (39) EXPRESION -> . EXPRESION dobleIgual EXPRESION
     (40) EXPRESION -> . EXPRESION diferenteQue EXPRESION
-    (41) EXPRESION -> . Float
-    (42) EXPRESION -> . Entero
-    (43) EXPRESION -> . Booleano
-    (44) EXPRESION -> . String
-    (45) EXPRESION -> . Char
-    (46) EXPRESION -> . Id
+    (41) EXPRESION -> . EXPRESION And EXPRESION
+    (42) EXPRESION -> . EXPRESION Or EXPRESION
+    (43) EXPRESION -> . not EXPRESION
+    (44) EXPRESION -> . Float
+    (45) EXPRESION -> . Entero
+    (46) EXPRESION -> . Booleano
+    (47) EXPRESION -> . String
+    (48) EXPRESION -> . Char
+    (49) EXPRESION -> . Id
 
     menos           shift and go to state 20
     ParA            shift and go to state 21
     I64             shift and go to state 22
     F64             shift and go to state 23
-    Float           shift and go to state 24
-    Entero          shift and go to state 25
-    Booleano        shift and go to state 26
-    String          shift and go to state 27
-    Char            shift and go to state 28
+    not             shift and go to state 24
+    Float           shift and go to state 25
+    Entero          shift and go to state 26
+    Booleano        shift and go to state 27
+    String          shift and go to state 28
+    Char            shift and go to state 29
     Id              shift and go to state 18
 
-    EXPRESION                      shift and go to state 127
+    EXPRESION                      shift and go to state 133
 
-state 118
+state 124
 
     (24) COMASEX -> COMASEX Coma . EXPRESION
     (26) EXPRESION -> . EXPRESION mas EXPRESION
@@ -2989,34 +3541,38 @@ state 118
     (38) EXPRESION -> . EXPRESION mayorIgual EXPRESION
     (39) EXPRESION -> . EXPRESION dobleIgual EXPRESION
     (40) EXPRESION -> . EXPRESION diferenteQue EXPRESION
-    (41) EXPRESION -> . Float
-    (42) EXPRESION -> . Entero
-    (43) EXPRESION -> . Booleano
-    (44) EXPRESION -> . String
-    (45) EXPRESION -> . Char
-    (46) EXPRESION -> . Id
+    (41) EXPRESION -> . EXPRESION And EXPRESION
+    (42) EXPRESION -> . EXPRESION Or EXPRESION
+    (43) EXPRESION -> . not EXPRESION
+    (44) EXPRESION -> . Float
+    (45) EXPRESION -> . Entero
+    (46) EXPRESION -> . Booleano
+    (47) EXPRESION -> . String
+    (48) EXPRESION -> . Char
+    (49) EXPRESION -> . Id
 
     menos           shift and go to state 20
     ParA            shift and go to state 21
     I64             shift and go to state 22
     F64             shift and go to state 23
-    Float           shift and go to state 24
-    Entero          shift and go to state 25
-    Booleano        shift and go to state 26
-    String          shift and go to state 27
-    Char            shift and go to state 28
+    not             shift and go to state 24
+    Float           shift and go to state 25
+    Entero          shift and go to state 26
+    Booleano        shift and go to state 27
+    String          shift and go to state 28
+    Char            shift and go to state 29
     Id              shift and go to state 18
 
-    EXPRESION                      shift and go to state 128
+    EXPRESION                      shift and go to state 134
 
-state 119
+state 125
 
     (23) IMPRIMIR -> PrintLn not ParA String Coma COMASEX ParC . ptComa
 
-    ptComa          shift and go to state 129
+    ptComa          shift and go to state 135
 
 
-state 120
+state 126
 
     (13) DECLARACION -> Let Mut Id dosPuntos I64 igual EXPRESION ptComa .
 
@@ -3026,7 +3582,7 @@ state 120
     $end            reduce using rule 13 (DECLARACION -> Let Mut Id dosPuntos I64 igual EXPRESION ptComa .)
 
 
-state 121
+state 127
 
     (14) DECLARACION -> Let Mut Id dosPuntos F64 igual EXPRESION ptComa .
 
@@ -3036,7 +3592,7 @@ state 121
     $end            reduce using rule 14 (DECLARACION -> Let Mut Id dosPuntos F64 igual EXPRESION ptComa .)
 
 
-state 122
+state 128
 
     (15) DECLARACION -> Let Mut Id dosPuntos StrA igual EXPRESION ptComa .
 
@@ -3046,7 +3602,7 @@ state 122
     $end            reduce using rule 15 (DECLARACION -> Let Mut Id dosPuntos StrA igual EXPRESION ptComa .)
 
 
-state 123
+state 129
 
     (16) DECLARACION -> Let Mut Id dosPuntos Str igual EXPRESION ptComa .
 
@@ -3056,7 +3612,7 @@ state 123
     $end            reduce using rule 16 (DECLARACION -> Let Mut Id dosPuntos Str igual EXPRESION ptComa .)
 
 
-state 124
+state 130
 
     (17) DECLARACION -> Let Mut Id dosPuntos Bool igual EXPRESION ptComa .
 
@@ -3066,7 +3622,7 @@ state 124
     $end            reduce using rule 17 (DECLARACION -> Let Mut Id dosPuntos Bool igual EXPRESION ptComa .)
 
 
-state 125
+state 131
 
     (18) DECLARACION -> Let Mut Id dosPuntos CharAux igual EXPRESION ptComa .
 
@@ -3076,7 +3632,7 @@ state 125
     $end            reduce using rule 18 (DECLARACION -> Let Mut Id dosPuntos CharAux igual EXPRESION ptComa .)
 
 
-state 126
+state 132
 
     (33) EXPRESION -> I64 dosPuntos dosPuntos Powi ParA EXPRESION . Coma EXPRESION ParC
     (26) EXPRESION -> EXPRESION . mas EXPRESION
@@ -3090,22 +3646,26 @@ state 126
     (38) EXPRESION -> EXPRESION . mayorIgual EXPRESION
     (39) EXPRESION -> EXPRESION . dobleIgual EXPRESION
     (40) EXPRESION -> EXPRESION . diferenteQue EXPRESION
+    (41) EXPRESION -> EXPRESION . And EXPRESION
+    (42) EXPRESION -> EXPRESION . Or EXPRESION
 
-    Coma            shift and go to state 130
-    mas             shift and go to state 40
-    menos           shift and go to state 41
-    por             shift and go to state 42
-    dividido        shift and go to state 43
-    modulo          shift and go to state 44
-    menorQue        shift and go to state 45
-    mayorQue        shift and go to state 46
-    menorIgual      shift and go to state 47
-    mayorIgual      shift and go to state 48
-    dobleIgual      shift and go to state 49
-    diferenteQue    shift and go to state 50
+    Coma            shift and go to state 136
+    mas             shift and go to state 41
+    menos           shift and go to state 42
+    por             shift and go to state 43
+    dividido        shift and go to state 44
+    modulo          shift and go to state 45
+    menorQue        shift and go to state 46
+    mayorQue        shift and go to state 47
+    menorIgual      shift and go to state 48
+    mayorIgual      shift and go to state 49
+    dobleIgual      shift and go to state 50
+    diferenteQue    shift and go to state 51
+    And             shift and go to state 52
+    Or              shift and go to state 53
 
 
-state 127
+state 133
 
     (34) EXPRESION -> F64 dosPuntos dosPuntos Powf ParA EXPRESION . Coma EXPRESION ParC
     (26) EXPRESION -> EXPRESION . mas EXPRESION
@@ -3119,22 +3679,26 @@ state 127
     (38) EXPRESION -> EXPRESION . mayorIgual EXPRESION
     (39) EXPRESION -> EXPRESION . dobleIgual EXPRESION
     (40) EXPRESION -> EXPRESION . diferenteQue EXPRESION
+    (41) EXPRESION -> EXPRESION . And EXPRESION
+    (42) EXPRESION -> EXPRESION . Or EXPRESION
 
-    Coma            shift and go to state 131
-    mas             shift and go to state 40
-    menos           shift and go to state 41
-    por             shift and go to state 42
-    dividido        shift and go to state 43
-    modulo          shift and go to state 44
-    menorQue        shift and go to state 45
-    mayorQue        shift and go to state 46
-    menorIgual      shift and go to state 47
-    mayorIgual      shift and go to state 48
-    dobleIgual      shift and go to state 49
-    diferenteQue    shift and go to state 50
+    Coma            shift and go to state 137
+    mas             shift and go to state 41
+    menos           shift and go to state 42
+    por             shift and go to state 43
+    dividido        shift and go to state 44
+    modulo          shift and go to state 45
+    menorQue        shift and go to state 46
+    mayorQue        shift and go to state 47
+    menorIgual      shift and go to state 48
+    mayorIgual      shift and go to state 49
+    dobleIgual      shift and go to state 50
+    diferenteQue    shift and go to state 51
+    And             shift and go to state 52
+    Or              shift and go to state 53
 
 
-state 128
+state 134
 
     (24) COMASEX -> COMASEX Coma EXPRESION .
     (26) EXPRESION -> EXPRESION . mas EXPRESION
@@ -3148,23 +3712,27 @@ state 128
     (38) EXPRESION -> EXPRESION . mayorIgual EXPRESION
     (39) EXPRESION -> EXPRESION . dobleIgual EXPRESION
     (40) EXPRESION -> EXPRESION . diferenteQue EXPRESION
+    (41) EXPRESION -> EXPRESION . And EXPRESION
+    (42) EXPRESION -> EXPRESION . Or EXPRESION
 
     ParC            reduce using rule 24 (COMASEX -> COMASEX Coma EXPRESION .)
     Coma            reduce using rule 24 (COMASEX -> COMASEX Coma EXPRESION .)
-    mas             shift and go to state 40
-    menos           shift and go to state 41
-    por             shift and go to state 42
-    dividido        shift and go to state 43
-    modulo          shift and go to state 44
-    menorQue        shift and go to state 45
-    mayorQue        shift and go to state 46
-    menorIgual      shift and go to state 47
-    mayorIgual      shift and go to state 48
-    dobleIgual      shift and go to state 49
-    diferenteQue    shift and go to state 50
+    mas             shift and go to state 41
+    menos           shift and go to state 42
+    por             shift and go to state 43
+    dividido        shift and go to state 44
+    modulo          shift and go to state 45
+    menorQue        shift and go to state 46
+    mayorQue        shift and go to state 47
+    menorIgual      shift and go to state 48
+    mayorIgual      shift and go to state 49
+    dobleIgual      shift and go to state 50
+    diferenteQue    shift and go to state 51
+    And             shift and go to state 52
+    Or              shift and go to state 53
 
 
-state 129
+state 135
 
     (23) IMPRIMIR -> PrintLn not ParA String Coma COMASEX ParC ptComa .
 
@@ -3174,7 +3742,7 @@ state 129
     $end            reduce using rule 23 (IMPRIMIR -> PrintLn not ParA String Coma COMASEX ParC ptComa .)
 
 
-state 130
+state 136
 
     (33) EXPRESION -> I64 dosPuntos dosPuntos Powi ParA EXPRESION Coma . EXPRESION ParC
     (26) EXPRESION -> . EXPRESION mas EXPRESION
@@ -3192,27 +3760,31 @@ state 130
     (38) EXPRESION -> . EXPRESION mayorIgual EXPRESION
     (39) EXPRESION -> . EXPRESION dobleIgual EXPRESION
     (40) EXPRESION -> . EXPRESION diferenteQue EXPRESION
-    (41) EXPRESION -> . Float
-    (42) EXPRESION -> . Entero
-    (43) EXPRESION -> . Booleano
-    (44) EXPRESION -> . String
-    (45) EXPRESION -> . Char
-    (46) EXPRESION -> . Id
+    (41) EXPRESION -> . EXPRESION And EXPRESION
+    (42) EXPRESION -> . EXPRESION Or EXPRESION
+    (43) EXPRESION -> . not EXPRESION
+    (44) EXPRESION -> . Float
+    (45) EXPRESION -> . Entero
+    (46) EXPRESION -> . Booleano
+    (47) EXPRESION -> . String
+    (48) EXPRESION -> . Char
+    (49) EXPRESION -> . Id
 
     menos           shift and go to state 20
     ParA            shift and go to state 21
     I64             shift and go to state 22
     F64             shift and go to state 23
-    Float           shift and go to state 24
-    Entero          shift and go to state 25
-    Booleano        shift and go to state 26
-    String          shift and go to state 27
-    Char            shift and go to state 28
+    not             shift and go to state 24
+    Float           shift and go to state 25
+    Entero          shift and go to state 26
+    Booleano        shift and go to state 27
+    String          shift and go to state 28
+    Char            shift and go to state 29
     Id              shift and go to state 18
 
-    EXPRESION                      shift and go to state 132
+    EXPRESION                      shift and go to state 138
 
-state 131
+state 137
 
     (34) EXPRESION -> F64 dosPuntos dosPuntos Powf ParA EXPRESION Coma . EXPRESION ParC
     (26) EXPRESION -> . EXPRESION mas EXPRESION
@@ -3230,27 +3802,31 @@ state 131
     (38) EXPRESION -> . EXPRESION mayorIgual EXPRESION
     (39) EXPRESION -> . EXPRESION dobleIgual EXPRESION
     (40) EXPRESION -> . EXPRESION diferenteQue EXPRESION
-    (41) EXPRESION -> . Float
-    (42) EXPRESION -> . Entero
-    (43) EXPRESION -> . Booleano
-    (44) EXPRESION -> . String
-    (45) EXPRESION -> . Char
-    (46) EXPRESION -> . Id
+    (41) EXPRESION -> . EXPRESION And EXPRESION
+    (42) EXPRESION -> . EXPRESION Or EXPRESION
+    (43) EXPRESION -> . not EXPRESION
+    (44) EXPRESION -> . Float
+    (45) EXPRESION -> . Entero
+    (46) EXPRESION -> . Booleano
+    (47) EXPRESION -> . String
+    (48) EXPRESION -> . Char
+    (49) EXPRESION -> . Id
 
     menos           shift and go to state 20
     ParA            shift and go to state 21
     I64             shift and go to state 22
     F64             shift and go to state 23
-    Float           shift and go to state 24
-    Entero          shift and go to state 25
-    Booleano        shift and go to state 26
-    String          shift and go to state 27
-    Char            shift and go to state 28
+    not             shift and go to state 24
+    Float           shift and go to state 25
+    Entero          shift and go to state 26
+    Booleano        shift and go to state 27
+    String          shift and go to state 28
+    Char            shift and go to state 29
     Id              shift and go to state 18
 
-    EXPRESION                      shift and go to state 133
+    EXPRESION                      shift and go to state 139
 
-state 132
+state 138
 
     (33) EXPRESION -> I64 dosPuntos dosPuntos Powi ParA EXPRESION Coma EXPRESION . ParC
     (26) EXPRESION -> EXPRESION . mas EXPRESION
@@ -3264,22 +3840,26 @@ state 132
     (38) EXPRESION -> EXPRESION . mayorIgual EXPRESION
     (39) EXPRESION -> EXPRESION . dobleIgual EXPRESION
     (40) EXPRESION -> EXPRESION . diferenteQue EXPRESION
+    (41) EXPRESION -> EXPRESION . And EXPRESION
+    (42) EXPRESION -> EXPRESION . Or EXPRESION
 
-    ParC            shift and go to state 134
-    mas             shift and go to state 40
-    menos           shift and go to state 41
-    por             shift and go to state 42
-    dividido        shift and go to state 43
-    modulo          shift and go to state 44
-    menorQue        shift and go to state 45
-    mayorQue        shift and go to state 46
-    menorIgual      shift and go to state 47
-    mayorIgual      shift and go to state 48
-    dobleIgual      shift and go to state 49
-    diferenteQue    shift and go to state 50
+    ParC            shift and go to state 140
+    mas             shift and go to state 41
+    menos           shift and go to state 42
+    por             shift and go to state 43
+    dividido        shift and go to state 44
+    modulo          shift and go to state 45
+    menorQue        shift and go to state 46
+    mayorQue        shift and go to state 47
+    menorIgual      shift and go to state 48
+    mayorIgual      shift and go to state 49
+    dobleIgual      shift and go to state 50
+    diferenteQue    shift and go to state 51
+    And             shift and go to state 52
+    Or              shift and go to state 53
 
 
-state 133
+state 139
 
     (34) EXPRESION -> F64 dosPuntos dosPuntos Powf ParA EXPRESION Coma EXPRESION . ParC
     (26) EXPRESION -> EXPRESION . mas EXPRESION
@@ -3293,22 +3873,26 @@ state 133
     (38) EXPRESION -> EXPRESION . mayorIgual EXPRESION
     (39) EXPRESION -> EXPRESION . dobleIgual EXPRESION
     (40) EXPRESION -> EXPRESION . diferenteQue EXPRESION
+    (41) EXPRESION -> EXPRESION . And EXPRESION
+    (42) EXPRESION -> EXPRESION . Or EXPRESION
 
-    ParC            shift and go to state 135
-    mas             shift and go to state 40
-    menos           shift and go to state 41
-    por             shift and go to state 42
-    dividido        shift and go to state 43
-    modulo          shift and go to state 44
-    menorQue        shift and go to state 45
-    mayorQue        shift and go to state 46
-    menorIgual      shift and go to state 47
-    mayorIgual      shift and go to state 48
-    dobleIgual      shift and go to state 49
-    diferenteQue    shift and go to state 50
+    ParC            shift and go to state 141
+    mas             shift and go to state 41
+    menos           shift and go to state 42
+    por             shift and go to state 43
+    dividido        shift and go to state 44
+    modulo          shift and go to state 45
+    menorQue        shift and go to state 46
+    mayorQue        shift and go to state 47
+    menorIgual      shift and go to state 48
+    mayorIgual      shift and go to state 49
+    dobleIgual      shift and go to state 50
+    diferenteQue    shift and go to state 51
+    And             shift and go to state 52
+    Or              shift and go to state 53
 
 
-state 134
+state 140
 
     (33) EXPRESION -> I64 dosPuntos dosPuntos Powi ParA EXPRESION Coma EXPRESION ParC .
 
@@ -3324,11 +3908,13 @@ state 134
     mayorIgual      reduce using rule 33 (EXPRESION -> I64 dosPuntos dosPuntos Powi ParA EXPRESION Coma EXPRESION ParC .)
     dobleIgual      reduce using rule 33 (EXPRESION -> I64 dosPuntos dosPuntos Powi ParA EXPRESION Coma EXPRESION ParC .)
     diferenteQue    reduce using rule 33 (EXPRESION -> I64 dosPuntos dosPuntos Powi ParA EXPRESION Coma EXPRESION ParC .)
+    And             reduce using rule 33 (EXPRESION -> I64 dosPuntos dosPuntos Powi ParA EXPRESION Coma EXPRESION ParC .)
+    Or              reduce using rule 33 (EXPRESION -> I64 dosPuntos dosPuntos Powi ParA EXPRESION Coma EXPRESION ParC .)
     ParC            reduce using rule 33 (EXPRESION -> I64 dosPuntos dosPuntos Powi ParA EXPRESION Coma EXPRESION ParC .)
     Coma            reduce using rule 33 (EXPRESION -> I64 dosPuntos dosPuntos Powi ParA EXPRESION Coma EXPRESION ParC .)
 
 
-state 135
+state 141
 
     (34) EXPRESION -> F64 dosPuntos dosPuntos Powf ParA EXPRESION Coma EXPRESION ParC .
 
@@ -3344,6 +3930,8 @@ state 135
     mayorIgual      reduce using rule 34 (EXPRESION -> F64 dosPuntos dosPuntos Powf ParA EXPRESION Coma EXPRESION ParC .)
     dobleIgual      reduce using rule 34 (EXPRESION -> F64 dosPuntos dosPuntos Powf ParA EXPRESION Coma EXPRESION ParC .)
     diferenteQue    reduce using rule 34 (EXPRESION -> F64 dosPuntos dosPuntos Powf ParA EXPRESION Coma EXPRESION ParC .)
+    And             reduce using rule 34 (EXPRESION -> F64 dosPuntos dosPuntos Powf ParA EXPRESION Coma EXPRESION ParC .)
+    Or              reduce using rule 34 (EXPRESION -> F64 dosPuntos dosPuntos Powf ParA EXPRESION Coma EXPRESION ParC .)
     ParC            reduce using rule 34 (EXPRESION -> F64 dosPuntos dosPuntos Powf ParA EXPRESION Coma EXPRESION ParC .)
     Coma            reduce using rule 34 (EXPRESION -> F64 dosPuntos dosPuntos Powf ParA EXPRESION Coma EXPRESION ParC .)
 
