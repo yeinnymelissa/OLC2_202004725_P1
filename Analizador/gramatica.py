@@ -2,12 +2,14 @@ from Analizador.Entorno.Entorno import Entorno
 from Analizador.Entorno.Tipo import *
 from Analizador.Entorno.Error import Error
 from Analizador.Expresiones.Acceso import Acceso
+from Analizador.Expresiones.AccesoVector import AccesoVector
 from Analizador.Expresiones.Aritmeticas import Aritmeticas
 from Analizador.Expresiones.Literal import Literal
 from Analizador.Expresiones.Logicas import Logicas
 from Analizador.Expresiones.Relacionales import Relacionales
 from Analizador.Expresiones.Vector import Vector
 from Analizador.Instrucciones.Asignacion import Asignacion
+from Analizador.Instrucciones.AsignacionVec import AsignacionVec
 from Analizador.Instrucciones.Declaracion import Declaracion
 from Analizador.Instrucciones.DeclaracionVec import DeclaracionVec
 from Analizador.Instrucciones.Println import Println
@@ -369,6 +371,10 @@ def p_Asignacion(t):
     '''ASIGNACION : Id igual EXPRESION ptComa'''
     t[0] = Asignacion(t[1], t[3], t.lineno(1), obtener_columna_p(t.lexer.lexdata, t))
 
+def p_Asignacion_Vector(t):
+    '''ASIGNACION : Id CorA EXPRESION CorC igual EXPRESION ptComa'''
+    t[0] = AsignacionVec(t[1], t[3], t[6], t.lineno(1), obtener_columna_p(t.lexer.lexdata, t))
+
 #---------------PUSH-------------------
 
 def p_Instruccion_Push(t):
@@ -529,7 +535,9 @@ def p_Expresion_Id(t):
     '''EXPRESION : Id'''
     t[0] = Acceso(t[1], t.lineno(1), obtener_columna_p(t.lexer.lexdata, t))
 
-
+def p_Expresion_Acceso_Vec(t):
+    '''EXPRESION : Id CorA EXPRESION CorC'''
+    t[0] = AccesoVector(t[1], t[3], t.lineno(1), obtener_columna_p(t.lexer.lexdata, t))
 
 def p_error(t):
     print("Error sintactico '%s'" % t.value)
