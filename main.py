@@ -161,8 +161,13 @@ if __name__ == '__main__':
     let mut y : String = "true";
     let mut z : &str = "hola";
     z = "prueba";
-    let vector = vec![1,2,3,4,5];
-    let v: Vec<i64> = Vec::with_capacity(10);
+    let mut vector = vec![1,2,3,4,5];
+    println!("El vector1 es: {:?}", vector);
+    vector.push(6);
+    vector.push("3+4");
+    println!("El vector2 es: {:?}", vector);
+    let v2 = vec!["hola"; 10];
+    let v = vec![vec![1; 10],vec![2; 8],vec![3; 15],vec![5; 2],vec![8; 1]];
     println!("El vector es: {:?}", v);
     """
     analizar_entrada(entrada)

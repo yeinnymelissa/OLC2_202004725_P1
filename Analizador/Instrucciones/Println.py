@@ -58,13 +58,14 @@ class Println(Instruccion):
                     for i in self.expresion:
                         ex = i.run(env)
                         if ex['tipo'] == TipoDato.vec:
-                            singleton.addConsola("[")
+                            singleton.addConsola(str(ex['valor']))
+                            """singleton.addConsola("[")
                             for i in range(0, len(ex['valor'])):
                                 if(i == 0):
                                     singleton.addConsola(str(ex['valor'][i]))
                                 else:
                                     singleton.addConsola(", "+str(ex['valor'][i]))
-                            singleton.addConsola("]")
+                            singleton.addConsola("]")"""
                         else: 
                             error = Error("No se puede imprimir con el formato {:?} un valor que no sea vector.", "Semántico", self.linea, self.columna)
                             singleton.addError(error)
