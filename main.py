@@ -157,11 +157,13 @@ def insertarDatos(tv, datos):
 
 if __name__ == '__main__':
     entrada = """
-    let mut x = 2+4; 
+    let mut x = (5 as f64)+4.6; 
     let mut y : String = "true";
     let mut z : &str = "hola";
     z = "prueba";
-    println!("{}", 5<10 || 4<10);
+    let vector = vec![1,2,3,4,5];
+    let v: Vec<i64> = Vec::with_capacity(10);
+    println!("El vector es: {:?}", v);
     """
     analizar_entrada(entrada)
     """#----------------------CREACION VENTANA----------------------

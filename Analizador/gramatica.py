@@ -8,8 +8,10 @@ from Analizador.Expresiones.Logicas import Logicas
 from Analizador.Expresiones.Relacionales import Relacionales
 from Analizador.Instrucciones.Asignacion import Asignacion
 from Analizador.Instrucciones.Declaracion import Declaracion
+from Analizador.Instrucciones.DeclaracionVec import DeclaracionVec
 from Analizador.Instrucciones.Println import Println
 from Analizador.Singleton.Singleton import Singleton
+from Analizador.Expresiones.As import *
 
 reservadas = {
     'true' : 'True',
@@ -23,7 +25,12 @@ reservadas = {
     'char': 'CharAux',
     'println':'PrintLn',
     'pow':'Powi',
-    'powf':'Powf'
+    'powf':'Powf', 
+    'as':'AS',
+    'Vec':'VEC',
+    'vec':'vec',
+    'new':'New',
+    'with_capacity':'Capacidad',
 }
 
 tokens = [
@@ -39,6 +46,8 @@ tokens = [
     'llaveC',
     'ParA',
     'ParC',
+    'CorA',
+    'CorC',
     'igual',
     'mas',
     'menos',
@@ -65,6 +74,8 @@ t_llaveA = r'{'
 t_llaveC = r'}'
 t_ParA = r'\('
 t_ParC = r'\)'
+t_CorA = r'\['
+t_CorC = r'\]'
 t_Or = r'\|\|'
 t_And = r'&&'
 t_igual = r'='
@@ -243,6 +254,122 @@ def p_Declaracion_Mut_Tipo_Char(t):
     '''DECLARACION : Let Mut Id dosPuntos CharAux igual EXPRESION ptComa'''
     t[0] = Declaracion(t[3], TipoDato.char, t[7], True, t.lineno(1), obtener_columna_p(t.lexer.lexdata, t))
 
+#--------------------VECTORES NO MUT------------------
+
+def p_Declaracion_Vec_Vacio_I64(t):
+    '''DECLARACION : Let Id dosPuntos VEC menorQue I64 mayorQue igual VEC dosPuntos dosPuntos New ParA ParC ptComa'''
+    t[0] = DeclaracionVec(t[2], TipoDato.i64, None, False, TipoVectores.vacio, t.lineno(1), obtener_columna_p(t.lexer.lexdata, t))
+
+def p_Declaracion_Vec_Vacio_F64(t):
+    '''DECLARACION : Let Id dosPuntos VEC menorQue F64 mayorQue igual VEC dosPuntos dosPuntos New ParA ParC ptComa'''
+    t[0] = DeclaracionVec(t[2], TipoDato.f64, None, False, TipoVectores.vacio, t.lineno(1), obtener_columna_p(t.lexer.lexdata, t))
+
+def p_Declaracion_Vec_Vacio_String(t):
+    '''DECLARACION : Let Id dosPuntos VEC menorQue StrA mayorQue igual VEC dosPuntos dosPuntos New ParA ParC ptComa'''
+    t[0] = DeclaracionVec(t[2], TipoDato.string, None, False, TipoVectores.vacio, t.lineno(1), obtener_columna_p(t.lexer.lexdata, t))
+
+def p_Declaracion_Vec_Vacio_Str(t):
+    '''DECLARACION : Let Id dosPuntos VEC menorQue Str mayorQue igual VEC dosPuntos dosPuntos New ParA ParC ptComa'''
+    t[0] = DeclaracionVec(t[2], TipoDato.str, None, False, TipoVectores.vacio, t.lineno(1), obtener_columna_p(t.lexer.lexdata, t))
+
+def p_Declaracion_Vec_Vacio_Bool(t):
+    '''DECLARACION : Let Id dosPuntos VEC menorQue Bool mayorQue igual VEC dosPuntos dosPuntos New ParA ParC ptComa'''
+    t[0] = DeclaracionVec(t[2], TipoDato.bool, None, False, TipoVectores.vacio, t.lineno(1), obtener_columna_p(t.lexer.lexdata, t))
+
+def p_Declaracion_Vec_Vacio_Char(t):
+    '''DECLARACION : Let Id dosPuntos VEC menorQue CharAux mayorQue igual VEC dosPuntos dosPuntos New ParA ParC ptComa'''
+    t[0] = DeclaracionVec(t[2], TipoDato.char, None, False, TipoVectores.vacio, t.lineno(1), obtener_columna_p(t.lexer.lexdata, t))
+
+def p_Declaracion_Vec_ValoresIniciales(t):
+    '''DECLARACION : Let Id igual vec not CorA COMASEX CorC ptComa'''
+    t[0] = DeclaracionVec(t[2], None, t[7], False, TipoVectores.valoresIniciales, t.lineno(1), obtener_columna_p(t.lexer.lexdata, t))
+
+def p_Declaracion_Vec_ValoresRepetidos(t):
+    '''DECLARACION : Let Id igual vec not CorA EXPRESION ptComa EXPRESION CorC ptComa'''
+    t[0] = DeclaracionVec(t[2], None, [t[7], t[9]], False, TipoVectores.repetidos, t.lineno(1), obtener_columna_p(t.lexer.lexdata, t))
+
+def p_Declaracion_Vec_Capacidad_I64(t):
+    '''DECLARACION : Let Id dosPuntos VEC menorQue I64 mayorQue igual VEC dosPuntos dosPuntos Capacidad ParA EXPRESION ParC ptComa'''
+    t[0] = DeclaracionVec(t[2], TipoDato.i64, t[14], False, TipoVectores.capacidad, t.lineno(1), obtener_columna_p(t.lexer.lexdata, t))
+
+def p_Declaracion_Vec_Capacidad_F64(t):
+    '''DECLARACION : Let Id dosPuntos VEC menorQue F64 mayorQue igual VEC dosPuntos dosPuntos Capacidad ParA EXPRESION ParC ptComa'''
+    t[0] = DeclaracionVec(t[2], TipoDato.f64, t[14], False, TipoVectores.capacidad, t.lineno(1), obtener_columna_p(t.lexer.lexdata, t))
+
+def p_Declaracion_Vec_Capacidad_String(t):
+    '''DECLARACION : Let Id dosPuntos VEC menorQue StrA mayorQue igual VEC dosPuntos dosPuntos Capacidad ParA EXPRESION ParC ptComa'''
+    t[0] = DeclaracionVec(t[2], TipoDato.string, t[14], False, TipoVectores.capacidad, t.lineno(1), obtener_columna_p(t.lexer.lexdata, t))
+
+def p_Declaracion_Vec_Capacidad_Str(t):
+    '''DECLARACION : Let Id dosPuntos VEC menorQue Str mayorQue igual VEC dosPuntos dosPuntos Capacidad ParA EXPRESION ParC ptComa'''
+    t[0] = DeclaracionVec(t[2], TipoDato.str, t[14], False, TipoVectores.capacidad, t.lineno(1), obtener_columna_p(t.lexer.lexdata, t))
+
+def p_Declaracion_Vec_Capacidad_Bool(t):
+    '''DECLARACION : Let Id dosPuntos VEC menorQue Bool mayorQue igual VEC dosPuntos dosPuntos Capacidad ParA EXPRESION ParC ptComa'''
+    t[0] = DeclaracionVec(t[2], TipoDato.bool, t[14], False, TipoVectores.capacidad, t.lineno(1), obtener_columna_p(t.lexer.lexdata, t))
+
+def p_Declaracion_Vec_Capacidad_Char(t):
+    '''DECLARACION : Let Id dosPuntos VEC menorQue CharAux mayorQue igual VEC dosPuntos dosPuntos Capacidad ParA EXPRESION ParC ptComa'''
+    t[0] = DeclaracionVec(t[2], TipoDato.char, t[14], False, TipoVectores.capacidad, t.lineno(1), obtener_columna_p(t.lexer.lexdata, t))
+
+#-------------------VECTORES MUT-------------------
+
+def p_Declaracion_Vec_Mut_Vacio_I64(t):
+    '''DECLARACION : Let Mut Id dosPuntos VEC menorQue I64 mayorQue igual VEC dosPuntos dosPuntos New ParA ParC ptComa'''
+    t[0] = DeclaracionVec(t[3], TipoDato.i64, None, False, TipoVectores.vacio, t.lineno(1), obtener_columna_p(t.lexer.lexdata, t))
+
+def p_Declaracion_Vec_Mut_Vacio_F64(t):
+    '''DECLARACION : Let Mut Id dosPuntos VEC menorQue F64 mayorQue igual VEC dosPuntos dosPuntos New ParA ParC ptComa'''
+    t[0] = DeclaracionVec(t[3], TipoDato.f64, None, False, TipoVectores.vacio, t.lineno(1), obtener_columna_p(t.lexer.lexdata, t))
+
+def p_Declaracion_Vec_Mut_Vacio_String(t):
+    '''DECLARACION : Let Mut Id dosPuntos VEC menorQue StrA mayorQue igual VEC dosPuntos dosPuntos New ParA ParC ptComa'''
+    t[0] = DeclaracionVec(t[3], TipoDato.string, None, False, TipoVectores.vacio, t.lineno(1), obtener_columna_p(t.lexer.lexdata, t))
+
+def p_Declaracion_Vec_Mut_Vacio_Str(t):
+    '''DECLARACION : Let Mut Id dosPuntos VEC menorQue Str mayorQue igual VEC dosPuntos dosPuntos New ParA ParC ptComa'''
+    t[0] = DeclaracionVec(t[3], TipoDato.str, None, False, TipoVectores.vacio, t.lineno(1), obtener_columna_p(t.lexer.lexdata, t))
+
+def p_Declaracion_Vec_Mut_Vacio_Bool(t):
+    '''DECLARACION : Let Mut Id dosPuntos VEC menorQue Bool mayorQue igual VEC dosPuntos dosPuntos New ParA ParC ptComa'''
+    t[0] = DeclaracionVec(t[3], TipoDato.bool, None, False, TipoVectores.vacio, t.lineno(1), obtener_columna_p(t.lexer.lexdata, t))
+
+def p_Declaracion_Vec_Mut_Vacio_Char(t):
+    '''DECLARACION : Let Mut Id dosPuntos VEC menorQue CharAux mayorQue igual VEC dosPuntos dosPuntos New ParA ParC ptComa'''
+    t[0] = DeclaracionVec(t[3], TipoDato.char, None, False, TipoVectores.vacio, t.lineno(1), obtener_columna_p(t.lexer.lexdata, t))
+
+def p_Declaracion_Vec_Mut_ValoresIniciales(t):
+    '''DECLARACION : Let Mut Id igual vec not CorA COMASEX CorC ptComa'''
+    t[0] = DeclaracionVec(t[3], None, t[8], False, TipoVectores.valoresIniciales, t.lineno(1), obtener_columna_p(t.lexer.lexdata, t))
+
+def p_Declaracion_Vec_Mut_ValoresRepetidos(t):
+    '''DECLARACION : Let Mut Id igual vec not CorA EXPRESION ptComa EXPRESION CorC ptComa'''
+    t[0] = DeclaracionVec(t[3], None, [t[8], t[10]], False, TipoVectores.repetidos, t.lineno(1), obtener_columna_p(t.lexer.lexdata, t))
+
+def p_Declaracion_Vec_Mut_Capacidad_I64(t):
+    '''DECLARACION : Let Mut Id dosPuntos VEC menorQue I64 mayorQue igual VEC dosPuntos dosPuntos Capacidad ParA EXPRESION ParC ptComa'''
+    t[0] = DeclaracionVec(t[3], TipoDato.i64, t[15], False, TipoVectores.capacidad, t.lineno(1), obtener_columna_p(t.lexer.lexdata, t))
+
+def p_Declaracion_Vec_Mut_Capacidad_F64(t):
+    '''DECLARACION : Let Mut Id dosPuntos VEC menorQue F64 mayorQue igual VEC dosPuntos dosPuntos Capacidad ParA EXPRESION ParC ptComa'''
+    t[0] = DeclaracionVec(t[3], TipoDato.f64, t[15], False, TipoVectores.capacidad, t.lineno(1), obtener_columna_p(t.lexer.lexdata, t))
+
+def p_Declaracion_Vec_Mut_Capacidad_String(t):
+    '''DECLARACION : Let Mut Id dosPuntos VEC menorQue StrA mayorQue igual VEC dosPuntos dosPuntos Capacidad ParA EXPRESION ParC ptComa'''
+    t[0] = DeclaracionVec(t[3], TipoDato.string, t[15], False, TipoVectores.capacidad, t.lineno(1), obtener_columna_p(t.lexer.lexdata, t))
+
+def p_Declaracion_Vec_Mut_Capacidad_Str(t):
+    '''DECLARACION : Let Mut Id dosPuntos VEC menorQue Str mayorQue igual VEC dosPuntos dosPuntos Capacidad ParA EXPRESION ParC ptComa'''
+    t[0] = DeclaracionVec(t[3], TipoDato.str, t[15], False, TipoVectores.capacidad, t.lineno(1), obtener_columna_p(t.lexer.lexdata, t))
+
+def p_Declaracion_Vec_Mut_Capacidad_Bool(t):
+    '''DECLARACION : Let Mut Id dosPuntos VEC menorQue Bool mayorQue igual VEC dosPuntos dosPuntos Capacidad ParA EXPRESION ParC ptComa'''
+    t[0] = DeclaracionVec(t[3], TipoDato.bool, t[15], False, TipoVectores.capacidad, t.lineno(1), obtener_columna_p(t.lexer.lexdata, t))
+
+def p_Declaracion_Vec_Mut_Capacidad_Char(t):
+    '''DECLARACION : Let Mut Id dosPuntos VEC menorQue CharAux mayorQue igual VEC dosPuntos dosPuntos Capacidad ParA EXPRESION ParC ptComa'''
+    t[0] = DeclaracionVec(t[3], TipoDato.char, t[15], False, TipoVectores.capacidad, t.lineno(1), obtener_columna_p(t.lexer.lexdata, t))
+
 #-------------ASIGNACION---------------
 
 def p_Instruccion_Asignacion(t):
@@ -357,6 +484,16 @@ def p_Expresion_Or(t):
 def p_Expresion_Not(t):
     '''EXPRESION : not EXPRESION'''
     t[0] = Logicas(t[2], None, TipoLogicas.NOT, t.lineno(1), obtener_columna_p(t.lexer.lexdata, t))
+
+#---------------AS-----------------
+
+def p_Expresion_As_i64(t):
+    '''EXPRESION : EXPRESION AS I64'''
+    t[0] = As(t[1], TipoDato.i64, t.lineno(1), obtener_columna_p(t.lexer.lexdata, t))
+
+def p_Expresion_As_f64(t):
+    '''EXPRESION : EXPRESION AS F64'''
+    t[0] = As(t[1], TipoDato.f64, t.lineno(1), obtener_columna_p(t.lexer.lexdata, t))
 
 #-------------LITERALES------------
 

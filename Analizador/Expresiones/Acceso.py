@@ -18,7 +18,10 @@ class Acceso(Expresion):
             singleton.addError(error)
             return {'valor': None, 'tipo': TipoDato.error}
         
-        return {'valor': variable.valor, 'tipo': variable.tipo_dato}
+        if(variable.tipo_simbolo == TipoSimbolo.vector):
+            return {'valor': variable.valor, 'tipo': TipoDato.vec}
+        else:
+            return {'valor': variable.valor, 'tipo': variable.tipo_dato}
     
     def ast(self):
         pass

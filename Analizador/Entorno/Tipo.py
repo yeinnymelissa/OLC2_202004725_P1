@@ -6,6 +6,7 @@ class TipoSimbolo(enum.Enum):
     variable = 0
     funcion = 1
     modulo = 2
+    vector = 3
 
 class TipoPrint(enum.Enum):
     expresion = 0
@@ -19,6 +20,7 @@ class TipoDato(enum.Enum):
     char = 4
     string = 5
     str = 6
+    vec = 7
 
 class TipoAritmetica(enum.Enum):
     suma = 0
@@ -42,6 +44,12 @@ class TipoLogicas(enum.Enum):
     OR = 0
     AND = 1
     NOT = 2
+
+class TipoVectores(enum.Enum):
+    vacio = 0
+    valoresIniciales = 1
+    repetidos = 2
+    capacidad = 3
 
 global validator
 

@@ -41,9 +41,36 @@ class Println(Instruccion):
                     singleton.addConsola(cadena)
                     for i in self.expresion:
                         ex = i.run(env)
-                        singleton.addConsola(str(ex['valor'])+" ")
-                    pass
+                        if ex['tipo'] != TipoDato.vec:
+                            singleton.addConsola(str(ex['valor'])+" ")
+                        else: 
+                            error = Error("No se puede imprimir con el formato {} un vector.", "Semántico", self.linea, self.columna)
+                            singleton.addError(error)
+                            print(error.descripcion)
                     singleton.addConsola("\n")
+            elif vec > 0:
+                vecS = ""
+                if vec == len(self.expresion):
+                    for i in formato:
+                        if i != "{}" and i != "{:?}":
+                            cadena += i +" "
+                    singleton.addConsola(cadena)
+                    for i in self.expresion:
+                        ex = i.run(env)
+                        if ex['tipo'] == TipoDato.vec:
+                            singleton.addConsola("[")
+                            for i in range(0, len(ex['valor'])):
+                                if(i == 0):
+                                    singleton.addConsola(str(ex['valor'][i]))
+                                else:
+                                    singleton.addConsola(", "+str(ex['valor'][i]))
+                            singleton.addConsola("]")
+                        else: 
+                            error = Error("No se puede imprimir con el formato {:?} un valor que no sea vector.", "Semántico", self.linea, self.columna)
+                            singleton.addError(error)
+                            print(error.descripcion)
+                    singleton.addConsola("\n")
+            
                 
 
             

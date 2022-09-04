@@ -45,14 +45,16 @@ class Declaracion(Instruccion):
                 return
             return
         else:
-            envActual = env.guardar_variable(self.nombre, expre['valor'], expre['tipo'], self.editable, TipoSimbolo.variable, self.linea, self.columna)
-            
-            if envActual == False:
-                error = Error("Declaración invalida, la variable con el nombre \""+str(self.nombre)+"\" ya existe.", "Semántico", self.linea, self.columna)
-                singleton.addError(error)
-                print(error.descripcion)
+            if(expre['tipo'] != TipoDato.error):
+                envActual = env.guardar_variable(self.nombre, expre['valor'], expre['tipo'], self.editable, TipoSimbolo.variable, self.linea, self.columna)
+                
+                if envActual == False:
+                    error = Error("Declaración invalida, la variable con el nombre \""+str(self.nombre)+"\" ya existe.", "Semántico", self.linea, self.columna)
+                    singleton.addError(error)
+                    print(error.descripcion)
+                    return
                 return
-            return
+
 
     def ast():
         pass
