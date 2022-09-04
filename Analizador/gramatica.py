@@ -7,11 +7,13 @@ from Analizador.Expresiones.Aritmeticas import Aritmeticas
 from Analizador.Expresiones.Literal import Literal
 from Analizador.Expresiones.Logicas import Logicas
 from Analizador.Expresiones.Relacionales import Relacionales
+from Analizador.Expresiones.Remove import Remove
 from Analizador.Expresiones.Vector import Vector
 from Analizador.Instrucciones.Asignacion import Asignacion
 from Analizador.Instrucciones.AsignacionVec import AsignacionVec
 from Analizador.Instrucciones.Declaracion import Declaracion
 from Analizador.Instrucciones.DeclaracionVec import DeclaracionVec
+from Analizador.Instrucciones.Insert import Insert
 from Analizador.Instrucciones.Println import Println
 from Analizador.Instrucciones.Push import Push
 from Analizador.Singleton.Singleton import Singleton
@@ -35,7 +37,9 @@ reservadas = {
     'vec':'vec',
     'new':'New',
     'with_capacity':'Capacidad',
-    'push': 'Push'
+    'push': 'Push',
+    'insert': 'Insert',
+    'remove': 'Remove'
 }
 
 tokens = [
@@ -385,6 +389,16 @@ def p_Push_Vec(t):
     '''PUSH : Id punto Push ParA EXPRESION ParC ptComa'''
     t[0] = Push(t[1], t[5], t.lineno(1), obtener_columna_p(t.lexer.lexdata, t))
 
+#---------------INSERT-------------------
+
+def p_Instruccion_Insert(t):
+    '''INSTRUCCION : INSERTVEC'''
+    t[0] = t[1]
+
+def p_Insert_Vec(t):
+    '''INSERTVEC : Id punto Insert ParA EXPRESION Coma EXPRESION ParC ptComa'''
+    t[0] = Insert(t[1], t[5], t[7], t.lineno(1), obtener_columna_p(t.lexer.lexdata, t))
+
 #--------------IMPRIMIR----------------
 
 def p_Instruccion_Imprimir(t):
@@ -508,6 +522,16 @@ def p_Expresion_Vector_Iniciales(t):
 def p_Expresion_Vector_Repetidos(t):
     '''EXPRESION : vec not CorA EXPRESION ptComa EXPRESION CorC'''
     t[0] = Vector([t[4], t[6]], TipoVectores.repetidos, t.lineno(1), obtener_columna_p(t.lexer.lexdata, t))
+
+#---------------REMOVE-------------------
+
+def p_Expresion_Remove(t):
+    '''EXPRESION : INSERTVEC'''
+    t[0] = t[1]
+
+def p_Remove_Vec(t):
+    '''EXPRESION : Id punto Remove ParA EXPRESION ParC'''
+    t[0] = Remove(t[1], t[5], t.lineno(1), obtener_columna_p(t.lexer.lexdata, t))
 
 #-------------LITERALES------------
 

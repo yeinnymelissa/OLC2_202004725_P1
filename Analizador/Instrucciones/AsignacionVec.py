@@ -47,7 +47,13 @@ class AsignacionVec(Instruccion):
             nume = self.num.run(env)
 
             if nume['tipo'] == TipoDato.i64:
-                variable.valor[nume['valor']] = expresion['valor']
+                if(nume['valor'] < len(variable.valor)):
+                    variable.valor[nume['valor']] = expresion['valor']
+                else:
+                    error = Error("El valor a buscar dentro del vector es más grande que el tamaño del vector.", "Semántico", self.linea, self.columna)
+                    singleton.addError(error)
+                    print(error.descripcion)
+                    return
             else:
                 error = Error("El valor a buscar dentro del vector debe ser numérico.", "Semántico", self.linea, self.columna)
                 singleton.addError(error)

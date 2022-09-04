@@ -24,15 +24,23 @@ class AccesoVector(Expresion):
 
         if(variable.tipo_simbolo == TipoSimbolo.vector):
             if(num['tipo'] == TipoDato.i64):
-                return {'valor': variable.valor[num['valor']], 'tipo': variable.tipo_dato}
+                if(num['valor'] < len(variable.valor)):
+                    return {'valor': variable.valor[num['valor']], 'tipo': variable.tipo_dato}
+                else:
+                    error = Error("El valor a buscar dentro del vector es más grande que el tamaño del vector.", "Semántico", self.linea, self.columna)
+                    singleton.addError(error)
+                    print(error.descripcion)
+                    return {'valor': None, 'tipo': TipoDato.error}
             else:
                 error = Error("El valor a buscar dentro del vector debe ser numérico.", "Semántico", self.linea, self.columna)
                 singleton.addError(error)
                 print(error.descripcion)
+                return {'valor': None, 'tipo': TipoDato.error}
         else:
             error = Error("La variable con el nombre \""+str(self.nombre)+"\" no es un vector.", "Semántico", self.linea, self.columna)
             singleton.addError(error)
             print(error.descripcion)
+            return {'valor': None, 'tipo': TipoDato.error}
 
 
     def ast(self):

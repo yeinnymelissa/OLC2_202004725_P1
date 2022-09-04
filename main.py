@@ -157,22 +157,13 @@ def insertarDatos(tv, datos):
 
 if __name__ == '__main__':
     entrada = """
-    let mut x = (5 as f64)+4.6; 
-    let mut y : String = "true";
-    let mut z : &str = "hola";
-    z = "prueba";
-    let mut vector = vec![1,2,3,4,5];
-    println!("El vector1 es: {:?}", vector);
-    vector.push(6);
-    vector.push(7);
-    vector[0]=12;
-    println!("El vector2 es: {:?}", vector);
-    let v2 = vec!["hola"; 10];
-    let v = vec![vec![1; 10],vec![2; 8],vec![3; 15],vec![5; 2],vec![8; 1]];
-    println!("El valor es: {}", vector[1]);
+    let v = vec![1,2,3,4,5];
+    let num = v[0];
+    println!("{}", num); // imprime 1
+
     """
     analizar_entrada(entrada)
-    """#----------------------CREACION VENTANA----------------------
+    #----------------------CREACION VENTANA----------------------
     ventana = Tk()
     ventana.title("DB-Rust")
     ventana.configure(background='#D2BBF6')
@@ -214,4 +205,4 @@ if __name__ == '__main__':
     ventana.config(menu=menubar)
     ventana.geometry('1300x650')
     ventana.resizable(width=False, height=False)
-    ventana.mainloop()"""
+    ventana.mainloop()
