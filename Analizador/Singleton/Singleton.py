@@ -53,6 +53,8 @@ class Singleton():
             simbol.append(aux)
         return simbol
 
+    def getContador(self):
+        return self.contadorEnv
 
     def aumentarEnv(self):
         self.contadorEnv += 1

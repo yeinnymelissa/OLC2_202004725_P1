@@ -11,14 +11,15 @@ from Analizador.Expresiones.Remove import Remove
 from Analizador.Expresiones.Vector import Vector
 from Analizador.Instrucciones.Asignacion import Asignacion
 from Analizador.Instrucciones.AsignacionVec import AsignacionVec
+from Analizador.Instrucciones.Bloque import Bloque
 from Analizador.Instrucciones.Declaracion import Declaracion
 from Analizador.Instrucciones.DeclaracionVec import DeclaracionVec
+from Analizador.Instrucciones.If import If
 from Analizador.Instrucciones.Insert import Insert
 from Analizador.Instrucciones.Println import Println
 from Analizador.Instrucciones.Push import Push
 from Analizador.Singleton.Singleton import Singleton
 from Analizador.Expresiones.As import *
-
 reservadas = {
     'true' : 'True',
     'false' : 'False',
@@ -39,7 +40,8 @@ reservadas = {
     'with_capacity':'Capacidad',
     'push': 'Push',
     'insert': 'Insert',
-    'remove': 'Remove'
+    'remove': 'Remove',
+    'if': 'If'
 }
 
 tokens = [
@@ -364,6 +366,20 @@ def p_Declaracion_Vec_Mut_Capacidad_Bool(t):
 def p_Declaracion_Vec_Mut_Capacidad_Char(t):
     '''DECLARACION : Let Mut Id dosPuntos VEC menorQue CharAux mayorQue igual VEC dosPuntos dosPuntos Capacidad ParA EXPRESION ParC ptComa'''
     t[0] = DeclaracionVec(t[3], TipoDato.char, t[15], True, TipoVectores.capacidad, t.lineno(1), obtener_columna_p(t.lexer.lexdata, t))
+
+#-----------------IF-------------------
+
+def p_Instruccion_If(t):
+    '''INSTRUCCION : IF'''
+    t[0] = t[1]
+
+def p_If(t):
+    '''IF : If EXPRESION BLOQUE'''
+    t[0] = If(t[2], t[3], None, t.lineno(1), obtener_columna_p(t.lexer.lexdata, t))
+
+def p_Bloque(t):
+    '''BLOQUE : llaveA INSTRUCCIONES llaveC'''
+    t[0] = Bloque( t[2], t.lineno(1), obtener_columna_p(t.lexer.lexdata, t))
 
 #-------------ASIGNACION---------------
 
