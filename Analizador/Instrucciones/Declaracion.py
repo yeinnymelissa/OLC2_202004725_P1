@@ -3,6 +3,7 @@ from Analizador.Entorno.Tipo import *
 from Analizador.Singleton.Singleton import Singleton
 from Analizador.Entorno.Error import *
 from Analizador.Entorno.Tipo import *
+from datetime import datetime
 
 
 class Declaracion(Instruccion):
@@ -26,13 +27,17 @@ class Declaracion(Instruccion):
                         envActual = env.guardar_variable(self.nombre, expre['valor'], self.tipo, self.editable, TipoSimbolo.variable, self.linea, self.columna)
                 
                         if envActual == False:
-                            error = Error("Declaración invalida, la variable con el nombre \""+str(self.nombre)+"\" ya existe.", "Semántico", self.linea, self.columna)
+                            now = datetime.now()
+                            fechaHora = str(now.day) +"/"+str(now.month) +"/"+str(now.year) +" " + str(now.hour) + ":"+ str(now.minute)
+                            error = Error("Declaración invalida, la variable con el nombre \""+str(self.nombre)+"\" ya existe.", "Semántico", env.id, fechaHora, self.linea, self.columna)
                             singleton.addError(error)
                             print(error.descripcion)
                             return
                         return
                     else:
-                        error = Error("Declaración invalida, no se puede asignar un tipo "+ singleton.getTipo(expre['tipo'])+" a una variable tipo " + singleton.getTipo(self.tipo)+" .", "Semántico", self.linea, self.columna)
+                        now = datetime.now()
+                        fechaHora = str(now.day) +"/"+str(now.month) +"/"+str(now.year) +" " + str(now.hour) + ":"+ str(now.minute)
+                        error = Error("Declaración invalida, no se puede asignar un tipo "+ singleton.getTipo(expre['tipo'])+" a una variable tipo " + singleton.getTipo(self.tipo)+" .", "Semántico", env.id, fechaHora, self.linea, self.columna)
                         singleton.addError(error)
                         print(error.descripcion)
                         return
@@ -40,7 +45,9 @@ class Declaracion(Instruccion):
                 envActual = env.guardar_variable(self.nombre, expre['valor'], self.tipo, self.editable, TipoSimbolo.variable, self.linea, self.columna)
                 
                 if envActual == False:
-                    error = Error("Declaración invalida, la variable con el nombre \""+str(self.nombre)+"\" ya existe.", "Semántico", self.linea, self.columna)
+                    now = datetime.now()
+                    fechaHora = str(now.day) +"/"+str(now.month) +"/"+str(now.year) +" " + str(now.hour) + ":"+ str(now.minute)
+                    error = Error("Declaración invalida, la variable con el nombre \""+str(self.nombre)+"\" ya existe.", "Semántico", env.id, fechaHora, self.linea, self.columna)
                     singleton.addError(error)
                     print(error.descripcion)
                     return
@@ -50,7 +57,9 @@ class Declaracion(Instruccion):
                     envActual = env.guardar_variable(self.nombre, expre['valor'], expre['tipo'], self.editable, TipoSimbolo.variable, self.linea, self.columna)
                     
                     if envActual == False:
-                        error = Error("Declaración invalida, la variable con el nombre \""+str(self.nombre)+"\" ya existe.", "Semántico", self.linea, self.columna)
+                        now = datetime.now()
+                        fechaHora = str(now.day) +"/"+str(now.month) +"/"+str(now.year) +" " + str(now.hour) + ":"+ str(now.minute)
+                        error = Error("Declaración invalida, la variable con el nombre \""+str(self.nombre)+"\" ya existe.", "Semántico", env.id, fechaHora, self.linea, self.columna)
                         singleton.addError(error)
                         print(error.descripcion)
                         return
@@ -61,7 +70,9 @@ class Declaracion(Instruccion):
                 envActual = env.guardar_variable(self.nombre, expre['valor'], expre['tipo'], self.editable, TipoSimbolo.vector, self.linea, self.columna)
                 
                 if envActual == False:
-                    error = Error("Declaración invalida, la variable con el nombre \""+str(self.nombre)+"\" ya existe.", "Semántico", self.linea, self.columna)
+                    now = datetime.now()
+                    fechaHora = str(now.day) +"/"+str(now.month) +"/"+str(now.year) +" " + str(now.hour) + ":"+ str(now.minute)
+                    error = Error("Declaración invalida, la variable con el nombre \""+str(self.nombre)+"\" ya existe.", "Semántico", env.id, fechaHora, self.linea, self.columna)
                     singleton.addError(error)
                     print(error.descripcion)
                     return

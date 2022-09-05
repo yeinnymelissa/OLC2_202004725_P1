@@ -3,7 +3,7 @@ from Analizador.Entorno.Tipo import *
 from Analizador.Singleton.Singleton import Singleton
 from Analizador.Entorno.Error import *
 from Analizador.Entorno.Tipo import *
-
+from datetime import datetime
 
 class DeclaracionVec(Instruccion):
     def __init__(self, nombre, tipo, expresion, editable, tipo_vec, linea, columna):
@@ -20,7 +20,9 @@ class DeclaracionVec(Instruccion):
         if(self.tipo_vec == TipoVectores.vacio):
             envActual = env.guardar_variable(self.nombre, [], self.tipo, self.editable, TipoSimbolo.vector, self.linea, self.columna)
             if envActual == False:
-                error = Error("Declaración invalida, la variable con el nombre \""+str(self.nombre)+"\" ya existe.", "Semántico", self.linea, self.columna)
+                now = datetime.now()
+                fechaHora = str(now.day) +"/"+str(now.month) +"/"+str(now.year) +" " + str(now.hour) + ":"+ str(now.minute)
+                error = Error("Declaración invalida, la variable con el nombre \""+str(self.nombre)+"\" ya existe.", "Semántico", env.id, fechaHora, self.linea, self.columna)
                 singleton.addError(error)
                 print(error.descripcion)
                 return
@@ -39,14 +41,18 @@ class DeclaracionVec(Instruccion):
                     bandera = True
             
             if bandera == True:
-                error = Error("Declaración de vector invalida, los tipos asignados al vector no son del mismo tipo.", "Semántico", self.linea, self.columna)
+                now = datetime.now()
+                fechaHora = str(now.day) +"/"+str(now.month) +"/"+str(now.year) +" " + str(now.hour) + ":"+ str(now.minute)
+                error = Error("Declaración de vector invalida, los tipos asignados al vector no son del mismo tipo.", "Semántico", env.id, fechaHora, self.linea, self.columna)
                 singleton.addError(error)
                 print(error.descripcion)
                 return
             elif bandera == False:
                 envActual = env.guardar_variable(self.nombre, vec, tipo[0], self.editable, TipoSimbolo.vector, self.linea, self.columna)
                 if envActual == False:
-                    error = Error("Declaración invalida, la variable con el nombre \""+str(self.nombre)+"\" ya existe.", "Semántico", self.linea, self.columna)
+                    now = datetime.now()
+                    fechaHora = str(now.day) +"/"+str(now.month) +"/"+str(now.year) +" " + str(now.hour) + ":"+ str(now.minute)
+                    error = Error("Declaración invalida, la variable con el nombre \""+str(self.nombre)+"\" ya existe.", "Semántico", env.id, fechaHora, self.linea, self.columna)
                     singleton.addError(error)
                     print(error.descripcion)
                     return
@@ -64,13 +70,17 @@ class DeclaracionVec(Instruccion):
 
                 envActual = env.guardar_variable(self.nombre, vec, val['tipo'], self.editable, TipoSimbolo.vector, self.linea, self.columna)
                 if envActual == False:
-                    error = Error("Declaración invalida, la variable con el nombre \""+str(self.nombre)+"\" ya existe.", "Semántico", self.linea, self.columna)
+                    now = datetime.now()
+                    fechaHora = str(now.day) +"/"+str(now.month) +"/"+str(now.year) +" " + str(now.hour) + ":"+ str(now.minute)
+                    error = Error("Declaración invalida, la variable con el nombre \""+str(self.nombre)+"\" ya existe.", "Semántico", env.id, fechaHora, self.linea, self.columna)
                     singleton.addError(error)
                     print(error.descripcion)
                     return
                 return
             else:
-                error = Error("Declaración de vector invalida, la cantidad de veces a repetir el valor no es numérica.", "Semántico", self.linea, self.columna)
+                now = datetime.now()
+                fechaHora = str(now.day) +"/"+str(now.month) +"/"+str(now.year) +" " + str(now.hour) + ":"+ str(now.minute)
+                error = Error("Declaración de vector invalida, la cantidad de veces a repetir el valor no es numérica.", "Semántico", env.id, fechaHora, self.linea, self.columna)
                 singleton.addError(error)
                 print(error.descripcion)
                 return
@@ -85,13 +95,17 @@ class DeclaracionVec(Instruccion):
 
                 envActual = env.guardar_variable(self.nombre, vec, self.tipo, self.editable, TipoSimbolo.vector, self.linea, self.columna)
                 if envActual == False:
-                    error = Error("Declaración invalida, la variable con el nombre \""+str(self.nombre)+"\" ya existe.", "Semántico", self.linea, self.columna)
+                    now = datetime.now()
+                    fechaHora = str(now.day) +"/"+str(now.month) +"/"+str(now.year) +" " + str(now.hour) + ":"+ str(now.minute)
+                    error = Error("Declaración invalida, la variable con el nombre \""+str(self.nombre)+"\" ya existe.", "Semántico", env.id, fechaHora, self.linea, self.columna)
                     singleton.addError(error)
                     print(error.descripcion)
                     return
                 return
             else:
-                error = Error("Declaración de vector invalida, la capacidad del vector no es numérica.", "Semántico", self.linea, self.columna)
+                now = datetime.now()
+                fechaHora = str(now.day) +"/"+str(now.month) +"/"+str(now.year) +" " + str(now.hour) + ":"+ str(now.minute)
+                error = Error("Declaración de vector invalida, la capacidad del vector no es numérica.", "Semántico", env.id, fechaHora, self.linea, self.columna)
                 singleton.addError(error)
                 print(error.descripcion)
                 return

@@ -3,6 +3,7 @@ from Analizador.Entorno.Error import Error
 from Analizador.Entorno.Tipo import *
 from Analizador.Instrucciones.Instruccion import Instruccion
 from Analizador.Singleton.Singleton import Singleton
+from datetime import datetime
 
 class Println(Instruccion):
     def __init__(self, formato, expresion, linea, columna):
@@ -18,7 +19,9 @@ class Println(Instruccion):
             if expre['tipo'] == TipoDato.string:
                 singleton.addConsola(expre['valor'] + "\n")
             else:
-                error = Error("Para imprimir sin formato se debe imprimir un dato tipo String.", "Semántico", self.linea, self.columna)
+                now = datetime.now()
+                fechaHora = str(now.day) +"/"+str(now.month) +"/"+str(now.year) +" " + str(now.hour) + ":"+ str(now.minute)
+                error = Error("Para imprimir sin formato se debe imprimir un dato tipo String.", "Semántico", env.id, fechaHora, self.linea, self.columna)
                 singleton.addError(error)
                 print(error.descripcion)
             return
@@ -44,7 +47,9 @@ class Println(Instruccion):
                         if ex['tipo'] != TipoDato.vec:
                             singleton.addConsola(str(ex['valor'])+" ")
                         else: 
-                            error = Error("No se puede imprimir con el formato {} un vector.", "Semántico", self.linea, self.columna)
+                            now = datetime.now()
+                            fechaHora = str(now.day) +"/"+str(now.month) +"/"+str(now.year) +" " + str(now.hour) + ":"+ str(now.minute)
+                            error = Error("No se puede imprimir con el formato {} un vector.", "Semántico", env.id, fechaHora, self.linea, self.columna)
                             singleton.addError(error)
                             print(error.descripcion)
                     singleton.addConsola("\n")
@@ -67,14 +72,14 @@ class Println(Instruccion):
                                     singleton.addConsola(", "+str(ex['valor'][i]))
                             singleton.addConsola("]")"""
                         else: 
-                            error = Error("No se puede imprimir con el formato {:?} un valor que no sea vector.", "Semántico", self.linea, self.columna)
+                            now = datetime.now()
+                            fechaHora = str(now.day) +"/"+str(now.month) +"/"+str(now.year) +" " + str(now.hour) + ":"+ str(now.minute)
+                            error = Error("No se puede imprimir con el formato {:?} un valor que no sea vector.", "Semántico", env.id, fechaHora, self.linea, self.columna)
                             singleton.addError(error)
                             print(error.descripcion)
                     singleton.addConsola("\n")
             
-                
-
-            
+        
     
     def ast(self):
         pass

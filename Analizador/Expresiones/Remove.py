@@ -3,6 +3,7 @@ from Analizador.Entorno.Error import Error
 from Analizador.Entorno.Tipo import *
 from Analizador.Expresiones.Expresion import *
 from Analizador.Singleton.Singleton import Singleton
+from datetime import datetime
 
 class Remove(Expresion):
     def __init__(self, nombre, posicion, linea, columna):
@@ -26,30 +27,40 @@ class Remove(Expresion):
                             vector.valor.pop(pos['valor'])
                             return {'valor': borrado, 'tipo': vector.tipo_dato}
                         else:
-                            error = Error("El valor a buscar dentro del vector es más grande que el tamaño del vector.", "Semántico", self.linea, self.columna)
+                            now = datetime.now()
+                            fechaHora = str(now.day) +"/"+str(now.month) +"/"+str(now.year) +" " + str(now.hour) + ":"+ str(now.minute)
+                            error = Error("El valor a buscar dentro del vector es más grande que el tamaño del vector.", "Semántico", env.id, fechaHora, self.linea, self.columna)
                             singleton.addError(error)
                             print(error.descripcion)
                             return {'valor': None, 'tipo': TipoDato.error}
                     else:
-                        error = Error("El tipo de dato que se le quiere asignar al vector no es compatible con el tipo de dato del vector.", "Semántico", self.linea, self.columna)
+                        now = datetime.now()
+                        fechaHora = str(now.day) +"/"+str(now.month) +"/"+str(now.year) +" " + str(now.hour) + ":"+ str(now.minute)
+                        error = Error("El tipo de dato que se le quiere asignar al vector no es compatible con el tipo de dato del vector.", "Semántico", env.id, fechaHora, self.linea, self.columna)
                         singleton.addError(error)
                         print(error.descripcion)
                         return {'valor': None, 'tipo': TipoDato.error}
                 else:
-                        error = Error("El vector con el nombre \""+str(self.nombre)+"\" no es editable.", "Semántico", self.linea, self.columna)
-                        singleton.addError(error)
-                        print(error.descripcion)
-                        return {'valor': None, 'tipo': TipoDato.error}
+                    now = datetime.now()
+                    fechaHora = str(now.day) +"/"+str(now.month) +"/"+str(now.year) +" " + str(now.hour) + ":"+ str(now.minute)
+                    error = Error("El vector con el nombre \""+str(self.nombre)+"\" no es editable.", "Semántico", env.id, fechaHora, self.linea, self.columna)
+                    singleton.addError(error)
+                    print(error.descripcion)
+                    return {'valor': None, 'tipo': TipoDato.error}
             else:
-                        error = Error("La variable con el nombre \""+str(self.nombre)+"\" no es un vector para realizar una instruccion push().", "Semántico", self.linea, self.columna)
-                        singleton.addError(error)
-                        print(error.descripcion)
-                        return {'valor': None, 'tipo': TipoDato.error}
+                now = datetime.now()
+                fechaHora = str(now.day) +"/"+str(now.month) +"/"+str(now.year) +" " + str(now.hour) + ":"+ str(now.minute)
+                error = Error("La variable con el nombre \""+str(self.nombre)+"\" no es un vector para realizar una instruccion push().", "Semántico", env.id, fechaHora, self.linea, self.columna)
+                singleton.addError(error)
+                print(error.descripcion)
+                return {'valor': None, 'tipo': TipoDato.error}
         else:
-                        error = Error("El con el nombre \""+str(self.nombre)+"\" no existe.", "Semántico", self.linea, self.columna)
-                        singleton.addError(error)
-                        print(error.descripcion)
-                        return {'valor': None, 'tipo': TipoDato.error}
+            now = datetime.now()
+            fechaHora = str(now.day) +"/"+str(now.month) +"/"+str(now.year) +" " + str(now.hour) + ":"+ str(now.minute)
+            error = Error("El con el nombre \""+str(self.nombre)+"\" no existe.", "Semántico", env.id, fechaHora, self.linea, self.columna)
+            singleton.addError(error)
+            print(error.descripcion)
+            return {'valor': None, 'tipo': TipoDato.error}
 
     def ast(self):
         pass

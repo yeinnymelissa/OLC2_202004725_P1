@@ -3,6 +3,7 @@ from Analizador.Entorno.Tipo import *
 from Analizador.Singleton.Singleton import Singleton
 from Analizador.Entorno.Error import *
 from Analizador.Entorno.Tipo import *
+from datetime import datetime
 
 class AccesoVector(Expresion):
     def __init__(self, nombre, expresion, linea, columna):
@@ -17,7 +18,9 @@ class AccesoVector(Expresion):
         num = self.expresion.run(env)
 
         if(variable == None):
-            error = Error("Variable inexistente.", "Semántico", self.linea, self.columna)
+            now = datetime.now()
+            fechaHora = str(now.day) +"/"+str(now.month) +"/"+str(now.year) +" " + str(now.hour) + ":"+ str(now.minute)
+            error = Error("Variable inexistente.", "Semántico", env.id, fechaHora, self.linea, self.columna)
             singleton.addError(error)
             print(error.descripcion)
             return {'valor': None, 'tipo': TipoDato.error}
@@ -27,17 +30,23 @@ class AccesoVector(Expresion):
                 if(num['valor'] < len(variable.valor)):
                     return {'valor': variable.valor[num['valor']], 'tipo': variable.tipo_dato}
                 else:
-                    error = Error("El valor a buscar dentro del vector es más grande que el tamaño del vector.", "Semántico", self.linea, self.columna)
+                    now = datetime.now()
+                    fechaHora = str(now.day) +"/"+str(now.month) +"/"+str(now.year) +" " + str(now.hour) + ":"+ str(now.minute)
+                    error = Error("El valor a buscar dentro del vector es más grande que el tamaño del vector.", "Semántico", env.id, fechaHora, self.linea, self.columna)
                     singleton.addError(error)
                     print(error.descripcion)
                     return {'valor': None, 'tipo': TipoDato.error}
             else:
-                error = Error("El valor a buscar dentro del vector debe ser numérico.", "Semántico", self.linea, self.columna)
+                now = datetime.now()
+                fechaHora = str(now.day) +"/"+str(now.month) +"/"+str(now.year) +" " + str(now.hour) + ":"+ str(now.minute)
+                error = Error("El valor a buscar dentro del vector debe ser numérico.", "Semántico", env.id, fechaHora, self.linea, self.columna)
                 singleton.addError(error)
                 print(error.descripcion)
                 return {'valor': None, 'tipo': TipoDato.error}
         else:
-            error = Error("La variable con el nombre \""+str(self.nombre)+"\" no es un vector.", "Semántico", self.linea, self.columna)
+            now = datetime.now()
+            fechaHora = str(now.day) +"/"+str(now.month) +"/"+str(now.year) +" " + str(now.hour) + ":"+ str(now.minute)
+            error = Error("La variable con el nombre \""+str(self.nombre)+"\" no es un vector.", "Semántico", env.id, fechaHora, self.linea, self.columna)
             singleton.addError(error)
             print(error.descripcion)
             return {'valor': None, 'tipo': TipoDato.error}

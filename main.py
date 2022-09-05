@@ -1,3 +1,4 @@
+from cgitb import text
 from tkinter import *
 from tkinter import ttk, Tk, font, filedialog
 import tkinter
@@ -27,7 +28,24 @@ def acercaDe():
     acerca_de.resizable(width=False, height=False)
     acerca_de.mainloop()
 
+def ejecutar():
+    global simbolos
+    global errores
+    consola.configure(state='normal')
+    consola.delete("1.0","end")
+    consola.configure(state='disabled')
+    singleton = Singleton.getInstance()
+    singleton.borrarTodo()
+    entrada = editor.get("1.0","end")
+    analizar_entrada(entrada)
+    consola.configure(state='normal')
+    consola.insert("insert", singleton.getConsola())
+    consola.configure(state='disabled')
+    simbolos = singleton.getSimbolo()
+    errores = singleton.getError()
+
 def tablaSimbolos():
+    singleton = Singleton.getInstance()
     tabla_simbolos = Toplevel()
     tabla_simbolos.title("Tabla de símbolos")
     tabla_simbolos.configure(background='#F4F4A6', padx=20, pady=20)
@@ -40,7 +58,7 @@ def tablaSimbolos():
     tabla.pack(fill='both')
 
     tabla.heading(0, text = 'ID')
-    tabla.column(0, anchor='center', width=100)
+    tabla.column(0, anchor='center', width=200)
 
     tabla.heading(1, text = 'Tipo Símbolo')
     tabla.column(1, anchor='center', width=100)
@@ -58,7 +76,7 @@ def tablaSimbolos():
     tabla.column(5, anchor='center', width=100)
 
     insertarDatos(tabla, simbolos)
-    tabla_simbolos.resizable(width=False, height=False)
+    #tabla_simbolos.resizable(width=False, height=False)
     tabla_simbolos.mainloop()
 
 def tablaErrores():
@@ -67,7 +85,7 @@ def tablaErrores():
     tabla_errores.configure(background='#F4F4A6', padx=20, pady=20)
     tabla = ttk.Treeview(
     tabla_errores,
-    columns=('c1', 'c2', 'c3', 'c4', 'c5', 'c6'),
+    columns=('c1', 'c2', 'c3', 'c4', 'c5', 'c6', 'c7'),
     show='headings',
     selectmode='browse'
     )
@@ -77,22 +95,25 @@ def tablaErrores():
     tabla.column(0, anchor='center', width=100)
 
     tabla.heading(1, text = 'Descripción')
-    tabla.column(1, anchor='center', width=100)
+    tabla.column(1, anchor='center', width=400)
 
     tabla.heading(2, text = 'Ámbito')
     tabla.column(2, anchor='center', width=100)
 
     tabla.heading(3, text = 'Línea')
-    tabla.column(3, anchor='center', width=100)
+    tabla.column(3, anchor='center', width=50)
 
     tabla.heading(4, text = 'Columna')
-    tabla.column(4, anchor='center', width=100)
+    tabla.column(4, anchor='center', width=50)
 
     tabla.heading(5, text = 'Fecha y hora')
-    tabla.column(5, anchor='center', width=100)
+    tabla.column(5, anchor='center', width=150)
+
+    tabla.heading(6, text = 'Tipo')
+    tabla.column(6, anchor='center', width=100)
 
     insertarDatos(tabla, errores)
-    tabla_errores.resizable(width=False, height=False)
+    #tabla_errores.resizable(width=False, height=False)
     tabla_errores.mainloop()
 
 def tablaBasesDatosExistentes():
@@ -120,7 +141,7 @@ def tablaBasesDatosExistentes():
     tabla.column(3, anchor='center', width=100)
 
     insertarDatos(tabla, basesExistentes)
-    tabla_base.resizable(width=False, height=False)
+    #tabla_base.resizable(width=False, height=False)
     tabla_base.mainloop()
 
 def tablaBasesDatos():
@@ -148,7 +169,7 @@ def tablaBasesDatos():
     tabla.column(3, anchor='center', width=100)
 
     insertarDatos(tabla, basesExistentes)
-    tabla_base.resizable(width=False, height=False)
+    #tabla_base.resizable(width=False, height=False)
     tabla_base.mainloop()
 
 def insertarDatos(tv, datos):
@@ -156,13 +177,12 @@ def insertarDatos(tv, datos):
         tv.insert('', 'end', values=dato)
 
 if __name__ == '__main__':
-    entrada = """
+    """entrada = 
     let v = vec![1,2,3,4,5];
     let num = v[0];
     println!("{}", num); // imprime 1
 
-    """
-    analizar_entrada(entrada)
+    analizar_entrada(entrada)"""
     #----------------------CREACION VENTANA----------------------
     ventana = Tk()
     ventana.title("DB-Rust")
@@ -192,7 +212,7 @@ if __name__ == '__main__':
     scrollbarx.pack(side="bottom", fill="x")
     editor = Text(ventana, height=32, width= 70, yscrollcommand=scrollbar.set, xscrollcommand=scrollbarx.set)
     editor.place(x = 50, y = 50);
-    botonEjecutar = Button(ventana, text='Ejecutar',bg="#F1F159")
+    botonEjecutar = Button(ventana, text='Ejecutar',bg="#F1F159", command=ejecutar)
     botonEjecutar.place(x=527, y=10)
     etiquetaEditor = Label(ventana, text="Editor", background="#D2BBF6")
     etiquetaEditor.place(x=50,y=10)

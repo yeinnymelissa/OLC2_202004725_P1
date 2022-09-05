@@ -18,6 +18,13 @@ class Singleton():
             Singleton.instance = Singleton()
         return Singleton.instance
 
+    def borrarTodo(self):
+        self.consola = ""
+        self.ast = ""
+        self.errores = []
+        self.simbolos = []
+        self.contadorEnv = 1
+
     def addConsola(self, entrada):
         self.consola += entrada
     
@@ -28,10 +35,24 @@ class Singleton():
         self.errores.append(error)
     
     def getError(self):
-        return self.errores
+        err = []
+        cont = 1
+        for error in self.errores:
+            aux = [cont, error.descripcion, "Ambiente "+str(error.ambiente), error.linea, error.columna, error.fechaHora, error.tipo]
+            err.append(aux)
+            cont +=1
+        return err
     
     def addSimbolo(self, simbolo):
         self.simbolos.append(simbolo)
+    
+    def getSimbolo(self):
+        simbol = []
+        for simbolo in self.simbolos:
+            aux = [simbolo.nombre, self.getTipoSimbolo(simbolo.tipo_simbolo), self.getTipo(simbolo.tipo_dato), "Ambiente "+str(simbolo.num_ambiente), simbolo.linea, simbolo.columna]
+            simbol.append(aux)
+        return simbol
+
 
     def aumentarEnv(self):
         self.contadorEnv += 1
@@ -49,5 +70,14 @@ class Singleton():
             return "char"
         else:
             return "error"
+        
+    def getTipoSimbolo(self, tipo):
+        
+        if(tipo == TipoSimbolo.funcion):
+            return "Funcion"
+        elif(tipo == TipoSimbolo.variable):
+            return "Variable"
+        elif(tipo == TipoSimbolo.vector):
+            return "Vector"
 
     

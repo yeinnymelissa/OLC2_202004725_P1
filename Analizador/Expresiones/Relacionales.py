@@ -1,6 +1,7 @@
 from Analizador.Expresiones.Expresion import *
 from Analizador.Entorno.Tipo import *
 from Analizador.Singleton.Singleton import *
+from datetime import datetime
 
 class Relacionales(Expresion):
     def __init__(self, izq, der, tipo, linea, columna):
@@ -33,7 +34,9 @@ class Relacionales(Expresion):
                 else: 
                     resultado = {'valor': False, 'tipo': TipoDato.bool}
             else:
-                error = Error("No se pudo realizar la operación relacional.", "Semántico", self.linea, self.columna)
+                now = datetime.now()
+                fechaHora = str(now.day) +"/"+str(now.month) +"/"+str(now.year) +" " + str(now.hour) + ":"+ str(now.minute)
+                error = Error("No se pudo realizar la operación relacional.", "Semántico", env.id, fechaHora, self.linea, self.columna)
                 singleton.addError(error)
                 print(error.descripcion)
         elif(self.tipo == TipoRelacionales.menor):
@@ -53,7 +56,9 @@ class Relacionales(Expresion):
                 else: 
                     resultado = {'valor': False, 'tipo': TipoDato.bool}
             else:
-                error = Error("No se pudo realizar la operación relacional.", "Semántico", self.linea, self.columna)
+                now = datetime.now()
+                fechaHora = str(now.day) +"/"+str(now.month) +"/"+str(now.year) +" " + str(now.hour) + ":"+ str(now.minute)
+                error = Error("No se pudo realizar la operación relacional.", "Semántico", env.id, fechaHora, self.linea, self.columna)
                 singleton.addError(error)
                 print(error.descripcion)
         elif(self.tipo == TipoRelacionales.mayorIgual):
@@ -73,7 +78,9 @@ class Relacionales(Expresion):
                 else: 
                     resultado = {'valor': False, 'tipo': TipoDato.bool}
             else:
-                error = Error("No se pudo realizar la operación relacional.", "Semántico", self.linea, self.columna)
+                now = datetime.now()
+                fechaHora = str(now.day) +"/"+str(now.month) +"/"+str(now.year) +" " + str(now.hour) + ":"+ str(now.minute)
+                error = Error("No se pudo realizar la operación relacional.", "Semántico", env.id, fechaHora, self.linea, self.columna)
                 singleton.addError(error)
                 print(error.descripcion)
         elif(self.tipo == TipoRelacionales.menorIgual):
@@ -93,7 +100,9 @@ class Relacionales(Expresion):
                 else: 
                     resultado = {'valor': False, 'tipo': TipoDato.bool}
             else:
-                error = Error("No se pudo realizar la operación relacional.", "Semántico", self.linea, self.columna)
+                now = datetime.now()
+                fechaHora = str(now.day) +"/"+str(now.month) +"/"+str(now.year) +" " + str(now.hour) + ":"+ str(now.minute)
+                error = Error("No se pudo realizar la operación relacional.", "Semántico", env.id, fechaHora, self.linea, self.columna)
                 singleton.addError(error)
                 print(error.descripcion)
         elif(self.tipo == TipoRelacionales.igualacion):
@@ -113,7 +122,9 @@ class Relacionales(Expresion):
                 else: 
                     resultado = {'valor': False, 'tipo': TipoDato.bool}
             else:
-                error = Error("No se pudo realizar la operación relacional.", "Semántico", self.linea, self.columna)
+                now = datetime.now()
+                fechaHora = str(now.day) +"/"+str(now.month) +"/"+str(now.year) +" " + str(now.hour) + ":"+ str(now.minute)
+                error = Error("No se pudo realizar la operación relacional.", "Semántico", env.id, fechaHora, self.linea, self.columna)
                 singleton.addError(error)
                 print(error.descripcion)
         elif(self.tipo == TipoRelacionales.diferente):
@@ -133,7 +144,9 @@ class Relacionales(Expresion):
                 else: 
                     resultado = {'valor': False, 'tipo': TipoDato.bool}
             else:
-                error = Error("No se pudo realizar la operación relacional.", "Semántico", self.linea, self.columna)
+                now = datetime.now()
+                fechaHora = str(now.day) +"/"+str(now.month) +"/"+str(now.year) +" " + str(now.hour) + ":"+ str(now.minute)
+                error = Error("No se pudo realizar la operación relacional.", "Semántico", env.id, fechaHora, self.linea, self.columna)
                 singleton.addError(error)
                 print(error.descripcion)
 

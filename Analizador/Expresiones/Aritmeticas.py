@@ -1,6 +1,8 @@
 from Analizador.Expresiones.Expresion import *
 from Analizador.Entorno.Tipo import *
 from Analizador.Singleton.Singleton import *
+from datetime import datetime
+
 class Aritmeticas(Expresion):
     def __init__(self, izq, der, tipo, linea, columna):
         self.izq = izq
@@ -23,7 +25,9 @@ class Aritmeticas(Expresion):
             elif nodoIzq['tipo'] == TipoDato.str and nodoDer['tipo'] == TipoDato.str:
                 resultado = {'valor': str(nodoIzq['valor']) + str(nodoDer['valor']), 'tipo': TipoDato.str}
             else:
-                error = Error("No se puede realizar la suma porque los tipos no son válidos.", "Semántico", self.linea, self.columna)
+                now = datetime.now()
+                fechaHora = str(now.day) +"/"+str(now.month) +"/"+str(now.year) +" " + str(now.hour) + ":"+ str(now.minute)
+                error = Error("No se puede realizar la suma porque los tipos no son válidos.", "Semántico", env.id, fechaHora, self.linea, self.columna)
                 singleton.addError(error)
                 print(error.descripcion)
         elif(self.tipo == TipoAritmetica.resta):
@@ -32,7 +36,9 @@ class Aritmeticas(Expresion):
             elif nodoIzq['tipo'] == TipoDato.f64 and nodoDer['tipo'] == TipoDato.f64:
                 resultado = {'valor': nodoIzq['valor'] - nodoDer['valor'], 'tipo': TipoDato.f64}
             else:
-                error = Error("No se puede realizar la resta porque los tipos no son válidos.", "Semántico", self.linea, self.columna)
+                now = datetime.now()
+                fechaHora = str(now.day) +"/"+str(now.month) +"/"+str(now.year) +" " + str(now.hour) + ":"+ str(now.minute)
+                error = Error("No se puede realizar la resta porque los tipos no son válidos.", "Semántico", env.id, fechaHora, self.linea, self.columna)
                 singleton.addError(error)
                 print(error.descripcion)
         elif(self.tipo == TipoAritmetica.multiplicacion):
@@ -41,7 +47,9 @@ class Aritmeticas(Expresion):
             elif nodoIzq['tipo'] == TipoDato.f64 and nodoDer['tipo'] == TipoDato.f64:
                 resultado = {'valor': nodoIzq['valor'] * nodoDer['valor'], 'tipo': TipoDato.f64}
             else:
-                error = Error("No se puede realizar la multiplicación porque los tipos no son válidos.", "Semántico", self.linea, self.columna)
+                now = datetime.now()
+                fechaHora = str(now.day) +"/"+str(now.month) +"/"+str(now.year) +" " + str(now.hour) + ":"+ str(now.minute)
+                error = Error("No se puede realizar la multiplicación porque los tipos no son válidos.", "Semántico", env.id, fechaHora, self.linea, self.columna)
                 singleton.addError(error)
                 print(error.descripcion)
         elif(self.tipo == TipoAritmetica.division):
@@ -54,21 +62,27 @@ class Aritmeticas(Expresion):
             elif nodoIzq['tipo'] == TipoDato.f64 and nodoDer['tipo'] == TipoDato.f64:
                 resultado = {'valor': nodoIzq['valor'] / nodoDer['valor'], 'tipo': TipoDato.f64}
             else:
-                error = Error("No se puede realizar la división porque los tipos no son válidos.", "Semántico", self.linea, self.columna)
+                now = datetime.now()
+                fechaHora = str(now.day) +"/"+str(now.month) +"/"+str(now.year) +" " + str(now.hour) + ":"+ str(now.minute)
+                error = Error("No se puede realizar la división porque los tipos no son válidos.", "Semántico", env.id, fechaHora, self.linea, self.columna)
                 singleton.addError(error)
                 print(error.descripcion)
         elif(self.tipo == TipoAritmetica.powi):
             if nodoIzq['tipo'] == TipoDato.i64 and nodoDer['tipo'] == TipoDato.i64:
                 resultado = {'valor': nodoIzq['valor'] ** nodoDer['valor'], 'tipo': TipoDato.i64}
             else:
-                error = Error("No se puede realizar la potencia porque los tipos no son válidos.", "Semántico", self.linea, self.columna)
+                now = datetime.now()
+                fechaHora = str(now.day) +"/"+str(now.month) +"/"+str(now.year) +" " + str(now.hour) + ":"+ str(now.minute)
+                error = Error("No se puede realizar la potencia porque los tipos no son válidos.", "Semántico", env.id, fechaHora, self.linea, self.columna)
                 singleton.addError(error)
                 print(error.descripcion)
         elif(self.tipo == TipoAritmetica.powf):
             if nodoIzq['tipo'] == TipoDato.f64 and nodoDer['tipo'] == TipoDato.f64:
                 resultado = {'valor': nodoIzq['valor'] ** nodoDer['valor'], 'tipo': TipoDato.f64}
             else:
-                error = Error("No se puede realizar la potencia porque los tipos no son válidos.", "Semántico", self.linea, self.columna)
+                now = datetime.now()
+                fechaHora = str(now.day) +"/"+str(now.month) +"/"+str(now.year) +" " + str(now.hour) + ":"+ str(now.minute)
+                error = Error("No se puede realizar la potencia porque los tipos no son válidos.", "Semántico", env.id, fechaHora, self.linea, self.columna)
                 singleton.addError(error)
                 print(error.descripcion)
         elif(self.tipo == TipoAritmetica.modulo):
@@ -77,7 +91,9 @@ class Aritmeticas(Expresion):
             elif nodoIzq['tipo'] == TipoDato.f64 and nodoDer['tipo'] == TipoDato.f64:
                 resultado = {'valor': nodoIzq['valor'] % nodoDer['valor'], 'tipo': TipoDato.f64}
             else:
-                error = Error("No se puede realizar la multiplicación porque los tipos no son válidos.", "Semántico", self.linea, self.columna)
+                now = datetime.now()
+                fechaHora = str(now.day) +"/"+str(now.month) +"/"+str(now.year) +" " + str(now.hour) + ":"+ str(now.minute)
+                error = Error("No se puede realizar la multiplicación porque los tipos no son válidos.", "Semántico", env.id, fechaHora, self.linea, self.columna)
                 singleton.addError(error)
                 print(error.descripcion)
         elif(self.tipo == TipoAritmetica.negado):
@@ -86,11 +102,15 @@ class Aritmeticas(Expresion):
             elif nodoIzq['tipo'] == TipoDato.f64:
                 resultado = {'valor': nodoIzq['valor'] * (-1), 'tipo': TipoDato.f64}
             else:
-                error = Error("No se puede realizar el negado porque los tipos no son válidos.", "Semántico", self.linea, self.columna)
+                now = datetime.now()
+                fechaHora = str(now.day) +"/"+str(now.month) +"/"+str(now.year) +" " + str(now.hour) + ":"+ str(now.minute)
+                error = Error("No se puede realizar el negado porque los tipos no son válidos.", "Semántico", env.id, fechaHora, self.linea, self.columna)
                 singleton.addError(error)
                 print(error.descripcion)
         else:
-            error = Error("Opción aritmetica no válida.", "Semántico", self.linea, self.columna)
+            now = datetime.now()
+            fechaHora = str(now.day) +"/"+str(now.month) +"/"+str(now.year) +" " + str(now.hour) + ":"+ str(now.minute)
+            error = Error("Opción aritmetica no válida.", "Semántico", env.id, fechaHora, self.linea, self.columna)
             singleton.addError(error)
             print(error.descripcion)
 

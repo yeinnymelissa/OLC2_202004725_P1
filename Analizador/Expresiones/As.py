@@ -2,6 +2,7 @@ from Analizador.Entorno.Error import Error
 from Analizador.Expresiones.Expresion import *
 from Analizador.Entorno.Tipo import *
 from Analizador.Singleton.Singleton import Singleton
+from datetime import datetime
 
 class As(Expresion):
     def __init__(self, valor, tipo_convertir, linea, columna):
@@ -20,7 +21,9 @@ class As(Expresion):
             if(self.tipo_convertir == TipoDato.i64):
                 return {'valor': int(expre['valor']), 'tipo': TipoDato.i64}
         else:
-            error = Error("El valor no es valido para realizar una conversión.", "Semántico", self.linea, self.columna)
+            now = datetime.now()
+            fechaHora = str(now.day) +"/"+str(now.month) +"/"+str(now.year) +" " + str(now.hour) + ":"+ str(now.minute)
+            error = Error("El valor no es valido para realizar una conversión.", "Semántico", env.id,fechaHora, self.linea, self.columna)
             singleton.addError(error)
             print(error.descripcion)
             return

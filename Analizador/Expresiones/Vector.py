@@ -3,6 +3,7 @@ from Analizador.Entorno.Tipo import *
 from Analizador.Singleton.Singleton import Singleton
 from Analizador.Entorno.Error import *
 from Analizador.Entorno.Tipo import *
+from datetime import datetime
 
 class Vector(Expresion):
     def __init__(self, expresion, tipo_vector, linea, columna):
@@ -26,7 +27,9 @@ class Vector(Expresion):
                     bandera = True
             
             if bandera == True:
-                error = Error("Los tipos del vector son diferentes.", "Semántico", self.linea, self.columna)
+                now = datetime.now()
+                fechaHora = str(now.day) +"/"+str(now.month) +"/"+str(now.year) +" " + str(now.hour) + ":"+ str(now.minute)
+                error = Error("Los tipos del vector son diferentes.", "Semántico", env.id, fechaHora, self.linea, self.columna)
                 singleton.addError(error)
                 print(error.descripcion)
                 return
@@ -46,7 +49,9 @@ class Vector(Expresion):
 
                 return {'valor': vec, 'tipo': val['tipo']}
             else:
-                error = Error("La cantidad de veces a repetir el valor en el vector no es numérica.", "Semántico", self.linea, self.columna)
+                now = datetime.now()
+                fechaHora = str(now.day) +"/"+str(now.month) +"/"+str(now.year) +" " + str(now.hour) + ":"+ str(now.minute)
+                error = Error("La cantidad de veces a repetir el valor en el vector no es numérica.", "Semántico", env.id, fechaHora, self.linea, self.columna)
                 singleton.addError(error)
                 print(error.descripcion)
                 return
