@@ -1,3 +1,4 @@
+from re import A
 from Analizador.Entorno.Entorno import Entorno
 from Analizador.Entorno.Error import Error
 from Analizador.Entorno.Tipo import *
@@ -16,7 +17,10 @@ class Println(Instruccion):
 
         if self.formato == None:
             expre = self.expresion.run(env)
-            if expre['tipo'] == TipoDato.string:
+            print("Tipo: "+ str(expre['tipo']))
+            if expre['tipo'] == TipoDato.str:
+                singleton.addConsola(expre['valor'] + "\n")
+            elif expre['tipo'] == TipoDato.string:
                 singleton.addConsola(expre['valor'] + "\n")
             else:
                 now = datetime.now()
@@ -30,53 +34,60 @@ class Println(Instruccion):
             express = 0
             vec = 0
             cadena = ""
-
-            for i in formato:
-                if i == "{}":
+            for i in range(0, len(formato)) :
+                if formato[i] == "{}":
                     express += 1
-                elif i == "{:?}":
+                    formato[i] = "espacio"
+                elif formato[i] == "{:?}":
                     vec += 1
+                    formato[i] = "espacio"
             if express > 0:
                 if express == len(self.expresion):
-                    for i in formato:
-                        if i != "{}" and i != "{:?}":
-                            cadena += i +" "
-                    singleton.addConsola(cadena)
+                    contador = 0
+                    valores = []
                     for i in self.expresion:
                         ex = i.run(env)
                         if ex['tipo'] != TipoDato.vec:
-                            singleton.addConsola(str(ex['valor'])+" ")
+                            print("PASE VALORES")
+                            print(str(ex['valor']))
+                            valores.append(str(ex['valor']))
+                            #singleton.addConsola(str(ex['valor'])+" ")
                         else: 
                             now = datetime.now()
                             fechaHora = str(now.day) +"/"+str(now.month) +"/"+str(now.year) +" " + str(now.hour) + ":"+ str(now.minute)
                             error = Error("No se puede imprimir con el formato {} un vector.", "Semántico", env.id, fechaHora, self.linea, self.columna)
                             singleton.addError(error)
                             print(error.descripcion)
-                    singleton.addConsola("\n")
-            elif vec > 0:
-                vecS = ""
-                if vec == len(self.expresion):
                     for i in formato:
-                        if i != "{}" and i != "{:?}":
-                            cadena += i +" "
+                        if i == "espacio":
+                            i = valores[contador]
+                            contador += 1
+                        cadena += i + " "
                     singleton.addConsola(cadena)
+                    singleton.addConsola("\n")
+            
+            elif vec > 0:
+                if vec == len(self.expresion):
+                    contador = 0
+                    valores = []
                     for i in self.expresion:
                         ex = i.run(env)
                         if ex['tipo'] == TipoDato.vec:
-                            singleton.addConsola(str(ex['valor']))
-                            """singleton.addConsola("[")
-                            for i in range(0, len(ex['valor'])):
-                                if(i == 0):
-                                    singleton.addConsola(str(ex['valor'][i]))
-                                else:
-                                    singleton.addConsola(", "+str(ex['valor'][i]))
-                            singleton.addConsola("]")"""
+                            valores.append(str(ex['valor']))
+                            #singleton.addConsola(str(ex['valor']))
                         else: 
                             now = datetime.now()
                             fechaHora = str(now.day) +"/"+str(now.month) +"/"+str(now.year) +" " + str(now.hour) + ":"+ str(now.minute)
                             error = Error("No se puede imprimir con el formato {:?} un valor que no sea vector.", "Semántico", env.id, fechaHora, self.linea, self.columna)
                             singleton.addError(error)
                             print(error.descripcion)
+                            return
+                    for i in formato:
+                        if i == "espacio":
+                            i = valores[contador]
+                            contador += 1
+                        cadena += i + " "
+                    singleton.addConsola(cadena)
                     singleton.addConsola("\n")
             
         

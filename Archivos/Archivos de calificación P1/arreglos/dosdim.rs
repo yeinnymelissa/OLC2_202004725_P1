@@ -52,7 +52,7 @@ fn main() {
     let mut matB: [[i64; 3]; 3] = [[0,0,0],[0,0,0],[0,0,0]];
     let mut matR: [[i64; 3]; 3] = [[0,0,0],[0,0,0],[0,0,0]];
 
-    // llenar matriz 
+    /* llenar matriz */
     llenarMat(&mut matA, &mut matB);
 
     println!("Matriz A");

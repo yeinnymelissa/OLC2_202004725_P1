@@ -31,9 +31,6 @@ class Asignacion(Instruccion):
                 print(error.descripcion)
                 bandera = False
             if(variable.tipo_dato != expresion['tipo']):
-                if(variable.tipo_dato == TipoDato.str and expresion['tipo'] == TipoDato.string):
-                    env.actualizarVariable(self.nombre, expresion['valor'])
-                    return
                 now = datetime.now()
                 fechaHora = str(now.day) +"/"+str(now.month) +"/"+str(now.year) +" " + str(now.hour) + ":"+ str(now.minute)
                 error = Error("La asignacion no se puede realizar porque la variable es tipo "+singleton.getTipo(variable.tipo_dato)+" y se le quiere asignar un tipo "+singleton.getTipo(expresion['tipo'])+".", "Semántico", env.id, fechaHora, self.linea, self.columna)

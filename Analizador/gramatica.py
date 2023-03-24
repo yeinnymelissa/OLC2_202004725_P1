@@ -1,6 +1,7 @@
 from Analizador.Entorno.Entorno import Entorno
 from Analizador.Entorno.Tipo import *
 from Analizador.Entorno.Error import Error
+from Analizador.Expresiones.Abs import Abs
 from Analizador.Expresiones.Acceso import Acceso
 from Analizador.Expresiones.AccesoVector import AccesoVector
 from Analizador.Expresiones.Aritmeticas import Aritmeticas
@@ -8,6 +9,8 @@ from Analizador.Expresiones.Literal import Literal
 from Analizador.Expresiones.Logicas import Logicas
 from Analizador.Expresiones.Relacionales import Relacionales
 from Analizador.Expresiones.Remove import Remove
+from Analizador.Expresiones.Sqrt import Sqrt
+from Analizador.Expresiones.To_String import To_String
 from Analizador.Expresiones.Vector import Vector
 from Analizador.Instrucciones.Asignacion import Asignacion
 from Analizador.Instrucciones.AsignacionVec import AsignacionVec
@@ -16,10 +19,13 @@ from Analizador.Instrucciones.Declaracion import Declaracion
 from Analizador.Instrucciones.DeclaracionVec import DeclaracionVec
 from Analizador.Instrucciones.If import If
 from Analizador.Instrucciones.Insert import Insert
+from Analizador.Instrucciones.Main import Main
 from Analizador.Instrucciones.Println import Println
 from Analizador.Instrucciones.Push import Push
 from Analizador.Singleton.Singleton import Singleton
 from Analizador.Expresiones.As import *
+from datetime import datetime
+
 reservadas = {
     'true' : 'True',
     'false' : 'False',
@@ -41,7 +47,13 @@ reservadas = {
     'push': 'Push',
     'insert': 'Insert',
     'remove': 'Remove',
-    'if': 'If'
+    'if': 'If',
+    'else': 'Else',
+    'main': 'Main', 
+    'fn': 'Func', 
+    'abs': 'Abs', 
+    'sqrt': 'Sqrt', 
+    'to_string': 'To_string', 
 }
 
 tokens = [
@@ -173,8 +185,11 @@ def t_newline(t):
 
 def t_error(t):
     singleton = Singleton.getInstance()
-    error = Error("El caracter \""+ str(t.value[0]) + "\" no pertenece al lenguaje.", "Léxico", t.lexer.lineno, obtener_columna(t.lexer.lexdata, t))
+    now = datetime.now()
+    fechaHora = str(now.day) +"/"+str(now.month) +"/"+str(now.year) +" " + str(now.hour) + ":"+ str(now.minute)
+    error = Error("El caracter \""+ str(t.value[0]) + "\" no pertenece al lenguaje.", "Léxico", "ninguno", fechaHora, t.lexer.lineno, obtener_columna(t.lexer.lexdata, t))
     singleton.addError(error)
+    print(error.descripcion)
     t.lexer.skip(1)
 
 import ply.lex as lex
@@ -184,7 +199,7 @@ precedence = (
     ('left', 'Or'),
     ('left', 'And'),
     ('left', 'mas', 'menos'),
-    ('nonassoc', 'menorQue', 'mayorQue', 'menorIgual', 'mayorIgual', 'dobleIgual', 'diferenteQue'),  
+    ('nonassoc', 'menorQue', 'mayorQue', 'menorIgual', 'mayorIgual', 'dobleIgual', 'diferenteQue', 'To_string', 'To_string', 'Abs', 'Sqrt'),  
     ('left', 'por', 'dividido', 'modulo'),
     ('left', 'Powi', 'Powf'),
     ('right', 'not'), 
@@ -193,8 +208,23 @@ precedence = (
 )
 
 def p_init(t) :
-    'init : INSTRUCCIONES'
+    'init : FUNCIONES'
     t[0] = t[1]
+
+def p_funciones_main(t):
+    '''FUNCIONES : FUNCIONES MAIN'''
+    t[1].append(t[2])
+    t[0] = t[1]
+
+def p_funciones_func(t):
+    '''FUNCIONES : FUNCIONES FUNCION'''
+    t[1].append(t[2])
+    t[0] = t[1]
+
+def p_funciones_fin(t):
+    '''FUNCIONES : FUNCION
+                | MAIN'''
+    t[0] = [t[1]]
 
 def p_listaInstrucciones(t):
     '''INSTRUCCIONES : INSTRUCCIONES INSTRUCCION'''
@@ -204,6 +234,13 @@ def p_listaInstrucciones(t):
 def p_listaInstrucciones_Instruccion(t):
     '''INSTRUCCIONES : INSTRUCCION'''
     t[0] = [t[1]]
+
+def p_main(t):
+    '''MAIN : Func Main ParA ParC BLOQUE'''
+    t[0] = Main(t[5], t.lineno(1), obtener_columna_p(t.lexer.lexdata, t))
+
+def p_funcion(t):
+    '''FUNCION : Func Id ParA ParC BLOQUE'''
 
 #-------------DECLARACION---------------
 
@@ -374,8 +411,25 @@ def p_Instruccion_If(t):
     t[0] = t[1]
 
 def p_If(t):
-    '''IF : If EXPRESION BLOQUE'''
-    t[0] = If(t[2], t[3], None, t.lineno(1), obtener_columna_p(t.lexer.lexdata, t))
+    '''IF : If EXPRESION BLOQUE ELSEIF ELSE'''
+    t[0] = If(t[2], t[3], t[4], t[5], t.lineno(1), obtener_columna_p(t.lexer.lexdata, t))
+
+def p_ElseIf(t):
+    '''ELSEIF : ELSEIF Else If EXPRESION BLOQUE'''
+    t[1].append(If(t[4], t[5], None, None, t.lineno(1), obtener_columna_p(t.lexer.lexdata, t)))
+    t[0] = t[1]
+
+def p_ElseIf_Empty(t):
+    '''ELSEIF : empty'''
+    t[0] = [None]
+
+def p_Else(t):
+    '''ELSE : Else BLOQUE'''
+    t[0] = t[2]
+
+def p_Else_Empty(t):
+    '''ELSE : empty'''
+    t[0] = None
 
 def p_Bloque(t):
     '''BLOQUE : llaveA INSTRUCCIONES llaveC'''
@@ -422,7 +476,7 @@ def p_Instruccion_Imprimir(t):
     t[0] = t[1]
 
 def p_Imprimir_String(t):
-    '''IMPRIMIR : PrintLn not ParA String ParC ptComa'''
+    '''IMPRIMIR : PrintLn not ParA EXPRESION ParC ptComa'''
     t[0] = Println(None, t[4], t.lineno(1), obtener_columna_p(t.lexer.lexdata, t))
 
 def p_Imprimir_String_Comas(t):
@@ -508,7 +562,6 @@ def p_Expresion_DiferenteDe(t):
 
 def p_Expresion_And(t):
     '''EXPRESION : EXPRESION And EXPRESION'''
-    print("AND")
     t[0] = Logicas(t[1], t[3], TipoLogicas.AND, t.lineno(1), obtener_columna_p(t.lexer.lexdata, t))
 
 def p_Expresion_Or(t):
@@ -528,6 +581,24 @@ def p_Expresion_As_i64(t):
 def p_Expresion_As_f64(t):
     '''EXPRESION : EXPRESION AS F64'''
     t[0] = As(t[1], TipoDato.f64, t.lineno(1), obtener_columna_p(t.lexer.lexdata, t))
+
+#---------------TO_STRING----------------
+
+def p_Expresion_to_string(t):
+    '''EXPRESION : EXPRESION punto To_string ParA ParC'''
+    t[0] = To_String(t[1], t.lineno(1), obtener_columna_p(t.lexer.lexdata, t))
+
+#---------------ABS----------------
+
+def p_Expresion_Abs(t):
+    '''EXPRESION : EXPRESION punto Abs ParA ParC'''
+    t[0] = Abs(t[1], t.lineno(1), obtener_columna_p(t.lexer.lexdata, t))
+
+#---------------Sqrt----------------
+
+def p_Expresion_Sqrt(t):
+    '''EXPRESION : EXPRESION punto Sqrt ParA ParC'''
+    t[0] = Sqrt(t[1], t.lineno(1), obtener_columna_p(t.lexer.lexdata, t))
 
 #-------------VECTORES-------------
 
@@ -565,7 +636,7 @@ def p_Expresion_Booleano(t):
 
 def p_Expresion_String(t):
     '''EXPRESION : String'''
-    t[0] = Literal(t[1], TipoDato.string, t.lineno(1), obtener_columna_p(t.lexer.lexdata, t))
+    t[0] = Literal(t[1], TipoDato.str, t.lineno(1), obtener_columna_p(t.lexer.lexdata, t))
 
 def p_Expresion_Char(t):
     '''EXPRESION : Char'''
@@ -579,10 +650,16 @@ def p_Expresion_Acceso_Vec(t):
     '''EXPRESION : Id CorA EXPRESION CorC'''
     t[0] = AccesoVector(t[1], t[3], t.lineno(1), obtener_columna_p(t.lexer.lexdata, t))
 
+def p_empty(t):
+    """empty :"""
+    pass
+
 def p_error(t):
     print("Error sintactico '%s'" % t.value)
     singleton = Singleton.getInstance()
-    error = Error("El token \""+ str(t.value) + "\" no se esperaba.", "Sintáctico", t.lexer.lineno, obtener_columna(t.lexer.lexdata, t))
+    now = datetime.now()
+    fechaHora = str(now.day) +"/"+str(now.month) +"/"+str(now.year) +" " + str(now.hour) + ":"+ str(now.minute)
+    error = Error("El token \""+ str(t.value) + "\" no se esperaba.", "Sintáctico", "ninguno", fechaHora, t.lexer.lineno, obtener_columna(t.lexer.lexdata, t))
     singleton.addError(error)
     print("El token \""+ str(t.value) + "\" no se esperaba.")
     print(t.lexer.lineno)
@@ -617,8 +694,11 @@ def analizar_entrada(entrada):
     analizador = parser.parse(entrada)
 
     entornoPadre = Entorno(0, None)
-    for instruccion in analizador:
-        instruccion.run(entornoPadre)
+    if(analizador != None):
+        for instruccion in analizador:
+            if(instruccion != None):
+                if(type(instruccion).__name__ == "Main"):
+                    instruccion.run(entornoPadre)
     
     singleton = Singleton.getInstance()
 

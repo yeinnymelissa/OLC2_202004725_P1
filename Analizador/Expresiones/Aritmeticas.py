@@ -22,7 +22,7 @@ class Aritmeticas(Expresion):
                 resultado = {'valor': nodoIzq['valor'] + nodoDer['valor'], 'tipo': TipoDato.i64}
             elif nodoIzq['tipo'] == TipoDato.f64 and nodoDer['tipo'] == TipoDato.f64:
                 resultado = {'valor': nodoIzq['valor'] + nodoDer['valor'], 'tipo': TipoDato.f64}
-            elif nodoIzq['tipo'] == TipoDato.str and nodoDer['tipo'] == TipoDato.str:
+            elif nodoIzq['tipo'] == TipoDato.string and nodoDer['tipo'] == TipoDato.str:
                 resultado = {'valor': str(nodoIzq['valor']) + str(nodoDer['valor']), 'tipo': TipoDato.str}
             else:
                 now = datetime.now()
@@ -53,18 +53,25 @@ class Aritmeticas(Expresion):
                 singleton.addError(error)
                 print(error.descripcion)
         elif(self.tipo == TipoAritmetica.division):
-            if nodoIzq['tipo'] == TipoDato.i64 and nodoDer['tipo'] == TipoDato.i64:
-                print(nodoIzq['valor'] / nodoDer['valor'])
-                if(type(nodoIzq['valor'] / nodoDer['valor']) == int):
-                    resultado = {'valor': nodoIzq['valor'] / nodoDer['valor'], 'tipo': TipoDato.i64}
-                elif(type(nodoIzq['valor'] / nodoDer['valor']) == float):
+            if(nodoDer['valor'] != 0):
+                if nodoIzq['tipo'] == TipoDato.i64 and nodoDer['tipo'] == TipoDato.i64:
+                    print(nodoIzq['valor'] / nodoDer['valor'])
+                    if(type(nodoIzq['valor'] / nodoDer['valor']) == int):
+                        resultado = {'valor': nodoIzq['valor'] / nodoDer['valor'], 'tipo': TipoDato.i64}
+                    elif(type(nodoIzq['valor'] / nodoDer['valor']) == float):
+                        resultado = {'valor': nodoIzq['valor'] / nodoDer['valor'], 'tipo': TipoDato.f64}
+                elif nodoIzq['tipo'] == TipoDato.f64 and nodoDer['tipo'] == TipoDato.f64:
                     resultado = {'valor': nodoIzq['valor'] / nodoDer['valor'], 'tipo': TipoDato.f64}
-            elif nodoIzq['tipo'] == TipoDato.f64 and nodoDer['tipo'] == TipoDato.f64:
-                resultado = {'valor': nodoIzq['valor'] / nodoDer['valor'], 'tipo': TipoDato.f64}
+                else:
+                    now = datetime.now()
+                    fechaHora = str(now.day) +"/"+str(now.month) +"/"+str(now.year) +" " + str(now.hour) + ":"+ str(now.minute)
+                    error = Error("No se puede realizar la división porque los tipos no son válidos.", "Semántico", env.id, fechaHora, self.linea, self.columna)
+                    singleton.addError(error)
+                    print(error.descripcion)
             else:
                 now = datetime.now()
                 fechaHora = str(now.day) +"/"+str(now.month) +"/"+str(now.year) +" " + str(now.hour) + ":"+ str(now.minute)
-                error = Error("No se puede realizar la división porque los tipos no son válidos.", "Semántico", env.id, fechaHora, self.linea, self.columna)
+                error = Error("No se puede dividir dentro de cero.", "Semántico", env.id, fechaHora, self.linea, self.columna)
                 singleton.addError(error)
                 print(error.descripcion)
         elif(self.tipo == TipoAritmetica.powi):

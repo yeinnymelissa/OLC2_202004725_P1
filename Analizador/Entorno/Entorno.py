@@ -32,8 +32,8 @@ class Entorno():
     def getVariable(self, nombre):
         env = self
         while env != None:
-            if(self.tabla_simbolos.get(nombre) != None):
-                return self.tabla_simbolos.get(nombre)
+            if(env.tabla_simbolos.get(nombre) != None):
+                return env.tabla_simbolos.get(nombre)
             env = env.entorno_anterior
         return None
 

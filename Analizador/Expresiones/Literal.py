@@ -14,6 +14,8 @@ class Literal(Expresion):
             return {'valor': float(self.valor), 'tipo': TipoDato.f64}
         elif(self.tipo == TipoDato.char):
             return {'valor': self.valor, 'tipo': TipoDato.char}
+        elif(self.tipo == TipoDato.str):
+            return {'valor': self.valor, 'tipo': TipoDato.str}
         elif(self.tipo == TipoDato.string):
             return {'valor': self.valor, 'tipo': TipoDato.string}
         elif(self.tipo == TipoDato.bool):

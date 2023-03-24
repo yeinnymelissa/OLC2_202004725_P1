@@ -19,6 +19,7 @@ class Acceso(Expresion):
             fechaHora = str(now.day) +"/"+str(now.month) +"/"+str(now.year) +" " + str(now.hour) + ":"+ str(now.minute)
             error = Error("Variable inexistente.", "Semántico", env.id, fechaHora, self.linea, self.columna)
             singleton.addError(error)
+            print(error.descripcion)
             return {'valor': None, 'tipo': TipoDato.error}
         
         if(variable.tipo_simbolo == TipoSimbolo.vector):

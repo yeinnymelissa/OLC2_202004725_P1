@@ -15,6 +15,8 @@ class Bloque(Instruccion):
 
         singleton.aumentarEnv()
 
+        #print("NEW: "+ str(newEnv.id))
+
         for ins in self.instrucciones:
             ins.run(newEnv)
     
